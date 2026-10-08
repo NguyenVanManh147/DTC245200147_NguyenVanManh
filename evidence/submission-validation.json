@@ -1,0 +1,14 @@
+{
+  "checked_at": "2026-10-08T16:33:44.281912+07:00",
+  "passed": true,
+  "system_checks": "40/40",
+  "pdf_pages": 28,
+  "report_images": 27,
+  "screenshot_hashes_verified": 27,
+  "blank_pdf_pages": [],
+  "deadline": "not specified by the course, as confirmed by the student",
+  "report_html_sha256": "7c03caed1624d0ac826b2c303e456fe1b8540c327a35e462879396160865e827",
+  "report_pdf_sha256": "1584cdd3ea078011838067bd30469255f37e6da404fbb5f78bf089b7fd4d35b2",
+  "git_snapshot_commit": "a1e4153846ec31c3bf8c24c4a5197f5a0602d4b0",
+  "scope": "Pre-final-commit validation; delivery snapshot is timestamped; final commit checked after push."
+}

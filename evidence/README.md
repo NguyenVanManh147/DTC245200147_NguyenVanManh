@@ -26,7 +26,7 @@ Minh chứng được lấy từ hệ thống WordPress/Docker đang chạy và 
 | `13-hardening-networks.png` | Các mạng application/database/monitoring internal | `docker network inspect` |
 | `14-hardening-ports-users.png` | Ports localhost, users, capabilities; ngoại lệ cAdvisor | `docker compose ps` và inspect đã chọn trường |
 | `15-database-grants.png` | User ứng dụng chỉ có quyền trong schema | phpMyAdmin `SHOW GRANTS FOR CURRENT_USER();` |
-| `16-git-status.png` | Lịch sử năm commits thực, origin/main, remote và các file đang cập nhật sau đổi mật khẩu | Các lệnh Git; thời gian trong `16-git-status.capture.json` |
+| `16-git-status.png` | Lịch sử 6 commits thực, origin/main và remote sau push kết quả 40/40 | Các lệnh Git; thời gian trong `16-git-status.capture.json` |
 | `17a-github-account.png` | Trang repositories của tài khoản `NguyenVanManh147` | GitHub công khai, cập nhật lúc 15:31 ngày 08/10/2026 |
 | `17b-github-repository.png` | Repository bài chứa source và README sau push | GitHub công khai; thời gian chụp trong file capture tương ứng |
 | `18-backup-validation.png` | Import thử backup vào MySQL cô lập, kiểm tra bảng/chữ ký | `backup-validation.json` |
@@ -37,7 +37,7 @@ Minh chứng được lấy từ hệ thống WordPress/Docker đang chạy và 
 | `24-wordpress-edit-admin.png` | Trang thử đã sửa nội dung và xuất bản trong quản trị | Phiên admin WordPress thật |
 | `25-wordpress-edit-public.png` | Nội dung mới hiển thị HTTP 200 cho khách ẩn danh | Trang công khai trước khi dọn nội dung thử |
 
-Source và hồ sơ được bàn giao qua repository công khai [NguyenVanManh147/DTC245200147_NguyenVanManh](https://github.com/NguyenVanManh147/DTC245200147_NguyenVanManh), nhánh **main**. `git-delivery.json` ghi snapshot đối chiếu commit local/remote và lịch sử ít nhất ba commits thực. Ảnh `16-git-status.png` ghi trạng thái tại thời gian trong metadata; ảnh `17a/17b` lấy từ trang GitHub sau push. Những commit hoàn thiện hồ sơ sau snapshot được xem trong lịch sử GitHub.
+Source và hồ sơ đã push lên repository công khai [NguyenVanManh147/DTC245200147_NguyenVanManh](https://github.com/NguyenVanManh147/DTC245200147_NguyenVanManh), nhánh **main**. `git-delivery.json` lúc **16:29 ngày 08/10/2026** xác nhận **6 commits thực**, local và remote cùng revision `a1e4153`; snapshot gồm bản đổi mật khẩu và kết quả 40/40. Ảnh `16-git-status.png` chụp lịch sử Git sau push; ảnh `17a/17b` chụp tài khoản và repository công khai sau push. Những commit hoàn thiện ảnh/PDF sau snapshot được xem trong lịch sử GitHub.
 
 ## Sửa và lưu nội dung WordPress
 
@@ -70,6 +70,7 @@ Lần kiểm thử lúc **15:21 ngày 08/10/2026 đạt 13/13**, ghi tại `word
 | `git-delivery.json` | Snapshot đã push, ít nhất ba commits thực và revision local/remote khớp |
 | `report-image-index.json` | Danh sách hình và captions được chèn trong HTML |
 | `report-validation.json` | Số trang/ảnh và kiểm tra bản PDF |
+| `submission-validation.json` | Kiểm tra bản bàn giao: PDF 28 trang, đủ 27 ảnh/sơ đồ, SHA-256 minh chứng khớp, không có trang trắng, kết quả 40/40 và snapshot GitHub đã đối chiếu |
 
 Kết quả hệ thống ngày **08/10/2026: 40/40**. MySQL user, MySQL root và Grafana dùng ba mật khẩu ngẫu nhiên riêng biệt, mỗi mật khẩu **48 ký tự**, đạt mức tối thiểu **20 ký tự**. Xác thực root, user database, WordPress và Grafana thành công. WordPress admin giữ nguyên mật khẩu. Xem `credential-hardening.json` và `verification.json`. SQL backup và dữ liệu xác thực nằm trong thư mục riêng tư bị ignore, không có trong repository.
 
@@ -80,3 +81,5 @@ Bootstrap đã được kiểm tra trên volumes mới của Docker Desktop hi�
 Báo cáo HTML và PDF ở `docs/`. Thông tin bìa đã xác nhận: **Nguyễn Văn Mạnh — DTC245200147 — Khoa Công Nghệ Thông Tin — CNTTK23B**, học phần **Triển khai và Quản trị Hệ thống Phần mềm**, giảng viên **Nguyễn Anh Chuyên**. **Không quy định hạn nộp**, theo xác nhận của sinh viên. Phần kết luận đánh giá các kết quả kỹ thuật đã được kiểm chứng; nhận xét trải nghiệm học tập cá nhân do sinh viên bổ sung nếu học phần yêu cầu.
 
 Workspace chưa có phiếu đề gốc. Cần đối chiếu trước khi nộp về tên tài khoản/repository GitHub, số commits, nhánh HTTPS/security headers và quy cách báo cáo; không suy ra username GitHub bắt buộc trùng mã sinh viên khi chưa có điều kiện gốc.
+
+Bản ZIP nộp bài được tạo bằng `git archive` từ commit bàn giao cuối, lưu cục bộ trong `submission/` (bị Git ignore). ZIP chứa source, báo cáo và minh chứng đã commit; không chứa `.env`, SQL backup, `secrets/`, Docker volumes hoặc `.git`. Khi dựng trên máy mới, dùng hướng dẫn bootstrap trong README.

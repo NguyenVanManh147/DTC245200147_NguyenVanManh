@@ -1,8 +1,8 @@
 {
-  "checked_at": "2026-10-08T15:31:27.524165+07:00",
+  "checked_at": "2026-10-08T16:29:53.491944+07:00",
   "username": "NguyenVanManh147",
   "branch": "main",
-  "commit_count": 4,
+  "commit_count": 6,
   "remote_url": "https://github.com/NguyenVanManh147/DTC245200147_NguyenVanManh.git",
   "repository_url": "https://github.com/NguyenVanManh147/DTC245200147_NguyenVanManh",
   "commits": [
@@ -21,10 +21,18 @@
     {
       "hash": "7d27e842a9cb013e583fa8caba3d991151da1dbd",
       "subject": "docs: complete course report and verified deployment evidence"
+    },
+    {
+      "hash": "8161366fd933da7e2d4c488f5c95ca1fbbd39c7a",
+      "subject": "docs: finalize GitHub delivery and illustrated PDF report"
+    },
+    {
+      "hash": "a1e4153846ec31c3bf8c24c4a5197f5a0602d4b0",
+      "subject": "fix: harden credentials and complete verified portfolio report"
     }
   ],
-  "verified_local_commit": "7d27e842a9cb013e583fa8caba3d991151da1dbd",
-  "verified_remote_commit": "7d27e842a9cb013e583fa8caba3d991151da1dbd",
+  "verified_local_commit": "a1e4153846ec31c3bf8c24c4a5197f5a0602d4b0",
+  "verified_remote_commit": "a1e4153846ec31c3bf8c24c4a5197f5a0602d4b0",
   "remote_checked": true,
   "pushed": true,
   "at_least_three_real_commits": true,

@@ -64,11 +64,11 @@ Nguồn: [evidence/verification.json](../evidence/verification.json).
 - Nội dung thử sau khi lưu đã được xác minh hiển thị qua trang công khai của website.
 - Các trang portfolio gốc được đối chiếu và giữ nguyên sau kiểm thử nội dung.
 - Nội dung thử đã được dọn sau kiểm thử; việc dọn được xác minh riêng.
-- Kiểm tra Git: 145 files là candidates; không có private files hoặc credential thực bị phát hiện trong candidates.
-- Git được kiểm tra vào 2026-10-08T15:31:27.524165+07:00: nhánh `main`, 4 commits; xem evidence/git-delivery.json.
+- Kiểm tra Git: 146 files là candidates; không có private files hoặc credential thực bị phát hiện trong candidates.
+- Git được kiểm tra vào 2026-10-08T16:29:53.491944+07:00: nhánh `main`, 6 commits; xem evidence/git-delivery.json.
 - Repository bài: [https://github.com/NguyenVanManh147/DTC245200147_NguyenVanManh](https://github.com/NguyenVanManh147/DTC245200147_NguyenVanManh). Trạng thái push: **đã xác minh**.
 - Báo cáo HTML đã chèn 26 ảnh minh chứng thật và sơ đồ kiến trúc; ảnh không chứa mật khẩu/cookies/token. Các hình output lệnh là kết quả thật được hiển thị qua HTML để chụp, không phải terminal Windows.
-- Lần xuất PDF được xác minh tại 2026-10-08T16:26:06+07:00: 28 trang A4; 27 ảnh/sơ đồ tải thành công, không thiếu file. Xem docs/BaoCao_DTC245200147_NguyenVanManh.pdf và evidence/report-validation.json.
+- Lần xuất PDF được xác minh tại 2026-10-08T16:32:27+07:00: 28 trang A4; 27 ảnh/sơ đồ tải thành công, không thiếu file. Xem docs/BaoCao_DTC245200147_NguyenVanManh.pdf và evidence/report-validation.json.
 - MySQL user, MySQL root và Grafana đã đổi sang ba mật khẩu ngẫu nhiên riêng biệt, mỗi mật khẩu 48 ký tự; .env và dịch vụ đồng bộ. WordPress admin giữ mật khẩu hiện có. Xem evidence/credential-hardening.json.
 - Thông tin khoa, lớp, học phần và giảng viên đã được xác nhận. Không quy định hạn nộp theo xác nhận của sinh viên. Phiếu đề gốc không có trong workspace; phạm vi kiểm tra sử dụng checklist trong README.
 

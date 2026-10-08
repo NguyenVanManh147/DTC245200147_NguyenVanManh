@@ -108,16 +108,16 @@
     "sha256": "3c60685060589b855c1807cb069e0e95143718e5ca6931421f4e06e84b0d4f9b"
   },
   "16-git-status.png": {
-    "captured_at": "2026-10-08T16:17:24+07:00",
+    "captured_at": "2026-10-08T16:29:45+07:00",
     "source": "evidence\\16-git-status.html",
     "label": "Lịch sử commits và repository GitHub của bài",
-    "sha256": "82d64ffc2174820fdaed52467a9327503ddbcfc4721b49ce955234efa63f7a2f"
+    "sha256": "f19113ed4261146bad01d27412367d4e855fec1fcf4ab8e6dab19683093ab1fe"
   },
   "17a-github-account.png": {
-    "captured_at": "2026-10-08T15:33:04+07:00",
+    "captured_at": "2026-10-08T16:30:20+07:00",
     "source": "https://github.com/NguyenVanManh147?tab=repositories",
     "label": "Tài khoản GitHub do người dùng cung cấp: NguyenVanManh147",
-    "sha256": "91fac1874de1c3ef02557961024e9acf6b4adc67f2fd377e9c7846cc4bcb949e"
+    "sha256": "2f5ae2755a0d8f7295376cd716510bb8004d5a2623ddafa9c15fe6751ba78dac"
   },
   "18-backup-validation.png": {
     "captured_at": "2026-10-08T16:17:24+07:00",
@@ -138,7 +138,7 @@
     "sha256": "1134cc0ef7b633131d446e2ca0c08e433dbf60d5db56d52d19961fe175023fe2"
   },
   "21-report-preview.png": {
-    "captured_at": "2026-10-08T16:26:06+07:00",
+    "captured_at": "2026-10-08T16:32:27+07:00",
     "source": "docs/report.html",
     "label": "Báo cáo đã chèn ảnh minh chứng",
     "sha256": "5c862a69f60d15ec222a592362cfd2117eb64ef74f75e23ac65c1c69a47f7dfd"
@@ -156,9 +156,9 @@
     "sha256": "4a721658404be5a2bcda80df2ff54cbfd128d8eda5abfa7ff211e3001da1552a"
   },
   "17b-github-repository.png": {
-    "captured_at": "2026-10-08T15:33:08+07:00",
+    "captured_at": "2026-10-08T16:30:24+07:00",
     "source": "https://github.com/NguyenVanManh147/DTC245200147_NguyenVanManh",
     "label": "Repository GitHub của bài: source và README",
-    "sha256": "d14abdfc1ea46fbd2f53ee1d5d317e6bcd307a19dc9d69478a5a66882212282b"
+    "sha256": "4d62a646c62c552fc3a7599c39495ff1e24d886270658ba3acf269b0379b8901"
   }
 }

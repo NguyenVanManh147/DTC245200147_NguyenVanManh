@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-10-08T16:25:39.229355+07:00",
+  "checked_at": "2026-10-08T16:31:28.623497+07:00",
   "screenshot_count": 26,
   "images": [
     {
@@ -120,17 +120,17 @@
     {
       "file": "evidence/16-git-status.png",
       "caption": "Kết quả Git thực tế: nhánh main, lịch sử ít nhất ba commits có nội dung, origin/main và remote đúng repository.",
-      "captured_at": "2026-10-08T16:17:24+07:00"
+      "captured_at": "2026-10-08T16:29:45+07:00"
     },
     {
       "file": "evidence/17a-github-account.png",
       "caption": "Trang tài khoản GitHub NguyenVanManh147 hiển thị repository bài sau khi push source.",
-      "captured_at": "2026-10-08T15:33:04+07:00"
+      "captured_at": "2026-10-08T16:30:20+07:00"
     },
     {
       "file": "evidence/17b-github-repository.png",
       "caption": "Repository GitHub của bài sau khi push: source, README và lịch sử commits.",
-      "captured_at": "2026-10-08T15:33:08+07:00"
+      "captured_at": "2026-10-08T16:30:24+07:00"
     }
   ],
   "architecture": "docs/architecture.svg",

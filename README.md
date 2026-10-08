@@ -263,7 +263,7 @@ Snapshot WordPress đã thử phục hồi vào MySQL cùng image trên tmpfs/ne
 
 ## Git và GitHub
 
-Source và báo cáo đã được push lên repository công khai [NguyenVanManh147/DTC245200147_NguyenVanManh](https://github.com/NguyenVanManh147/DTC245200147_NguyenVanManh), nhánh **main**. [Snapshot bàn giao](evidence/git-delivery.json) lúc **15:31 ngày 08/10/2026** xác nhận **4 commits thực**, local và remote cùng revision `7d27e84`; những commit cập nhật hồ sơ sau snapshot được xem trong lịch sử GitHub. [Ảnh repository](evidence/17b-github-repository.png) được chụp từ trang GitHub công khai. Không có phiếu đề gốc trong workspace nên chưa kết luận username GitHub phải trùng mã sinh viên; repository mang mã sinh viên để nhận diện bài.
+Source, kết quả 40/40 và báo cáo đã được push lên repository công khai [NguyenVanManh147/DTC245200147_NguyenVanManh](https://github.com/NguyenVanManh147/DTC245200147_NguyenVanManh), nhánh **main**. [Snapshot bàn giao](evidence/git-delivery.json) lúc **16:29 ngày 08/10/2026** xác nhận **6 commits thực**, local và remote cùng revision `a1e4153`. Các commit hoàn thiện ảnh/PDF sau snapshot được xem trong lịch sử GitHub. [Ảnh repository](evidence/17b-github-repository.png) được chụp từ trang GitHub công khai sau push. Phiếu đề gốc không có trong workspace; repository mang mã sinh viên và họ tên để nhận diện bài.
 
 Lịch sử có **ít nhất 3 commits thực**, chia theo ứng dụng WordPress/Nginx, cấu hình monitoring/logging, kiểm thử tái lập/quản trị và hồ sơ báo cáo/minh chứng. Không đổi ngày commit hay tạo commits rỗng. Kiểm tra lịch sử và remote bằng:
 

@@ -168,7 +168,7 @@ network_meta = json.loads(run('docker', 'network', 'inspect', *network_ids).stdo
 record('Internal application/database/monitoring networks', all(x['Internal'] for x in network_meta), [{'name': x['Name'], 'internal': x['Internal']} for x in network_meta])
 for key in ['MYSQL_PASSWORD', 'MYSQL_ROOT_PASSWORD', 'GRAFANA_ADMIN_PASSWORD']:
     value = settings[key]
-    record('Password length policy: ' + key, len(value) >= 20 and not value.startswith('CHANGE_ME'), {'length': len(value), 'minimum': 20, 'note': 'Application/Grafana rotated to random values; root credential preserved. Length alone does not prove entropy.'})
+    record('Password length policy: ' + key, len(value) >= 20 and not value.startswith('CHANGE_ME'), {'length': len(value), 'minimum': 20, 'note': 'Checks the configured value; service authentication is checked separately. Length alone does not prove entropy.'})
 root_test = run('docker', 'compose', 'exec', '-T', 'db', 'sh', '-s', input=b'export MYSQL_PWD="$MYSQL_ROOT_PASSWORD"\nmysql -uroot -e "SELECT 1" >/dev/null 2>&1\n')
 record('Existing MySQL root credential authentication', root_test.returncode == 0, {'authenticated': root_test.returncode == 0, 'note': 'No root reset or volume deletion attempted.'})
 ignored = run('git', 'check-ignore', '.env', 'backups/before-changes.sql')

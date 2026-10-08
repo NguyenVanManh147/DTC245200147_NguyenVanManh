@@ -110,7 +110,9 @@ if has_captures:
         lines.append(f"- Lần xuất PDF được xác minh tại {report_validation.get('checked_at', 'thời gian ghi trong artifact')}: {report_validation['pdf_pages']} trang A4; {report_validation['images']} ảnh/sơ đồ tải thành công, không thiếu file. Xem {report_validation['pdf_file']} và evidence/report-validation.json.")
 remaining = []
 if password_failures:
-    lines.append('- Người dùng yêu cầu giữ nguyên mật khẩu hiện tại. Các kiểm tra độ dài chưa đạt được giữ và ghi rõ, không đổi mật khẩu hoặc hạ chính sách kiểm tra.')
+    lines.append('- Các kiểm tra độ dài chưa đạt được giữ và ghi rõ; không hạ chính sách kiểm tra.')
+elif artifact('credential-hardening.json').get('services_synchronized'):
+    lines.append('- MySQL user, MySQL root và Grafana đã đổi sang ba mật khẩu ngẫu nhiên riêng biệt, mỗi mật khẩu 48 ký tự; .env và dịch vụ đồng bộ. WordPress admin giữ mật khẩu hiện có. Xem evidence/credential-hardening.json.')
 if not ok('Existing MySQL root credential authentication'):
     remaining.append('Xác minh root và xử lý theo docs/root-maintenance.md; giữ nguyên volume dữ liệu.')
 if not edit_verified:
@@ -121,11 +123,12 @@ if not git_commits_verified:
     remaining.append('Tạo ít nhất ba commits có nội dung thực và ghi nhận lịch sử trong evidence/git-delivery.json.')
 if not git_pushed:
     remaining.append('Push source vào repository thuộc tài khoản NguyenVanManh147 do người dùng xác nhận, sau khi kiểm tra riêng tư; xác minh URL và commit remote.')
-remaining.append('Đối chiếu lịch nộp và yêu cầu với phiếu đề bài gốc. Khoa Công nghệ Thông tin, lớp CNTTK23B, học phần Triển khai và Quản trị Hệ thống Phần mềm và giảng viên Nguyễn Anh Chuyên đã được sinh viên xác nhận.')
+lines.append('- Thông tin khoa, lớp, học phần và giảng viên đã được xác nhận. Không quy định hạn nộp theo xác nhận của sinh viên. Phiếu đề gốc không có trong workspace; phạm vi kiểm tra sử dụng checklist trong README.')
 if not (bootstrap_validation.get('fresh_install_verified') and bootstrap_validation.get('cleanup_verified')):
     remaining.append('Xác minh khởi tạo trên volumes mới bằng scripts/test-bootstrap.py và lưu evidence/bootstrap-validation.json.')
-lines += ['', '## Công việc còn cần bổ sung', '']
-lines += [f'{i}. {item}' for i, item in enumerate(remaining, 1)]
+lines += ['', '## Trạng thái hoàn thiện', '']
+lines += ([f'{i}. {item}' for i, item in enumerate(remaining, 1)] if remaining else
+          ['Các bước triển khai, kiểm thử, minh chứng và báo cáo trong checklist đã hoàn tất. Minh chứng GitHub là snapshot theo thời gian; commit bàn giao cuối được đối chiếu lại sau push.'])
 if bootstrap_validation.get('fresh_install_verified') and bootstrap_validation.get('cleanup_verified'):
     lines += ['', 'Khởi tạo tự động đã kiểm thử trên volumes Docker mới: nội dung, ảnh, menu, đăng nhập và bảo vệ dữ liệu khi chạy lại; xem evidence/bootstrap-validation.json. Chưa thử trên một máy vật lý khác.']
 lines += [

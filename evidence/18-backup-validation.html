@@ -1,4 +1,4 @@
-<!doctype html><html lang="vi"><meta charset="utf-8"><style>body{margin:0;background:#edf2f7;color:#14243a;font:18px/1.5 Segoe UI,Arial;padding:32px}main{max-width:1420px;margin:auto;background:white;border:1px solid #c8d5e1;border-radius:12px;padding:28px}h1{font-size:27px;color:#164e63;margin:0 0 10px}h2{font:16px Consolas,monospace;background:#e7eef5;padding:10px;margin-top:24px}pre{font:15px/1.65 Consolas,monospace;white-space:pre-wrap;overflow-wrap:anywhere}p{color:#54667c;font-size:15px}</style><main><h1>Sao lưu ứng dụng và bản sao toàn bộ volume đã kiểm tra</h1><p>Kết quả lệnh/API thực tế • 2026-10-08T15:26:48+07:00 • Portfolio Nguyễn Văn Mạnh / DTC245200147</p><section><h2>evidence/backup-validation.json (các trường kiểm chứng công khai)</h2><pre>{
+<!doctype html><html lang="vi"><meta charset="utf-8"><style>body{margin:0;background:#edf2f7;color:#14243a;font:18px/1.5 Segoe UI,Arial;padding:32px}main{max-width:1420px;margin:auto;background:white;border:1px solid #c8d5e1;border-radius:12px;padding:28px}h1{font-size:27px;color:#164e63;margin:0 0 10px}h2{font:16px Consolas,monospace;background:#e7eef5;padding:10px;margin-top:24px}pre{font:15px/1.65 Consolas,monospace;white-space:pre-wrap;overflow-wrap:anywhere}p{color:#54667c;font-size:15px}</style><main><h1>Sao lưu ứng dụng và sao lưu đầy đủ đã kiểm tra</h1><p>Kết quả lệnh/API thực tế • 2026-10-08T16:17:24+07:00 • Portfolio Nguyễn Văn Mạnh / DTC245200147</p><section><h2>evidence/backup-validation.json (các trường kiểm chứng công khai)</h2><pre>{
   &quot;checked_at&quot;: &quot;2026-10-08T10:26:49.716950+07:00&quot;,
   &quot;database&quot;: &quot;portfolio_db&quot;,
   &quot;table_count&quot;: 12,
@@ -9,8 +9,21 @@
   &quot;original_volume_modified&quot;: false,
   &quot;restore_network&quot;: &quot;none&quot;
 }</pre></section><section><h2>evidence/root-maintenance.json (metadata, không chứa credential)</h2><pre>{
-  &quot;checked_at&quot;: &quot;2026-10-08T10:33:31.498668+07:00&quot;,
-  &quot;cold_archive_verified&quot;: true,
+  &quot;checked_at&quot;: &quot;2026-10-08T16:01:20.988105+07:00&quot;,
+  &quot;recovery_mode_used&quot;: false,
+  &quot;full_restore_validation&quot;: {
+    &quot;passed&quot;: true,
+    &quot;network_mode&quot;: &quot;none&quot;,
+    &quot;storage&quot;: &quot;tmpfs&quot;,
+    &quot;original_volume_mounted&quot;: false,
+    &quot;account_metadata_matches&quot;: true,
+    &quot;app_data_signature_matches&quot;: true,
+    &quot;restored_app_table_count&quot;: 12,
+    &quot;check_table_all_ok&quot;: true,
+    &quot;temporary_container_removed&quot;: true
+  },
   &quot;same_data_volume&quot;: true,
-  &quot;normal_authentication_restored&quot;: true
+  &quot;new_root_socket_login&quot;: true,
+  &quot;new_password_length&quot;: 48,
+  &quot;container_env_synchronized&quot;: true
 }</pre></section></main></html>

@@ -1,112 +1,138 @@
 {
-  "checked_at": "2026-10-08T15:34:33.150412+07:00",
+  "checked_at": "2026-10-08T16:25:39.229355+07:00",
   "screenshot_count": 26,
   "images": [
     {
       "file": "evidence/01-website.png",
-      "caption": "Trang chủ portfolio Nguyễn Văn Mạnh, ảnh cá nhân và navigation tới Kỹ năng / Dự án / Liên hệ."
+      "caption": "Trang chủ portfolio Nguyễn Văn Mạnh, ảnh cá nhân và navigation tới Kỹ năng / Dự án / Liên hệ.",
+      "captured_at": "2026-10-08T10:50:13+07:00"
     },
     {
       "file": "evidence/02-wordpress-admin.png",
-      "caption": "Phiên WordPress đã đăng nhập và danh sách các trang trong hệ thống."
+      "caption": "Phiên WordPress đã đăng nhập và danh sách các trang trong hệ thống.",
+      "captured_at": "2026-10-08T10:50:16+07:00"
     },
     {
       "file": "evidence/24-wordpress-edit-admin.png",
-      "caption": "WordPress editor đã đăng nhập: trang kiểm thử có tiêu đề và nội dung cập nhật, trạng thái Đã xuất bản."
+      "caption": "WordPress editor đã đăng nhập: trang kiểm thử có tiêu đề và nội dung cập nhật, trạng thái Đã xuất bản.",
+      "captured_at": "2026-10-08T15:21:57+07:00"
     },
     {
       "file": "evidence/25-wordpress-edit-public.png",
-      "caption": "Phiên truy cập ẩn danh hiển thị tiêu đề và nội dung sau khi sửa/lưu; ảnh chụp trước khi xóa trang thử."
+      "caption": "Phiên truy cập ẩn danh hiển thị tiêu đề và nội dung sau khi sửa/lưu; ảnh chụp trước khi xóa trang thử.",
+      "captured_at": "2026-10-08T15:21:59+07:00"
     },
     {
       "file": "evidence/03-phpmyadmin-database.png",
-      "caption": "phpMyAdmin sau đăng nhập: database portfolio_db và danh sách 12 bảng."
+      "caption": "phpMyAdmin sau đăng nhập: database portfolio_db và danh sách 12 bảng.",
+      "captured_at": "2026-10-08T10:56:11+07:00"
     },
     {
       "file": "evidence/15-database-grants.png",
-      "caption": "SHOW GRANTS FOR CURRENT_USER(): user portfolio_user có quyền trên schema portfolio_db."
+      "caption": "SHOW GRANTS FOR CURRENT_USER(): user portfolio_user có quyền trên schema portfolio_db.",
+      "captured_at": "2026-10-08T10:56:14+07:00"
     },
     {
       "file": "evidence/19-root-authentication.png",
-      "caption": "Kết quả lệnh thực tế: root@localhost đăng nhập thành công; skip_networking OFF, general_log OFF."
+      "caption": "Kết quả lệnh thực tế: root@localhost đăng nhập thành công; skip_networking OFF, general_log OFF.",
+      "captured_at": "2026-10-08T16:17:25+07:00"
     },
     {
       "file": "evidence/05-nginx-headers.png",
-      "caption": "Kết quả lệnh thực tế: nginx -t thành công, HTTP 200 và năm security headers."
+      "caption": "Kết quả lệnh thực tế: nginx -t thành công, HTTP 200 và năm security headers.",
+      "captured_at": "2026-10-08T16:17:23+07:00"
     },
     {
       "file": "evidence/06-prometheus-targets.png",
-      "caption": "Giao diện Prometheus hiển thị đủ tám jobs với trạng thái UP."
+      "caption": "Giao diện Prometheus hiển thị đủ tám jobs với trạng thái UP.",
+      "captured_at": "2026-10-08T10:53:38+07:00"
     },
     {
       "file": "evidence/07-grafana-container.png",
-      "caption": "Dashboard Grafana: CPU/RAM theo từng dịch vụ của project portfolio-manh."
+      "caption": "Dashboard Grafana: CPU/RAM theo từng dịch vụ của project portfolio-manh.",
+      "captured_at": "2026-10-08T10:53:47+07:00"
     },
     {
       "file": "evidence/08a-grafana-web-requests.png",
-      "caption": "Panel Nginx requests/giây lấy từ nginx_http_requests_total."
+      "caption": "Panel Nginx requests/giây lấy từ nginx_http_requests_total.",
+      "captured_at": "2026-10-08T10:53:55+07:00"
     },
     {
       "file": "evidence/08b-grafana-web-connections.png",
-      "caption": "Panel số kết nối đang mở của Nginx."
+      "caption": "Panel số kết nối đang mở của Nginx.",
+      "captured_at": "2026-10-08T10:53:57+07:00"
     },
     {
       "file": "evidence/08c-grafana-http-probe.png",
-      "caption": "Panel Blackbox probe_success cho khả dụng HTTP của website."
+      "caption": "Panel Blackbox probe_success cho khả dụng HTTP của website.",
+      "captured_at": "2026-10-08T10:53:59+07:00"
     },
     {
       "file": "evidence/09a-grafana-database-queries.png",
-      "caption": "Panel MySQL queries/giây lấy từ exporter."
+      "caption": "Panel MySQL queries/giây lấy từ exporter.",
+      "captured_at": "2026-10-08T10:54:01+07:00"
     },
     {
       "file": "evidence/09b-grafana-database-threads.png",
-      "caption": "Panel MySQL threads đang kết nối."
+      "caption": "Panel MySQL threads đang kết nối.",
+      "captured_at": "2026-10-08T10:54:04+07:00"
     },
     {
       "file": "evidence/10-logql-access.png",
-      "caption": "Grafana Explore / Portfolio Loki: truy vấn JSON access logs và dữ liệu thực."
+      "caption": "Grafana Explore / Portfolio Loki: truy vấn JSON access logs và dữ liệu thực.",
+      "captured_at": "2026-10-08T10:54:07+07:00"
     },
     {
       "file": "evidence/11-logql-errors.png",
-      "caption": "Grafana Explore: lọc numeric status 400–599, với request /.env trả 404 và /xmlrpc.php trả 403."
+      "caption": "Grafana Explore: lọc numeric status 400–599, với request /.env trả 404 và /xmlrpc.php trả 403.",
+      "captured_at": "2026-10-08T10:54:11+07:00"
     },
     {
       "file": "evidence/12-logql-requests.png",
-      "caption": "Grafana Explore: biểu đồ số request trong từng cửa sổ một phút."
+      "caption": "Grafana Explore: biểu đồ số request trong từng cửa sổ một phút.",
+      "captured_at": "2026-10-08T10:54:15+07:00"
     },
     {
       "file": "evidence/13-hardening-networks.png",
-      "caption": "Kết quả inspect thực tế: application, database, monitoring đều Internal=true."
+      "caption": "Kết quả inspect thực tế: application, database, monitoring đều Internal=true.",
+      "captured_at": "2026-10-08T16:17:23+07:00"
     },
     {
       "file": "evidence/14-hardening-ports-users.png",
-      "caption": "Các trường runtime được chọn: user, cổng localhost, cap_drop và no-new-privileges; không hiển thị Config.Env."
+      "caption": "Các trường runtime được chọn: user, cổng localhost, cap_drop và no-new-privileges; không hiển thị Config.Env.",
+      "captured_at": "2026-10-08T16:17:24+07:00"
     },
     {
       "file": "evidence/04-compose-status.png",
-      "caption": "Kết quả Docker Compose thực tế: 12 dịch vụ chạy, các healthchecks đạt; loki-init Exited (0)."
+      "caption": "Kết quả Docker Compose thực tế: 12 dịch vụ chạy, các healthchecks đạt; loki-init Exited (0).",
+      "captured_at": "2026-10-08T16:17:22+07:00"
     },
     {
       "file": "evidence/18-backup-validation.png",
-      "caption": "Metadata công khai của restore-test ứng dụng và cold archive toàn bộ volume."
+      "caption": "Metadata công khai của restore-test ứng dụng và khôi phục thử bản sao lưu đầy đủ trước khi đổi root.",
+      "captured_at": "2026-10-08T16:17:24+07:00"
     },
     {
       "file": "evidence/20-verification-results.png",
-      "caption": "Kết quả bộ kiểm tra thực tế: 37/40 PASS, ba FAIL chỉ liên quan độ dài mật khẩu."
+      "caption": "Kết quả bộ kiểm tra thực tế: 40/40 PASS, bao gồm xác thực dịch vụ và chính sách độ dài mật khẩu.",
+      "captured_at": "2026-10-08T16:17:25+07:00"
     },
     {
       "file": "evidence/16-git-status.png",
-      "caption": "Kết quả Git thực tế: nhánh main, lịch sử ít nhất ba commits có nội dung, origin/main và remote đúng repository."
+      "caption": "Kết quả Git thực tế: nhánh main, lịch sử ít nhất ba commits có nội dung, origin/main và remote đúng repository.",
+      "captured_at": "2026-10-08T16:17:24+07:00"
     },
     {
       "file": "evidence/17a-github-account.png",
-      "caption": "Trang tài khoản GitHub NguyenVanManh147 hiển thị repository bài sau khi push source."
+      "caption": "Trang tài khoản GitHub NguyenVanManh147 hiển thị repository bài sau khi push source.",
+      "captured_at": "2026-10-08T15:33:04+07:00"
     },
     {
       "file": "evidence/17b-github-repository.png",
-      "caption": "Repository GitHub của bài sau khi push: source, README và lịch sử commits."
+      "caption": "Repository GitHub của bài sau khi push: source, README và lịch sử commits.",
+      "captured_at": "2026-10-08T15:33:08+07:00"
     }
   ],
   "architecture": "docs/architecture.svg",
-  "result": "37/40"
+  "result": "40/40"
 }

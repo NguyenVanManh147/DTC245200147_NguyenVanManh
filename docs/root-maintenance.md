@@ -1,12 +1,12 @@
 # Root MySQL: chẩn đoán, sao lưu và đổi mật khẩu
 
-**Trạng thái hiện tại — 08/10/2026:** root đã được đặt lại theo yêu cầu người dùng. Đã sao lưu toàn bộ volume khi MySQL dừng sạch, so sánh archive với dữ liệu nguồn và kiểm tra checksums, lưu thêm full SQL dump trước khi đổi. Bảo trì dùng MySQL cô lập mạng/socket; container bảo trì đã dừng và xóa, Compose hoạt động lại với xác thực bình thường trên đúng volume cũ. `.env` và credential cục bộ đã đồng bộ. Mật khẩu do người dùng chọn dài 11 ký tự nên vẫn chưa đạt chính sách 20 ký tự. Xem `evidence/root-maintenance.json` và `docs/verification.md` cho kết quả mới.
+**Trạng thái hiện tại — 08/10/2026:** root đã đổi sang mật khẩu ngẫu nhiên 48 ký tự bằng phiên xác thực bình thường và ALTER USER, đạt mức tối thiểu 20 ký tự. Trước khi đổi, full SQL backup được khôi phục thử trên MySQL cô lập: dữ liệu ứng dụng, account metadata và CHECK TABLE đều khớp. `.env`, environment container và credential cục bộ đã đồng bộ; đăng nhập root thành công trên đúng volume cũ. Xem `evidence/root-maintenance.json` và `docs/verification.md` cho kết quả mới.
 
 Các lỗi 1045 và mô tả chưa hoàn thành bên dưới là lịch sử chẩn đoán trước lần đổi này; không cần chạy lại recovery.
 
 ## Hai lỗi đã xác định
 
-`Password length policy: MYSQL_ROOT_PASSWORD` yêu cầu ít nhất 20 ký tự và không phải placeholder. Credential cấu hình hiện tại dài 10 ký tự nên kiểm tra thất bại.
+`Password length policy: MYSQL_ROOT_PASSWORD` yêu cầu ít nhất 20 ký tự và không phải placeholder. Trong lần chẩn đoán ban đầu, credential cấu hình dài 10 ký tự nên kiểm tra thất bại.
 
 `Existing MySQL root credential authentication` chạy MySQL client trong container, dùng MYSQL_ROOT_PASSWORD của container để đăng nhập root rồi `SELECT 1`. MySQL trả lỗi **1045**, không phải lỗi Docker/mạng hoặc thiếu volume.
 

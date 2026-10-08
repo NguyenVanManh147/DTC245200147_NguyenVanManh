@@ -26,17 +26,18 @@ Minh chứng được lấy từ hệ thống WordPress/Docker đang chạy và 
 | `13-hardening-networks.png` | Các mạng application/database/monitoring internal | `docker network inspect` |
 | `14-hardening-ports-users.png` | Ports localhost, users, capabilities; ngoại lệ cAdvisor | `docker compose ps` và inspect đã chọn trường |
 | `15-database-grants.png` | User ứng dụng chỉ có quyền trong schema | phpMyAdmin `SHOW GRANTS FOR CURRENT_USER();` |
-| `16-git-status.png` | Snapshot lịch sử bốn commits thực, origin/main và remote của bài | Các lệnh Git lúc 15:32 ngày 08/10/2026 |
+| `16-git-status.png` | Lịch sử năm commits thực, origin/main, remote và các file đang cập nhật sau đổi mật khẩu | Các lệnh Git; thời gian trong `16-git-status.capture.json` |
 | `17a-github-account.png` | Trang repositories của tài khoản `NguyenVanManh147` | GitHub công khai, cập nhật lúc 15:31 ngày 08/10/2026 |
 | `17b-github-repository.png` | Repository bài chứa source và README sau push | GitHub công khai; thời gian chụp trong file capture tương ứng |
 | `18-backup-validation.png` | Import thử backup vào MySQL cô lập, kiểm tra bảng/chữ ký | `backup-validation.json` |
 | `19-root-authentication.png` | Root xác thực thành công, không lộ credential | `local-root-auth.json` |
-| `20-verification-results.png` | Kết quả kiểm thử hệ thống | `verification.json` |
+| `20-verification-results.png` | Kết quả kiểm thử hệ thống | `credential-hardening.json` | Độ dài mật khẩu mới, xác minh đăng nhập và đồng bộ dịch vụ; không chứa credential |
+| `verification.json` |
 | `21-report-preview.png` | Xem trước báo cáo PDF | Bản PDF tại `docs/` |
 | `24-wordpress-edit-admin.png` | Trang thử đã sửa nội dung và xuất bản trong quản trị | Phiên admin WordPress thật |
 | `25-wordpress-edit-public.png` | Nội dung mới hiển thị HTTP 200 cho khách ẩn danh | Trang công khai trước khi dọn nội dung thử |
 
-Source và hồ sơ đã được push lên repository công khai [NguyenVanManh147/DTC245200147_NguyenVanManh](https://github.com/NguyenVanManh147/DTC245200147_NguyenVanManh), nhánh **main**. `git-delivery.json` lúc **15:31 ngày 08/10/2026** xác nhận snapshot **4 commits thực**, `pushed=true`, `remote_checked=true`, local và remote cùng revision `7d27e84`. Lịch sử GitHub có thể chứa thêm commits cập nhật hồ sơ sau snapshot này; ảnh `16-git-status.png` thể hiện bốn commits đã push, ảnh `17a/17b` lấy từ trang GitHub sau push.
+Source và hồ sơ được bàn giao qua repository công khai [NguyenVanManh147/DTC245200147_NguyenVanManh](https://github.com/NguyenVanManh147/DTC245200147_NguyenVanManh), nhánh **main**. `git-delivery.json` ghi snapshot đối chiếu commit local/remote và lịch sử ít nhất ba commits thực. Ảnh `16-git-status.png` ghi trạng thái tại thời gian trong metadata; ảnh `17a/17b` lấy từ trang GitHub sau push. Những commit hoàn thiện hồ sơ sau snapshot được xem trong lịch sử GitHub.
 
 ## Sửa và lưu nội dung WordPress
 
@@ -70,12 +71,12 @@ Lần kiểm thử lúc **15:21 ngày 08/10/2026 đạt 13/13**, ghi tại `word
 | `report-image-index.json` | Danh sách hình và captions được chèn trong HTML |
 | `report-validation.json` | Số trang/ảnh và kiểm tra bản PDF |
 
-Kết quả hệ thống ngày **08/10/2026: 37/40**. Ba FAIL là mật khẩu **MySQL user, MySQL root và Grafana dài 11 ký tự**, dưới mức **20 ký tự** của bộ kiểm tra. Sinh viên chọn **giữ mật khẩu hiện tại và ghi rõ giới hạn**. Xác thực root, user database, WordPress và Grafana thành công; các kiểm tra chức năng còn lại PASS. SQL backup và dữ liệu xác thực nằm trong thư mục riêng tư bị ignore, không có trong repository.
+Kết quả hệ thống ngày **08/10/2026: 40/40**. MySQL user, MySQL root và Grafana dùng ba mật khẩu ngẫu nhiên riêng biệt, mỗi mật khẩu **48 ký tự**, đạt mức tối thiểu **20 ký tự**. Xác thực root, user database, WordPress và Grafana thành công. WordPress admin giữ nguyên mật khẩu. Xem `credential-hardening.json` và `verification.json`. SQL backup và dữ liệu xác thực nằm trong thư mục riêng tư bị ignore, không có trong repository.
 
 Bootstrap đã được kiểm tra trên volumes mới của Docker Desktop hiện tại; kết quả chưa thay thế kiểm thử trên một máy vật lý khác. Các ảnh/log minh chứng có thời điểm cụ thể; khi trình bày cần bật Docker Desktop và tái kiểm tra trạng thái đang chạy.
 
 ## Hồ sơ nộp bài
 
-Báo cáo HTML và PDF ở `docs/`. Thông tin bìa đã xác nhận: **Nguyễn Văn Mạnh — DTC245200147 — Khoa Công Nghệ Thông Tin — CNTTK23B**, học phần **Triển khai và Quản trị Hệ thống Phần mềm**, giảng viên **Nguyễn Anh Chuyên**. Chỉ hạn nộp chưa được cung cấp, cần đối chiếu lịch chính thức. Phần kết luận cần được sinh viên đọc và điều chỉnh theo trải nghiệm học tập thực tế.
+Báo cáo HTML và PDF ở `docs/`. Thông tin bìa đã xác nhận: **Nguyễn Văn Mạnh — DTC245200147 — Khoa Công Nghệ Thông Tin — CNTTK23B**, học phần **Triển khai và Quản trị Hệ thống Phần mềm**, giảng viên **Nguyễn Anh Chuyên**. **Không quy định hạn nộp**, theo xác nhận của sinh viên. Phần kết luận đánh giá các kết quả kỹ thuật đã được kiểm chứng; nhận xét trải nghiệm học tập cá nhân do sinh viên bổ sung nếu học phần yêu cầu.
 
 Workspace chưa có phiếu đề gốc. Cần đối chiếu trước khi nộp về tên tài khoản/repository GitHub, số commits, nhánh HTTPS/security headers và quy cách báo cáo; không suy ra username GitHub bắt buộc trùng mã sinh viên khi chưa có điều kiện gốc.

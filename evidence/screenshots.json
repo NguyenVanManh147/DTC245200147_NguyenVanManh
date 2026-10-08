@@ -84,34 +84,34 @@
     "sha256": "3d29d82a2451fc72b6a168f947815ba81297b8fbcb3062774eb0df7810dd3fc6"
   },
   "04-compose-status.png": {
-    "captured_at": "2026-10-08T15:26:45+07:00",
+    "captured_at": "2026-10-08T16:17:22+07:00",
     "source": "evidence\\04-compose-status.html",
     "label": "Trạng thái Docker Compose",
-    "sha256": "8dd27e915da2fa37ac31a24f2fe79c107b3150cbaf5a1c37a54bb625f7808a32"
+    "sha256": "0562a59fddcaeacdae161a75c75d09f955b57a466787ec4667e097e59c422e17"
   },
   "05-nginx-headers.png": {
-    "captured_at": "2026-10-08T15:26:46+07:00",
+    "captured_at": "2026-10-08T16:17:23+07:00",
     "source": "evidence\\05-nginx-headers.html",
     "label": "Nginx: cấu hình hợp lệ và security headers",
-    "sha256": "f3476168c5036d73f9d43925126027beb2521b97d836c45c383f67072afe4d1b"
+    "sha256": "7ed7f2416cd9b9ef2d1206aa071913d56b7fd79b91a3a212bccc388e8581b587"
   },
   "13-hardening-networks.png": {
-    "captured_at": "2026-10-08T15:26:47+07:00",
+    "captured_at": "2026-10-08T16:17:23+07:00",
     "source": "evidence\\13-hardening-networks.html",
     "label": "Ba mạng nội bộ của dự án",
-    "sha256": "5925a3ab4fbc5c440c2764d12d1aca3b228b5d0c66c51dddbbc589b7440dac31"
+    "sha256": "b0e92eb498306d24b5893819bb1912258a01cb479a540945e9abf4423acdab55"
   },
   "14-hardening-ports-users.png": {
-    "captured_at": "2026-10-08T15:26:48+07:00",
+    "captured_at": "2026-10-08T16:17:24+07:00",
     "source": "evidence\\14-hardening-ports-users.html",
     "label": "Cổng localhost và quyền container",
-    "sha256": "853ad0b54d72c64047842a1e4f494baf840a8823c4d2bb8fca0ddcad05b24625"
+    "sha256": "3c60685060589b855c1807cb069e0e95143718e5ca6931421f4e06e84b0d4f9b"
   },
   "16-git-status.png": {
-    "captured_at": "2026-10-08T15:32:17+07:00",
+    "captured_at": "2026-10-08T16:17:24+07:00",
     "source": "evidence\\16-git-status.html",
     "label": "Lịch sử commits và repository GitHub của bài",
-    "sha256": "cd74c64e96a3568ce530524a26f45248522843e81fba357b9c92886df83a79c3"
+    "sha256": "82d64ffc2174820fdaed52467a9327503ddbcfc4721b49ce955234efa63f7a2f"
   },
   "17a-github-account.png": {
     "captured_at": "2026-10-08T15:33:04+07:00",
@@ -120,25 +120,25 @@
     "sha256": "91fac1874de1c3ef02557961024e9acf6b4adc67f2fd377e9c7846cc4bcb949e"
   },
   "18-backup-validation.png": {
-    "captured_at": "2026-10-08T15:26:49+07:00",
+    "captured_at": "2026-10-08T16:17:24+07:00",
     "source": "evidence\\18-backup-validation.html",
-    "label": "Sao lưu ứng dụng và bản sao toàn bộ volume đã kiểm tra",
-    "sha256": "89ea77db4635444f7f8bc760096699ef7f297ad57fdd209c9b42324fa73eca91"
+    "label": "Sao lưu ứng dụng và sao lưu đầy đủ đã kiểm tra",
+    "sha256": "2c1ad988e1f106313bfc502e6fa0d6e10e82d8ab3d745ee8eb82a5af2d0a0087"
   },
   "19-root-authentication.png": {
-    "captured_at": "2026-10-08T15:26:49+07:00",
+    "captured_at": "2026-10-08T16:17:25+07:00",
     "source": "evidence\\19-root-authentication.html",
     "label": "MySQL root: đăng nhập thành công và xác thực bình thường",
-    "sha256": "2a4c2c5c3e74cb318ee96d54c5b0cc5a2d4eaa96735b86ec5d7b5a82dde1d662"
+    "sha256": "a2b2c95ebf1bbf2e285f53c4a285c271158c31bc24aaa72362ebe95db4fb9d27"
   },
   "20-verification-results.png": {
-    "captured_at": "2026-10-08T15:26:49+07:00",
+    "captured_at": "2026-10-08T16:17:25+07:00",
     "source": "evidence\\20-verification-results.html",
-    "label": "Kết quả kiểm thử tích hợp: 37/40 đạt",
-    "sha256": "711fa8dcbe3e77212ae0a1db763964b340c9c642141c84251d34cd7760418408"
+    "label": "Kết quả kiểm thử tích hợp: 40/40 đạt",
+    "sha256": "1134cc0ef7b633131d446e2ca0c08e433dbf60d5db56d52d19961fe175023fe2"
   },
   "21-report-preview.png": {
-    "captured_at": "2026-10-08T15:34:40+07:00",
+    "captured_at": "2026-10-08T16:26:06+07:00",
     "source": "docs/report.html",
     "label": "Báo cáo đã chèn ảnh minh chứng",
     "sha256": "5c862a69f60d15ec222a592362cfd2117eb64ef74f75e23ac65c1c69a47f7dfd"

@@ -1,4 +1,8 @@
-"""Fill the existing report with captured evidence and current verified results."""
+"""Refresh the completed report; retain legacy placeholder migration below.
+
+The placeholder migration describes the initial recovery snapshot. Completed
+reports use the refresh path, preserving their current narrative and captions.
+"""
 import datetime
 import hashlib
 import html
@@ -28,6 +32,21 @@ if '--refresh-times' in sys.argv or 'class="placeholder"' not in content:
         return match.group(1) + 'Chụp: ' + html.escape(records[name]['captured_at']) + '.' + match.group(3)
     content = re.sub(r'(<figure[^>]*>.*?<img src="../evidence/([^\"]+)".*?<span class="capture-time">).*?(</span></figcaption></figure>)',refresh,content,flags=re.S)
     REPORT.write_text(content,encoding='utf-8')
+    included = []
+    for figure_html in re.findall(r'<figure\b.*?</figure>', content, flags=re.S):
+        filename = re.search(r'<img src="\.\./evidence/([^\"]+)"', figure_html)
+        caption = re.search(r'<figcaption>(.*?)<span class="capture-time">', figure_html, flags=re.S)
+        if filename and caption:
+            text = html.unescape(re.sub(r'<[^>]+>', '', caption[1])).strip()
+            text = re.sub(r'^Hình \d+\.\s*', '', text)
+            included.append({'file': 'evidence/' + filename[1], 'caption': text,
+                             'captured_at': records[filename[1]]['captured_at']})
+    (ROOT / 'evidence/report-image-index.json').write_text(json.dumps({
+        'checked_at': datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=7))).isoformat(),
+        'screenshot_count': len(included), 'images': included,
+        'architecture': 'docs/architecture.svg',
+        'result': f'{passed}/{len(verification["checks"])}'},
+        indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
     print('Report capture timestamps synchronized with image metadata.')
     raise SystemExit(0)
 

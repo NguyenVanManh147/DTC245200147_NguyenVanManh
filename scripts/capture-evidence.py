@@ -82,7 +82,11 @@ def commands(page):
     backup = json.loads((EVIDENCE / 'backup-validation.json').read_text(encoding='utf-8'))
     root = json.loads((EVIDENCE / 'root-maintenance.json').read_text(encoding='utf-8'))
     selected = {k:backup[k] for k in ['checked_at','database','table_count','dump_exit_code','restore_verified','restored_tables_match','check_table_all_ok','original_volume_modified','restore_network']}
-    command_view(page,'18-backup-validation.png','Sao lưu ứng dụng và bản sao toàn bộ volume đã kiểm tra', [('evidence/backup-validation.json (các trường kiểm chứng công khai)',json.dumps(selected,indent=2)),('evidence/root-maintenance.json (metadata, không chứa credential)',json.dumps({k:root[k] for k in ['checked_at','cold_archive_verified','same_data_volume','normal_authentication_restored']},indent=2))])
+    root_fields = ['checked_at', 'recovery_mode_used', 'cold_archive_verified',
+                   'full_restore_validation', 'same_data_volume',
+                   'normal_authentication_restored', 'new_root_socket_login',
+                   'new_password_length', 'container_env_synchronized']
+    command_view(page,'18-backup-validation.png','Sao lưu ứng dụng và sao lưu đầy đủ đã kiểm tra', [('evidence/backup-validation.json (các trường kiểm chứng công khai)',json.dumps(selected,indent=2)),('evidence/root-maintenance.json (metadata, không chứa credential)',json.dumps({k:root[k] for k in root_fields if k in root},indent=2))])
     root_output = sql(settings['MYSQL_ROOT_PASSWORD'],"SELECT CURRENT_USER(); SHOW GLOBAL VARIABLES WHERE Variable_name IN ('skip_networking','general_log');").decode()
     command_view(page,'19-root-authentication.png','MySQL root: đăng nhập thành công và xác thực bình thường', [('MySQL client qua socket; credential lấy từ .env, không hiển thị\nSELECT CURRENT_USER();\nSHOW GLOBAL VARIABLES WHERE Variable_name IN (\'skip_networking\',\'general_log\');',root_output)])
     verification = json.loads((EVIDENCE / 'verification.json').read_text(encoding='utf-8'))

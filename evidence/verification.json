@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-10-08T15:14:19.342627+07:00",
+  "checked_at": "2026-10-08T16:14:55.498676+07:00",
   "checks": [
     {
       "name": "Compose syntax",
@@ -19,7 +19,7 @@
     {
       "name": "Loki syntax",
       "passed": true,
-      "detail": "level=info ts=2026-10-08T08:14:20.891743028Z caller=main.go:90 msg=\"config is valid\"\n"
+      "detail": "level=info ts=2026-10-08T09:14:56.601345103Z caller=main.go:90 msg=\"config is valid\"\n"
     },
     {
       "name": "Promtail syntax",
@@ -38,7 +38,7 @@
       "passed": true,
       "detail": {
         "Server": "nginx",
-        "Date": "Thu, 08 Oct 2026 08:14:23 GMT",
+        "Date": "Thu, 08 Oct 2026 09:14:59 GMT",
         "Content-Type": "text/html; charset=UTF-8",
         "Transfer-Encoding": "chunked",
         "Connection": "close",
@@ -170,7 +170,7 @@
               "job": "nginx"
             },
             "value": [
-              1791447282.815,
+              1791450918.203,
               "1"
             ]
           }
@@ -190,7 +190,7 @@
               "job": "mysql"
             },
             "value": [
-              1791447284.834,
+              1791450920.227,
               "1"
             ]
           }
@@ -210,7 +210,7 @@
               "job": "portfolio_http"
             },
             "value": [
-              1791447286.845,
+              1791450922.25,
               "1"
             ]
           }
@@ -221,7 +221,7 @@
       "name": "PromQL: container_memory_working_set_bytes{job=\"cadvisor\",container_label_com_docker_compose_project=\"portfolio-manh\"}",
       "passed": true,
       "detail": {
-        "series_count": 12,
+        "series_count": 16,
         "samples": [
           {
             "metric": {
@@ -249,8 +249,8 @@
               "name": "portfolio-manh-promtail-1"
             },
             "value": [
-              1791447288.857,
-              "23658496"
+              1791450924.268,
+              "25653248"
             ]
           },
           {
@@ -278,8 +278,8 @@
               "name": "portfolio-manh-blackbox-1"
             },
             "value": [
-              1791447288.857,
-              "11288576"
+              1791450924.268,
+              "14548992"
             ]
           }
         ]
@@ -317,8 +317,8 @@
               "name": "portfolio-manh-promtail-1"
             },
             "value": [
-              1791447290.874,
-              "0.00919045116509668"
+              1791450926.312,
+              "0.00872900651764504"
             ]
           },
           {
@@ -346,8 +346,8 @@
               "name": "portfolio-manh-blackbox-1"
             },
             "value": [
-              1791447290.874,
-              "0.002249537561907035"
+              1791450926.312,
+              "0.0006518123418669084"
             ]
           }
         ]
@@ -365,8 +365,8 @@
               "job": "nginx"
             },
             "value": [
-              1791447292.891,
-              "0.23812698836035281"
+              1791450928.341,
+              "0.23810884431491325"
             ]
           }
         ]
@@ -385,7 +385,7 @@
               "job": "mysql"
             },
             "value": [
-              1791447294.902,
+              1791450930.344,
               "1"
             ]
           }
@@ -404,8 +404,8 @@
               "job": "mysql"
             },
             "value": [
-              1791447296.922,
-              "4.295810870020765"
+              1791450932.354,
+              "4.2678556348200996"
             ]
           }
         ]
@@ -485,14 +485,14 @@
               "service": "nginx",
               "service_name": "nginx",
               "status": "403",
-              "time": "2026-10-08T08:14:36+00:00",
+              "time": "2026-10-08T09:15:12+00:00",
               "upstream_response_time": "",
               "uri": "/xmlrpc.php"
             },
             "values": [
               [
-                "1791447276000000000",
-                "{\"time\":\"2026-10-08T08:14:36+00:00\",\"remote_addr\":\"172.28.0.1\",\"method\":\"GET\",\"uri\":\"/xmlrpc.php\",\"status\":403,\"bytes_sent\":146,\"request_time\":0.000,\"upstream_response_time\":\"\"}"
+                "1791450912000000000",
+                "{\"time\":\"2026-10-08T09:15:12+00:00\",\"remote_addr\":\"172.28.0.1\",\"method\":\"GET\",\"uri\":\"/xmlrpc.php\",\"status\":403,\"bytes_sent\":146,\"request_time\":0.000,\"upstream_response_time\":\"\"}"
               ]
             ]
           },
@@ -509,14 +509,14 @@
               "service": "nginx",
               "service_name": "nginx",
               "status": "404",
-              "time": "2026-10-08T08:14:38+00:00",
+              "time": "2026-10-08T09:15:14+00:00",
               "upstream_response_time": "",
               "uri": "/.env"
             },
             "values": [
               [
-                "1791447278000000000",
-                "{\"time\":\"2026-10-08T08:14:38+00:00\",\"remote_addr\":\"172.28.0.1\",\"method\":\"GET\",\"uri\":\"/.env\",\"status\":404,\"bytes_sent\":146,\"request_time\":0.000,\"upstream_response_time\":\"\"}"
+                "1791450914000000000",
+                "{\"time\":\"2026-10-08T09:15:14+00:00\",\"remote_addr\":\"172.28.0.1\",\"method\":\"GET\",\"uri\":\"/.env\",\"status\":404,\"bytes_sent\":146,\"request_time\":0.000,\"upstream_response_time\":\"\"}"
               ]
             ]
           }
@@ -528,7 +528,7 @@
       "passed": true,
       "detail": {
         "query": "{project=\"portfolio-manh\",job=\"nginx-access\"} | json | __error__=\"\" | status >= 400 | status < 600",
-        "series_count": 2,
+        "series_count": 3,
         "samples": [
           {
             "stream": {
@@ -543,14 +543,14 @@
               "service": "nginx",
               "service_name": "nginx",
               "status": "403",
-              "time": "2026-10-08T08:14:36+00:00",
+              "time": "2026-10-08T09:15:12+00:00",
               "upstream_response_time": "",
               "uri": "/xmlrpc.php"
             },
             "values": [
               [
-                "1791447276000000000",
-                "{\"time\":\"2026-10-08T08:14:36+00:00\",\"remote_addr\":\"172.28.0.1\",\"method\":\"GET\",\"uri\":\"/xmlrpc.php\",\"status\":403,\"bytes_sent\":146,\"request_time\":0.000,\"upstream_response_time\":\"\"}"
+                "1791450912000000000",
+                "{\"time\":\"2026-10-08T09:15:12+00:00\",\"remote_addr\":\"172.28.0.1\",\"method\":\"GET\",\"uri\":\"/xmlrpc.php\",\"status\":403,\"bytes_sent\":146,\"request_time\":0.000,\"upstream_response_time\":\"\"}"
               ]
             ]
           },
@@ -567,14 +567,14 @@
               "service": "nginx",
               "service_name": "nginx",
               "status": "404",
-              "time": "2026-10-08T08:14:38+00:00",
+              "time": "2026-10-08T09:15:14+00:00",
               "upstream_response_time": "",
               "uri": "/.env"
             },
             "values": [
               [
-                "1791447278000000000",
-                "{\"time\":\"2026-10-08T08:14:38+00:00\",\"remote_addr\":\"172.28.0.1\",\"method\":\"GET\",\"uri\":\"/.env\",\"status\":404,\"bytes_sent\":146,\"request_time\":0.000,\"upstream_response_time\":\"\"}"
+                "1791450914000000000",
+                "{\"time\":\"2026-10-08T09:15:14+00:00\",\"remote_addr\":\"172.28.0.1\",\"method\":\"GET\",\"uri\":\"/.env\",\"status\":404,\"bytes_sent\":146,\"request_time\":0.000,\"upstream_response_time\":\"\"}"
               ]
             ]
           }
@@ -592,112 +592,252 @@
             "metric": {},
             "values": [
               [
-                1791446925,
-                "1"
+                1791450045,
+                "4"
               ],
               [
-                1791446940,
-                "2"
+                1791450060,
+                "4"
               ],
               [
-                1791446955,
+                1791450075,
+                "4"
+              ],
+              [
+                1791450090,
+                "4"
+              ],
+              [
+                1791450105,
+                "4"
+              ],
+              [
+                1791450120,
+                "4"
+              ],
+              [
+                1791450135,
+                "4"
+              ],
+              [
+                1791450150,
+                "4"
+              ],
+              [
+                1791450165,
+                "4"
+              ],
+              [
+                1791450180,
+                "4"
+              ],
+              [
+                1791450195,
+                "4"
+              ],
+              [
+                1791450210,
+                "4"
+              ],
+              [
+                1791450225,
+                "4"
+              ],
+              [
+                1791450240,
+                "4"
+              ],
+              [
+                1791450255,
+                "4"
+              ],
+              [
+                1791450270,
+                "4"
+              ],
+              [
+                1791450285,
+                "4"
+              ],
+              [
+                1791450300,
+                "4"
+              ],
+              [
+                1791450315,
+                "4"
+              ],
+              [
+                1791450330,
+                "4"
+              ],
+              [
+                1791450345,
+                "4"
+              ],
+              [
+                1791450360,
+                "4"
+              ],
+              [
+                1791450375,
+                "4"
+              ],
+              [
+                1791450390,
+                "4"
+              ],
+              [
+                1791450405,
+                "4"
+              ],
+              [
+                1791450420,
+                "4"
+              ],
+              [
+                1791450435,
+                "4"
+              ],
+              [
+                1791450450,
+                "4"
+              ],
+              [
+                1791450465,
+                "4"
+              ],
+              [
+                1791450480,
+                "4"
+              ],
+              [
+                1791450495,
+                "4"
+              ],
+              [
+                1791450510,
+                "4"
+              ],
+              [
+                1791450525,
+                "4"
+              ],
+              [
+                1791450540,
+                "4"
+              ],
+              [
+                1791450555,
+                "4"
+              ],
+              [
+                1791450570,
+                "4"
+              ],
+              [
+                1791450585,
+                "4"
+              ],
+              [
+                1791450600,
                 "3"
               ],
               [
-                1791446970,
+                1791450615,
+                "3"
+              ],
+              [
+                1791450630,
+                "3"
+              ],
+              [
+                1791450645,
+                "3"
+              ],
+              [
+                1791450660,
                 "4"
               ],
               [
-                1791446985,
+                1791450675,
                 "4"
               ],
               [
-                1791447000,
+                1791450690,
                 "4"
               ],
               [
-                1791447015,
+                1791450705,
                 "4"
               ],
               [
-                1791447030,
+                1791450720,
                 "4"
               ],
               [
-                1791447045,
+                1791450735,
                 "4"
               ],
               [
-                1791447060,
+                1791450750,
                 "4"
               ],
               [
-                1791447075,
+                1791450765,
                 "4"
               ],
               [
-                1791447090,
+                1791450780,
                 "4"
               ],
               [
-                1791447105,
+                1791450795,
                 "4"
               ],
               [
-                1791447120,
+                1791450810,
                 "4"
               ],
               [
-                1791447135,
+                1791450825,
                 "4"
               ],
               [
-                1791447150,
+                1791450840,
                 "4"
               ],
               [
-                1791447165,
+                1791450855,
                 "4"
               ],
               [
-                1791447180,
+                1791450870,
                 "4"
               ],
               [
-                1791447195,
+                1791450885,
                 "4"
               ],
               [
-                1791447210,
-                "4"
+                1791450900,
+                "5"
               ],
               [
-                1791447225,
-                "4"
+                1791450915,
+                "8"
               ],
               [
-                1791447240,
-                "4"
+                1791450930,
+                "8"
               ],
               [
-                1791447255,
-                "4"
+                1791450945,
+                "8"
               ],
               [
-                1791447270,
+                1791450960,
                 "6"
-              ],
-              [
-                1791447285,
-                "8"
-              ],
-              [
-                1791447300,
-                "8"
-              ],
-              [
-                1791447315,
-                "8"
               ]
             ]
           }
@@ -1068,29 +1208,29 @@
     },
     {
       "name": "Password length policy: MYSQL_PASSWORD",
-      "passed": false,
+      "passed": true,
       "detail": {
-        "length": 11,
+        "length": 48,
         "minimum": 20,
-        "note": "Application/Grafana rotated to random values; root credential preserved. Length alone does not prove entropy."
+        "note": "Checks the configured value; service authentication is checked separately. Length alone does not prove entropy."
       }
     },
     {
       "name": "Password length policy: MYSQL_ROOT_PASSWORD",
-      "passed": false,
+      "passed": true,
       "detail": {
-        "length": 11,
+        "length": 48,
         "minimum": 20,
-        "note": "Application/Grafana rotated to random values; root credential preserved. Length alone does not prove entropy."
+        "note": "Checks the configured value; service authentication is checked separately. Length alone does not prove entropy."
       }
     },
     {
       "name": "Password length policy: GRAFANA_ADMIN_PASSWORD",
-      "passed": false,
+      "passed": true,
       "detail": {
-        "length": 11,
+        "length": 48,
         "minimum": 20,
-        "note": "Application/Grafana rotated to random values; root credential preserved. Length alone does not prove entropy."
+        "note": "Checks the configured value; service authentication is checked separately. Length alone does not prove entropy."
       }
     },
     {

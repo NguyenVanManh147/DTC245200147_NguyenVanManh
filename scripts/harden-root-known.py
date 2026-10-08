@@ -94,6 +94,11 @@ def main():
     pending = ROOT / '.env.root-next'
     pending.write_text(content, encoding='utf-8')
     pending.replace(ROOT / '.env')
+    # Keep the private login probe aligned with the configured root credential.
+    local['MYSQL_ROOT_CURRENT_PASSWORD'] = new_password
+    local_pending = local_path.with_suffix('.pending.json')
+    local_pending.write_text(json.dumps(local, indent=2), encoding='utf-8')
+    local_pending.replace(local_path)
     manifest['root_changed'] = True
     manifest['new_password_length'] = len(new_password)
     manifest['new_root_socket_login'] = True

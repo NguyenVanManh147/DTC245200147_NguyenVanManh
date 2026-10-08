@@ -79,7 +79,7 @@ a { color: #164e63; }
   <p><strong>Môi trường:</strong> Windows, PowerShell, VS Code, Docker Desktop</p>
   <p><strong>Ngày kiểm tra:</strong> 08/10/2026 — Asia/Saigon</p>
  </div>
- <p class="cover-dates">Ngày lập báo cáo: 08/10/2026<br>Thời gian nộp: theo lịch học phần (chưa xác nhận)</p>
+ <p class="cover-dates">Ngày lập báo cáo: 08/10/2026<br>Hạn nộp: không quy định (sinh viên xác nhận)</p>
  <div class="footer">Nguyễn Văn Mạnh — DTC245200147</div>
 </section>
 
@@ -95,7 +95,7 @@ a { color: #164e63; }
  <tr><td>Hồ sơ</td><td>README, GitHub theo mã sinh viên, ít nhất ba commits thực, evidence, báo cáo ≥10 trang.</td></tr></table>
  <p>Phạm vi công việc dựa trên hệ thống WordPress đã tồn tại. Nội dung portfolio và dữ liệu trong volumes được giữ khi hoàn thiện cấu hình. Triển khai security headers cơ bản; việc đáp ứng lựa chọn này trong đề cần đối chiếu phiếu đề bài gốc.</p>
  <h3>Trạng thái kiểm chứng</h3>
- <p>Đã xác thực root, WordPress admin, phpMyAdmin và Grafana; đã chụp ảnh giao diện, dashboard và logs. Lịch sử Git và repository được cập nhật ở phần 10. Ba mật khẩu cấu hình dài 11 ký tự nên chưa đạt chính sách 20 ký tự; giữ nguyên theo yêu cầu sinh viên.</p>
+ <p>Đã xác thực root, WordPress admin, phpMyAdmin và Grafana; đã chụp ảnh giao diện, dashboard và logs. Lịch sử Git và repository được cập nhật ở phần 10. Ba mật khẩu MySQL user/root và Grafana đã đổi sang các giá trị ngẫu nhiên riêng biệt dài 48 ký tự, đạt chính sách tối thiểu 20 ký tự; cấu hình và dịch vụ đã đồng bộ.</p>
  <p class="notice">Bảng yêu cầu được đối chiếu theo README và checklist của dự án. Phiếu đề bài gốc chưa được cung cấp trong workspace; cần đối chiếu lại trước khi nộp.</p>
  <div class="footer">Mục tiêu và phạm vi</div>
 </section>
@@ -137,7 +137,7 @@ curl.exe --max-time 15 -I http://localhost:8080/wp-login.php</pre>
  <h2>4. MySQL và phpMyAdmin</h2>
  <p>MySQL 8.4 lưu database portfolio_db trong volume portfolio-manh_db_data. Tài khoản ứng dụng portfolio_user có quyền trên schema portfolio_db và không có global privileges ngoài USAGE.</p>
  <p>phpMyAdmin chỉ truy cập localhost:8081, kết nối server db:3306; PMA_ARBITRARY=0. Đăng nhập bằng MYSQL_USER/MYSQL_PASSWORD trong .env, không đưa password hoặc wp_users hash vào hình báo cáo.</p>
- <p>Mật khẩu ứng dụng, Grafana, WordPress admin và MySQL root đã được đặt theo yêu cầu người dùng; cấu hình và dịch vụ được đồng bộ. Không đưa giá trị mật khẩu vào báo cáo. Các mật khẩu cấu hình dài 11 ký tự, chưa đạt chính sách tối thiểu 20 ký tự.</p>
+ <p>Mật khẩu MySQL user, MySQL root và Grafana đã được đổi theo yêu cầu người dùng sang ba giá trị ngẫu nhiên riêng biệt dài 48 ký tự, đạt mức tối thiểu 20 ký tự. Cấu hình và dịch vụ được đồng bộ; WordPress admin giữ mật khẩu hiện có. Không đưa giá trị mật khẩu vào báo cáo. Xem evidence/credential-hardening.json.</p>
  <pre>-- Trong phpMyAdmin sau đăng nhập:
 SHOW GRANTS FOR CURRENT_USER();
 SHOW TABLES;
@@ -145,7 +145,7 @@ SELECT ID, post_title, post_status
 FROM wp_posts WHERE post_type = 'page';</pre>
  <figure class="evidence compact"><a href="../evidence/03-phpmyadmin-database.png"><img src="../evidence/03-phpmyadmin-database.png" alt="phpMyAdmin sau đăng nhập: database portfolio_db và danh sách 12 bảng."></a><figcaption>Hình 5. phpMyAdmin sau đăng nhập: database portfolio_db và danh sách 12 bảng. <span class="capture-time">Chụp: 2026-10-08T10:56:11+07:00.</span></figcaption></figure>
  <figure class="evidence compact"><a href="../evidence/15-database-grants.png"><img src="../evidence/15-database-grants.png" alt="SHOW GRANTS FOR CURRENT_USER(): user portfolio_user có quyền trên schema portfolio_db."></a><figcaption>Hình 6. SHOW GRANTS FOR CURRENT_USER(): user portfolio_user có quyền trên schema portfolio_db. <span class="capture-time">Chụp: 2026-10-08T10:56:14+07:00.</span></figcaption></figure>
- <p class="notice">Lỗi root 1045 trước đây đã được xử lý. Root đăng nhập thực tế thành công; MySQL đã trở lại xác thực bình thường và giữ volume cũ. Kiểm tra độ dài mật khẩu root vẫn chưa đạt vì mật khẩu người dùng chọn có 11 ký tự. Xem evidence/root-maintenance.json và evidence/local-root-auth.json.</p><figure class="evidence compact"><a href="../evidence/19-root-authentication.png"><img src="../evidence/19-root-authentication.png" alt="Kết quả lệnh thực tế: root@localhost đăng nhập thành công; skip_networking OFF, general_log OFF."></a><figcaption>Hình 7. Kết quả lệnh thực tế: root@localhost đăng nhập thành công; skip_networking OFF, general_log OFF. <span class="capture-time">Chụp: 2026-10-08T15:26:49+07:00.</span></figcaption></figure>
+ <p class="notice">Lỗi root 1045 trước đây đã được xử lý. Root đăng nhập thực tế thành công; MySQL đã trở lại xác thực bình thường và giữ volume cũ. Root tiếp tục được đổi sang mật khẩu ngẫu nhiên 48 ký tự bằng ALTER USER qua phiên xác thực bình thường, sau khi sao lưu đầy đủ và khôi phục thử cả dữ liệu ứng dụng lẫn account metadata thành công. Xem evidence/root-maintenance.json và evidence/local-root-auth.json.</p><figure class="evidence compact"><a href="../evidence/19-root-authentication.png"><img src="../evidence/19-root-authentication.png" alt="Kết quả lệnh thực tế: root@localhost đăng nhập thành công; skip_networking OFF, general_log OFF."></a><figcaption>Hình 7. Kết quả lệnh thực tế: root@localhost đăng nhập thành công; skip_networking OFF, general_log OFF. <span class="capture-time">Chụp: 2026-10-08T16:17:25+07:00.</span></figcaption></figure>
  <p>Snapshot ứng dụng được tạo bằng portfolio_user đủ quyền trên schema, khôi phục thử trên MySQL cùng image với tmpfs/network none: đủ 12 bảng, chữ ký INSERT khớp và CHECK TABLE OK. Không gắn volume gốc vào container thử. Đây là backup ứng dụng. Trong lần xử lý root, đã lưu thêm archive toàn bộ volume khi database dừng sạch, so sánh với dữ liệu nguồn, kiểm tra checksums và lưu full SQL dump gồm system accounts.</p>
  <div class="footer">Database và giao diện quản lý</div>
 </section>
@@ -163,7 +163,7 @@ FROM wp_posts WHERE post_type = 'page';</pre>
  <p>Listener stub_status:8088 chỉ có trong Docker network, không publish ra Windows; nginx-exporter đọc requests và connections tại đây. Không gọi probe HTTP là metrics Nginx.</p>
  <pre>docker compose exec -T nginx nginx -t
 curl.exe --max-time 15 -I http://localhost:8080/</pre>
- <figure class="evidence medium"><a href="../evidence/05-nginx-headers.png"><img src="../evidence/05-nginx-headers.png" alt="Kết quả lệnh thực tế: nginx -t thành công, HTTP 200 và năm security headers."></a><figcaption>Hình 8. Kết quả lệnh thực tế: nginx -t thành công, HTTP 200 và năm security headers. <span class="capture-time">Chụp: 2026-10-08T15:26:46+07:00.</span></figcaption></figure>
+ <figure class="evidence medium"><a href="../evidence/05-nginx-headers.png"><img src="../evidence/05-nginx-headers.png" alt="Kết quả lệnh thực tế: nginx -t thành công, HTTP 200 và năm security headers."></a><figcaption>Hình 8. Kết quả lệnh thực tế: nginx -t thành công, HTTP 200 và năm security headers. <span class="capture-time">Chụp: 2026-10-08T16:17:23+07:00.</span></figcaption></figure>
  <p>Chưa cấu hình HTTPS tự ký. Hệ thống hiện dùng HTTP và security headers cơ bản; cần đối chiếu phiếu đề bài gốc để xác nhận lựa chọn triển khai được chấp nhận.</p>
  <div class="footer">Reverse proxy và headers</div>
 </section>
@@ -209,19 +209,19 @@ sum(count_over_time(
  <tr><td>Cổng localhost</td><td>8080/8081/3000/9090 bind 127.0.0.1; không publish database/Loki/exporters; Compose ps/inspect.</td></tr>
  <tr><td>Security headers</td><td>Năm headers Nginx, always; curl -I trên 200 và lỗi HTTP.</td></tr>
  <tr><td>Quyền DB</td><td>Ứng dụng chỉ trên schema portfolio_db; SHOW GRANTS. Exporter cơ bản không cần root/global grant.</td></tr>
- <tr><td>Mật khẩu</td><td>Mật khẩu được đặt theo yêu cầu, .env ignore; root đã xác thực. Độ dài 11 ký tự chưa đạt chính sách 20 ký tự.</td></tr>
+ <tr><td>Mật khẩu</td><td>MySQL user/root và Grafana dùng ba mật khẩu ngẫu nhiên riêng biệt dài 48 ký tự, đạt mức tối thiểu 20 ký tự. .env bị Git ignore; root và dịch vụ đã xác thực thành công.</td></tr>
  <tr><td>Non-root</td><td>Grafana 472, Loki/Promtail 10001, exporters/Prometheus/Blackbox 65534; inspect Config.User.</td></tr>
  <tr><td>Container permissions</td><td>no-new-privileges, drop ALL/read-only trên dịch vụ hỗ trợ; config mount ro.</td></tr>
  <tr><td>WordPress</td><td>Tắt file editor PHP/XML-RPC, chặn hidden files; vẫn cho phép chỉnh nội dung pages.</td></tr></table>
  <p>Ngoại lệ có chủ đích: MySQL/Apache/Nginx dùng entrypoint mặc định tương thích; không ép read-only/non-root làm dịch vụ lỗi. cAdvisor root+privileged để đọc VM/cgroups, không publish cổng; loki-init root chạy một lần chuẩn bị quyền rồi exit.</p>
- <figure class="evidence medium"><a href="../evidence/13-hardening-networks.png"><img src="../evidence/13-hardening-networks.png" alt="Kết quả inspect thực tế: application, database, monitoring đều Internal=true."></a><figcaption>Hình 19. Kết quả inspect thực tế: application, database, monitoring đều Internal=true. <span class="capture-time">Chụp: 2026-10-08T15:26:47+07:00.</span></figcaption></figure><figure class="evidence tall"><a href="../evidence/14-hardening-ports-users.png"><img src="../evidence/14-hardening-ports-users.png" alt="Các trường runtime được chọn: user, cổng localhost, cap_drop và no-new-privileges; không hiển thị Config.Env."></a><figcaption>Hình 20. Các trường runtime được chọn: user, cổng localhost, cap_drop và no-new-privileges; không hiển thị Config.Env. <span class="capture-time">Chụp: 2026-10-08T15:26:48+07:00.</span></figcaption></figure>
+ <figure class="evidence medium"><a href="../evidence/13-hardening-networks.png"><img src="../evidence/13-hardening-networks.png" alt="Kết quả inspect thực tế: application, database, monitoring đều Internal=true."></a><figcaption>Hình 19. Kết quả inspect thực tế: application, database, monitoring đều Internal=true. <span class="capture-time">Chụp: 2026-10-08T16:17:23+07:00.</span></figcaption></figure><figure class="evidence tall"><a href="../evidence/14-hardening-ports-users.png"><img src="../evidence/14-hardening-ports-users.png" alt="Các trường runtime được chọn: user, cổng localhost, cap_drop và no-new-privileges; không hiển thị Config.Env."></a><figcaption>Hình 20. Các trường runtime được chọn: user, cổng localhost, cap_drop và no-new-privileges; không hiển thị Config.Env. <span class="capture-time">Chụp: 2026-10-08T16:17:24+07:00.</span></figcaption></figure>
  <p>Không gọi mount docker.sock:ro là kiểm soát read-only Docker API. Cần đánh giá bổ sung nếu triển khai production ngoài máy học tập.</p>
  <div class="footer">Bảo vệ hệ thống và giới hạn</div>
 </section>
 
 <section class="page">
  <h2>9. Kiểm thử và kết quả</h2>
- <p>Nguồn kết quả: evidence/verification.json do scripts/verify.py chạy trực tiếp trên stack lúc <strong>2026-10-08T15:14:19.342627+07:00</strong>; đạt <strong>37/40 kiểm tra</strong>. Ba kiểm tra chưa đạt là độ dài MYSQL_PASSWORD, MYSQL_ROOT_PASSWORD và GRAFANA_ADMIN_PASSWORD: 11 ký tự thay vì tối thiểu 20. Các kiểm tra gốc được giữ nguyên; mật khẩu giữ theo yêu cầu sinh viên. Kiểm thử bổ sung sửa/lưu WordPress lúc 15:21 đạt 13/13 kiểm tra, ghi riêng trong evidence/wordpress-edit.json.</p>
+ <p>Nguồn kết quả: evidence/verification.json do scripts/verify.py chạy trực tiếp trên stack lúc <strong>2026-10-08T16:14:55.498676+07:00</strong>; đạt <strong>40/40 kiểm tra</strong>. Cả ba kiểm tra độ dài MYSQL_PASSWORD, MYSQL_ROOT_PASSWORD và GRAFANA_ADMIN_PASSWORD đã đạt với 48 ký tự, cùng các kiểm tra đăng nhập và chức năng dịch vụ. Các kiểm tra gốc được giữ nguyên; không hạ mức tối thiểu 20 ký tự. Kiểm thử bổ sung sửa/lưu WordPress lúc 15:21 đạt 13/13 kiểm tra, ghi riêng trong evidence/wordpress-edit.json.</p>
  <table><tr><th>Kiểm thử</th><th>Kết quả đã xác minh / điều kiện</th></tr>
  <tr><td>Compose/Nginx/Prometheus/Loki/Promtail syntax</td><td>Đã kiểm tra bằng config/check syntax tools.</td></tr>
  <tr><td>Website và trang đăng nhập</td><td>HTTP 200, giữ tên/nội dung; đã kiểm tra riêng phiên đăng nhập admin thật.</td></tr>
@@ -230,14 +230,14 @@ sum(count_over_time(
  <tr><td>Metrics</td><td>8 targets UP; nginx_up/mysql_up/probe_success=1; CPU/RAM/Nginx/MySQL có series thật.</td></tr>
  <tr><td>Grafana</td><td>Hai datasource health OK; hai dashboards meta.provisioned=true.</td></tr>
  <tr><td>LogQL</td><td>Cả ba query trả dữ liệu thực, gồm request 403/404.</td></tr>
- <tr><td>Network/ports/passwords</td><td>Internal networks và localhost mappings đạt. Ba mật khẩu cấu hình chưa đạt độ dài tối thiểu.</td></tr>
+ <tr><td>Network/ports/passwords</td><td>Internal networks, localhost mappings và ba mật khẩu cấu hình dài 48 ký tự đều đạt.</td></tr>
  <tr><td>Root MySQL</td><td>Root đăng nhập thành công bằng credential cấu hình; giữ nguyên volume dữ liệu.</td></tr></table>
  <p>Sao lưu ứng dụng đã restore-verify: 12 bảng, dữ liệu khớp, CHECK TABLE OK; evidence/backup-validation.json. Phiên admin xác thực Dashboard/danh sách Trang qua HTTP thật; kiểm thử bổ sung xác nhận chuỗi tạo nháp → sửa/lưu → xuất bản → hiển thị công khai → dọn trang thử.</p>
  <pre>python -u scripts/verify.py
 python scripts/test-wordpress-edit.py --capture
 docker compose ps -a
 git check-ignore .env backups/before-changes.sql</pre>
- <figure class="evidence medium"><a href="../evidence/04-compose-status.png"><img src="../evidence/04-compose-status.png" alt="Kết quả Docker Compose thực tế: 12 dịch vụ chạy, các healthchecks đạt; loki-init Exited (0)."></a><figcaption>Hình 21. Kết quả Docker Compose thực tế: 12 dịch vụ chạy, các healthchecks đạt; loki-init Exited (0). <span class="capture-time">Chụp: 2026-10-08T15:26:45+07:00.</span></figcaption></figure><figure class="evidence medium"><a href="../evidence/18-backup-validation.png"><img src="../evidence/18-backup-validation.png" alt="Metadata công khai của restore-test ứng dụng và cold archive toàn bộ volume."></a><figcaption>Hình 22. Metadata công khai của restore-test ứng dụng và cold archive toàn bộ volume. <span class="capture-time">Chụp: 2026-10-08T15:26:49+07:00.</span></figcaption></figure><figure class="evidence tall"><a href="../evidence/20-verification-results.png"><img src="../evidence/20-verification-results.png" alt="Kết quả bộ kiểm tra thực tế: 37/40 PASS, ba FAIL chỉ liên quan độ dài mật khẩu."></a><figcaption>Hình 23. Kết quả bộ kiểm tra thực tế: 37/40 PASS, ba FAIL chỉ liên quan độ dài mật khẩu. <span class="capture-time">Chụp: 2026-10-08T15:26:49+07:00.</span></figcaption></figure>
+ <figure class="evidence medium"><a href="../evidence/04-compose-status.png"><img src="../evidence/04-compose-status.png" alt="Kết quả Docker Compose thực tế: 12 dịch vụ chạy, các healthchecks đạt; loki-init Exited (0)."></a><figcaption>Hình 21. Kết quả Docker Compose thực tế: 12 dịch vụ chạy, các healthchecks đạt; loki-init Exited (0). <span class="capture-time">Chụp: 2026-10-08T16:17:22+07:00.</span></figcaption></figure><figure class="evidence medium"><a href="../evidence/18-backup-validation.png"><img src="../evidence/18-backup-validation.png" alt="Metadata công khai của restore-test ứng dụng và khôi phục thử bản sao lưu đầy đủ trước khi đổi root."></a><figcaption>Hình 22. Metadata công khai của restore-test ứng dụng và khôi phục thử bản sao lưu đầy đủ trước khi đổi root. <span class="capture-time">Chụp: 2026-10-08T16:17:24+07:00.</span></figcaption></figure><figure class="evidence tall"><a href="../evidence/20-verification-results.png"><img src="../evidence/20-verification-results.png" alt="Kết quả bộ kiểm tra thực tế: 40/40 PASS, bao gồm xác thực dịch vụ và chính sách độ dài mật khẩu."></a><figcaption>Hình 23. Kết quả bộ kiểm tra thực tế: 40/40 PASS, bao gồm xác thực dịch vụ và chính sách độ dài mật khẩu. <span class="capture-time">Chụp: 2026-10-08T16:17:25+07:00.</span></figcaption></figure>
  <p>Hai ảnh WordPress ở phần 3 được chụp bằng Edge trong phiên quản trị và phiên ẩn danh riêng. Thao tác ghi nội dung của bộ kiểm thử dùng WordPress REST API với cookie phiên và wp_rest nonce; ảnh editor ghi trạng thái đã lưu/xuất bản. Cookies, nonce và mật khẩu không lưu vào artifacts công khai.</p>
  <div class="footer">Kiểm thử có thể lặp lại</div>
 </section>
@@ -255,7 +255,7 @@ git diff --cached --stat
 git log --oneline --graph --decorate
 git remote -v</pre>
  <p>Sinh viên xác nhận tài khoản <a href="https://github.com/NguyenVanManh147">NguyenVanManh147</a>. Repository bài là <a href="https://github.com/NguyenVanManh147/DTC245200147_NguyenVanManh">NguyenVanManh147/DTC245200147_NguyenVanManh</a>; tên repository chứa mã sinh viên và họ tên. Việc tạo repository và quyền ghi được xác minh trong evidence/github-access.json; việc push và đối chiếu commit local/remote được xác minh trong evidence/git-delivery.json. Ảnh dưới chụp tài khoản và repository sau khi push source.</p>
- <figure class="evidence medium"><a href="../evidence/16-git-status.png"><img src="../evidence/16-git-status.png" alt="Kết quả Git thực tế: nhánh main, lịch sử ít nhất ba commits có nội dung, origin/main và remote đúng repository."></a><figcaption>Hình 24. Kết quả Git thực tế: nhánh main, lịch sử ít nhất ba commits có nội dung, origin/main và remote đúng repository. <span class="capture-time">Chụp: 2026-10-08T15:32:17+07:00.</span></figcaption></figure>
+ <figure class="evidence medium"><a href="../evidence/16-git-status.png"><img src="../evidence/16-git-status.png" alt="Kết quả Git thực tế: nhánh main, lịch sử ít nhất ba commits có nội dung, origin/main và remote đúng repository."></a><figcaption>Hình 24. Kết quả Git thực tế: nhánh main, lịch sử ít nhất ba commits có nội dung, origin/main và remote đúng repository. <span class="capture-time">Chụp: 2026-10-08T16:17:24+07:00.</span></figcaption></figure>
  <figure class="evidence compact"><a href="../evidence/17a-github-account.png"><img src="../evidence/17a-github-account.png" alt="Trang tài khoản GitHub NguyenVanManh147 hiển thị repository bài sau khi push source."></a><figcaption>Hình 25. Trang tài khoản GitHub NguyenVanManh147 hiển thị repository bài sau khi push source. <span class="capture-time">Chụp: 2026-10-08T15:33:04+07:00.</span></figcaption></figure>
  <figure class="evidence medium"><a href="../evidence/17b-github-repository.png"><img src="../evidence/17b-github-repository.png" alt="Repository GitHub của bài sau khi push: source, README và lịch sử commits."></a><figcaption>Hình 26. Repository GitHub của bài sau khi push: source, README và lịch sử commits. <span class="capture-time">Chụp: 2026-10-08T15:33:08+07:00.</span></figcaption></figure>
  <p>Danh sách ảnh đầy đủ nằm ở evidence/README.md. Gắn caption, đánh số hình và ghi thời gian chụp. Không đưa .env, SQL backup, credential cũ, cookies hoặc password hashes vào Git/báo cáo.</p>
@@ -272,11 +272,11 @@ git remote -v</pre>
  <p>Hai điểm vận hành được làm rõ bằng kiểm thử: HTTP 200 ở trang đăng nhập không chứng minh đã xác thực quản trị; biến mật khẩu trong .env không tự đổi tài khoản đã lưu trong volume MySQL hoặc Grafana. Vì vậy phiên đăng nhập, credential dịch vụ và dữ liệu sao lưu được kiểm tra riêng.</p>
  <h3>Trạng thái hồ sơ và giới hạn còn lại</h3>
  <ol>
- <li>Giữ nguyên mật khẩu theo yêu cầu sinh viên; ghi nhận ba kiểm tra độ dài 11 ký tự chưa đạt mức tối thiểu 20. Đây là giới hạn còn lại của bộ kiểm tra.</li>
+ <li>Đã đổi ba mật khẩu MySQL user/root và Grafana sang các giá trị ngẫu nhiên riêng biệt dài 48 ký tự; đồng bộ cấu hình và dịch vụ, xác thực lại thành công. Bộ kiểm tra đạt 40/40; mật khẩu WordPress admin giữ nguyên.</li>
  <li>Kiểm thử sửa/lưu đã đạt 13/13: nội dung mới hiển thị ở phiên ẩn danh; trang thử được dọn và dữ liệu portfolio gốc giữ nguyên.</li>
  <li>Đã chèn ảnh dashboard, targets, LogQL, database và hardening; kiểm tra hình trong PDF cuối.</li>
  <li>Source và hồ sơ đã push vào repository; lịch sử có ít nhất ba commits thực, commit local/remote khớp tại snapshot đã kiểm tra. URL và ảnh GitHub nằm ở phần 10.</li>
- <li>Đối chiếu ngày nộp và điều kiện tài khoản/repository với phiếu đề bài gốc. Khoa Công nghệ Thông tin, lớp CNTTK23B, học phần Triển khai và Quản trị Hệ thống Phần mềm và giảng viên Nguyễn Anh Chuyên đã được xác nhận.</li>
+ <li>Khoa Công nghệ Thông tin, lớp CNTTK23B, học phần Triển khai và Quản trị Hệ thống Phần mềm và giảng viên Nguyễn Anh Chuyên đã được xác nhận. Không quy định hạn nộp theo xác nhận của sinh viên. Phiếu đề gốc không có trong workspace; bảng đối chiếu yêu cầu sử dụng checklist đã ghi ở phần 1.</li>
  </ol>
  <h3>Giới hạn triển khai hiện tại</h3>
  <p>HTTP với security headers, chưa TLS; MySQL exporter chỉ collectors cơ bản; cAdvisor cần đặc quyền; Nginx file logs chưa có rotation tự động. Promtail đã EOL nhưng được giữ theo checklist hiện có. Nếu sử dụng ngoài môi trường học tập, hướng phát triển là HTTPS, quản lý quyền collector, xoay file logs và chuyển sang collector còn được hỗ trợ sau khi thống nhất yêu cầu.</p>

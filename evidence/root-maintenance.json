@@ -1,13 +1,39 @@
 {
-  "checked_at": "2026-10-08T10:33:31.498668+07:00",
-  "root_changed": true,
-  "recovery_mode_used": true,
+  "checked_at": "2026-10-08T16:01:20.988105+07:00",
+  "authenticated_account": "root@localhost",
   "source_volume": "portfolio-manh_db_data",
-  "same_data_volume": true,
+  "backup_file": "backups\\root-before-20261008T090106Z-f1961a\\full-before-root.sql",
+  "bytes": 5443788,
+  "sha256": "6e540e29bd7ec45576d64ffa520c05b88e4ac4bdfb5fdd3a5a1183eb15b8a8ed",
+  "dump_exit_code": 0,
+  "full_restore_validation": {
+    "passed": true,
+    "network_mode": "none",
+    "storage": "tmpfs",
+    "original_volume_mounted": false,
+    "account_metadata_matches": true,
+    "app_data_signature_matches": true,
+    "restored_app_table_count": 12,
+    "check_table_all_ok": true,
+    "temporary_container_removed": true
+  },
+  "root_accounts": [
+    {
+      "host": "%",
+      "plugin_before": "caching_sha2_password",
+      "locked_before": "N"
+    },
+    {
+      "host": "localhost",
+      "plugin_before": "caching_sha2_password",
+      "locked_before": "N"
+    }
+  ],
+  "recovery_mode_used": false,
+  "root_changed": true,
+  "account_changes_started": true,
+  "new_password_length": 48,
   "new_root_socket_login": true,
   "container_env_synchronized": true,
-  "new_password_length": 11,
-  "backup_folder": "backups\\requested-password-20261008T032916Z",
-  "cold_archive_verified": true,
-  "normal_authentication_restored": true
+  "same_data_volume": true
 }

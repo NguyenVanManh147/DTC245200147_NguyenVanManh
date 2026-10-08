@@ -1,31 +1,17 @@
-<!doctype html><html lang="vi"><meta charset="utf-8"><style>body{margin:0;background:#edf2f7;color:#14243a;font:18px/1.5 Segoe UI,Arial;padding:32px}main{max-width:1420px;margin:auto;background:white;border:1px solid #c8d5e1;border-radius:12px;padding:28px}h1{font-size:27px;color:#164e63;margin:0 0 10px}h2{font:16px Consolas,monospace;background:#e7eef5;padding:10px;margin-top:24px}pre{font:15px/1.65 Consolas,monospace;white-space:pre-wrap;overflow-wrap:anywhere}p{color:#54667c;font-size:15px}</style><main><h1>Nginx: cấu hình hợp lệ và security headers</h1><p>Kết quả lệnh/API thực tế • 2026-10-08T15:26:46+07:00 • Portfolio Nguyễn Văn Mạnh / DTC245200147</p><section><h2>docker compose exec -T nginx nginx -t</h2><pre>nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+<!doctype html><html lang="vi"><meta charset="utf-8"><style>body{margin:0;background:#edf2f7;color:#14243a;font:18px/1.5 Segoe UI,Arial;padding:32px}main{max-width:1420px;margin:auto;background:white;border:1px solid #c8d5e1;border-radius:12px;padding:28px}h1{font-size:27px;color:#164e63;margin:0 0 10px}h2{font:16px Consolas,monospace;background:#e7eef5;padding:10px;margin-top:24px}pre{font:15px/1.65 Consolas,monospace;white-space:pre-wrap;overflow-wrap:anywhere}p{color:#54667c;font-size:15px}</style><main><h1>Nginx: cấu hình hợp lệ và security headers</h1><p>Kết quả lệnh/API thực tế • 2026-10-08T16:17:23+07:00 • Portfolio Nguyễn Văn Mạnh / DTC245200147</p><section><h2>docker compose exec -T nginx nginx -t</h2><pre>nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
 nginx: configuration file /etc/nginx/nginx.conf test is successful
 </pre></section><section><h2>curl.exe -I http://localhost:8080/</h2><pre>HTTP/1.1 200 OK
-
 Server: nginx
-
-Date: Thu, 08 Oct 2026 08:26:46 GMT
-
+Date: Thu, 08 Oct 2026 09:17:23 GMT
 Content-Type: text/html; charset=UTF-8
-
 Connection: keep-alive
-
 Link: &lt;http://localhost:8080/index.php?rest_route=/&gt;; rel=&quot;https://api.w.org/&quot;
-
 Link: &lt;http://localhost:8080/index.php?rest_route=/wp/v2/pages/5&gt;; rel=&quot;alternate&quot;; title=&quot;JSON&quot;; type=&quot;application/json&quot;
-
 Link: &lt;http://localhost:8080/&gt;; rel=shortlink
-
 X-Content-Type-Options: nosniff
-
 X-Frame-Options: SAMEORIGIN
-
 Referrer-Policy: strict-origin-when-cross-origin
-
 Permissions-Policy: camera=(), microphone=(), geolocation=()
-
 Content-Security-Policy: frame-ancestors &#x27;self&#x27;; object-src &#x27;none&#x27;; base-uri &#x27;self&#x27;
-
-
 
 </pre></section></main></html>

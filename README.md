@@ -2,11 +2,13 @@
 
 Đề tài: **Website Portfolio / Giới thiệu cá nhân**. Môi trường: Windows, PowerShell, VS Code, Docker Desktop chạy Linux containers.
 
-Sinh viên **Nguyễn Văn Mạnh**, mã **DTC245200147**, **Khoa Công Nghệ Thông Tin**, lớp **CNTTK23B**. Học phần **Triển khai và Quản trị Hệ thống Phần mềm**, giảng viên **Nguyễn Anh Chuyên**. GitHub: [NguyenVanManh147](https://github.com/NguyenVanManh147). Hạn nộp chưa được cung cấp; cần đối chiếu lịch chính thức trước khi nộp.
+Sinh viên **Nguyễn Văn Mạnh**, mã **DTC245200147**, **Khoa Công Nghệ Thông Tin**, lớp **CNTTK23B**. Học phần **Triển khai và Quản trị Hệ thống Phần mềm**, giảng viên **Nguyễn Anh Chuyên**. GitHub: [NguyenVanManh147](https://github.com/NguyenVanManh147). **Không quy định hạn nộp**, theo xác nhận của sinh viên.
 
 Dự án dùng **WordPress**, giữ database, uploads, theme Twenty Twenty-Five và các trang cá nhân trên máy hiện tại. Cấu hình Docker Compose, Nginx, monitoring và logging nằm trong repository; nội dung được xuất vào `wordpress/portfolio-export.xml`, 14 ảnh nằm trong `wordpress/uploads/`. Máy mới có thể dựng lại nội dung bằng script bootstrap bên dưới.
 
-Kiểm thử hệ thống ngày **08/10/2026** đạt **37/40**: website, quản trị, database, metrics và LogQL hoạt động. Ba mục chưa đạt là độ dài mật khẩu MySQL user, MySQL root và Grafana: **11 ký tự**, dưới mức **20** của bộ kiểm tra. Giữ nguyên mật khẩu theo lựa chọn của sinh viên và ghi rõ giới hạn này; kết quả không được trình bày thành 40/40.
+Kiểm thử hệ thống ngày **08/10/2026** đạt **40/40**: website, quản trị, database, metrics và LogQL hoạt động. MySQL user, MySQL root và Grafana đã được đổi sang ba mật khẩu ngẫu nhiên riêng biệt, mỗi mật khẩu **48 ký tự**, đáp ứng mức tối thiểu **20**. Cấu hình và dịch vụ đã đồng bộ; mật khẩu WordPress admin giữ nguyên. Xem [minh chứng đổi mật khẩu](evidence/credential-hardening.json).
+
+Bản hoàn chỉnh gồm cấu hình dịch vụ, kết quả 40/40, minh chứng và báo cáo PDF. Mật khẩu thực, SQL backup và dữ liệu xác thực chỉ nằm trên máy, bị loại khỏi Git.
 
 Đọc [kết quả kiểm thử](docs/verification.md), [danh mục minh chứng](evidence/README.md), [báo cáo HTML](docs/report.html) và [báo cáo PDF](docs/BaoCao_DTC245200147_NguyenVanManh.pdf). [Audit ban đầu](docs/audit.md) và [quy trình bảo trì root](docs/root-maintenance.md) ghi lại quá trình khôi phục, cần phân biệt với trạng thái hiện tại.
 
@@ -48,7 +50,7 @@ docker compose version
 Get-CimInstance Win32_LogicalDisk | Select-Object DeviceID, Size, FreeSpace
 ```
 
-**Trên máy hiện tại, giữ nguyên `.env` và các mật khẩu đã chọn.** Đăng nhập MySQL user/root, WordPress và Grafana đã được xác minh. `.env` chứa thông tin riêng tư và bị loại khỏi Git. Không chạy `Copy-Item .env.example .env -Force` trên database hiện có; sửa biến môi trường không tự đổi mật khẩu đã lưu trong volumes.
+**Trên máy hiện tại, dùng các mật khẩu mới đã đồng bộ trong `.env`.** Đăng nhập MySQL user/root, WordPress và Grafana đã được xác minh. `.env` chứa thông tin riêng tư và bị loại khỏi Git. Không chạy `Copy-Item .env.example .env -Force` trên database hiện có; sửa biến môi trường không tự đổi mật khẩu đã lưu trong volumes.
 
 Chỉ khi clone vào **máy mới chưa có `.env`**, tạo mật khẩu ngẫu nhiên bằng script không ghi đè file:
 
@@ -125,7 +127,7 @@ powershell -ExecutionPolicy Bypass -File .\scripts\Test-System.ps1
 python -u .\scripts\verify.py
 ```
 
-Kết quả được ghi vào `evidence/verification.json` và tổng hợp trong `docs/verification.md`. Script trả mã 1 khi có mục chưa đạt. Với mật khẩu hiện tại, ba kiểm tra độ dài vẫn FAIL dù đăng nhập và chức năng dịch vụ PASS. Script sinh request 403/404 thật để kiểm chứng filter log. Một số phép tính `rate` cần ít nhất hai lần scrape; chờ khoảng 30–60 giây sau khi khởi động rồi chạy.
+Kết quả được ghi vào `evidence/verification.json` và tổng hợp trong `docs/verification.md`. Script trả mã 1 khi có mục chưa đạt. Với ba mật khẩu mới dài 48 ký tự, các kiểm tra độ dài và đăng nhập đều PASS. Script sinh request 403/404 thật để kiểm chứng filter log. Một số phép tính `rate` cần ít nhất hai lần scrape; chờ khoảng 30–60 giây sau khi khởi động rồi chạy.
 
 Kiểm thử riêng thao tác quản trị nội dung:
 
@@ -222,7 +224,7 @@ Theo [tài liệu chính thức Grafana](https://grafana.com/docs/loki/latest/se
 | Giảm public ports | Tất cả 8080/8081/3000/9090 bind 127.0.0.1; không publish 3306/3100/exporters/stub_status | `docker compose ps`; DB/Loki vẫn có cổng nội bộ, không phải host mapping |
 | Security headers | nosniff, SAMEORIGIN, Referrer-Policy, Permissions-Policy, CSP frame/object/base | `curl.exe -I`; áp dụng cả 4xx; chưa cấu hình HTTPS. Cần đối chiếu đề gốc về yêu cầu HTTPS hoặc security headers |
 | Quyền DB theo ứng dụng | User WordPress chỉ có quyền trên portfolio_db, không có global privileges | phpMyAdmin `SHOW GRANTS FOR CURRENT_USER();`; quyền schema cho WordPress tạo/nâng cấp bảng |
-| Mật khẩu/variables | Mật khẩu được đặt theo yêu cầu người dùng, cấu hình `.env` bị ignore | WordPress/Grafana/MySQL được kiểm tra đăng nhập riêng; mật khẩu hiện dài 11 ký tự, chưa đạt chính sách tối thiểu 20 ký tự |
+| Mật khẩu/variables | Mật khẩu được đặt theo yêu cầu người dùng, cấu hình `.env` bị ignore | WordPress/Grafana/MySQL được kiểm tra đăng nhập riêng; MySQL user/root và Grafana dùng mật khẩu riêng biệt dài 48 ký tự, đạt mức tối thiểu 20 ký tự; WordPress admin giữ nguyên |
 | Non-root | Grafana 472, Loki/Promtail 10001, exporters/Blackbox/Prometheus 65534 | Inspect Config.User; không ép MySQL/Apache/Nginx entrypoint chạy non-root |
 | Hạn chế quyền | no-new-privileges; drop ALL trên dịch vụ hỗ trợ; read-only rootfs exporters/Blackbox/Promtail; config mounts ro | Inspect SecurityOpt/CapDrop và trạng thái service; không ép DB/WordPress read-only |
 | WordPress | Tắt PHP file editor, XML-RPC; chặn hidden files/wp-config; ẩn PHP/server version | Kiểm tra HTTP 403/404 và plugin source |
@@ -282,10 +284,10 @@ Báo cáo tại `docs/report.html` và `docs/BaoCao_DTC245200147_NguyenVanManh.p
 
 Trước khi nộp:
 
-1. Kiểm tra thông tin bìa: **Công Nghệ Thông Tin / CNTTK23B**, học phần **Triển khai và Quản trị Hệ thống Phần mềm**, giảng viên **Nguyễn Anh Chuyên**; đối chiếu hạn nộp theo lịch chính thức.
+1. Kiểm tra thông tin bìa: **Công Nghệ Thông Tin / CNTTK23B**, học phần **Triển khai và Quản trị Hệ thống Phần mềm**, giảng viên **Nguyễn Anh Chuyên**; không quy định hạn nộp theo xác nhận của sinh viên.
 2. Đọc phần nhận xét cá nhân trong kết luận, sửa lại theo trải nghiệm học tập thực tế của sinh viên.
 3. Đối chiếu phiếu đề gốc về tên tài khoản/repository, số commits, yêu cầu HTTPS/security headers và quy cách báo cáo.
-4. Mở link repository, kiểm tra source và lịch sử commits; mở PDF để kiểm tra bìa, hình/caption và kết quả **37/40**, cùng giới hạn ba mật khẩu 11 ký tự.
+4. Mở link repository, kiểm tra source và lịch sử commits; mở PDF để kiểm tra bìa, hình/caption và kết quả **40/40**, bao gồm ba mật khẩu cấu hình mới dài 48 ký tự.
 5. Khi trình bày, khởi động Docker Desktop rồi `docker compose up -d --wait --wait-timeout 180`; mở website, WordPress admin, phpMyAdmin, Prometheus và Grafana theo các URL bên trên. Có thể chạy `Test-System.ps1` và `test-wordpress-edit.py` để tái kiểm tra.
 
 ## Xử lý lỗi phổ biến

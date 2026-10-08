@@ -25,9 +25,18 @@ for private_env in (root / 'backups').rglob('*.env'):
             value = line.split('=', 1)[1].strip().strip("'\"")
             if value:
                 credentials.add(value.encode())
+def collect_credentials(values, sensitive=False):
+    if isinstance(values, dict):
+        for key, value in values.items():
+            collect_credentials(value, sensitive or 'PASSWORD' in key.upper())
+    elif isinstance(values, list):
+        for value in values:
+            collect_credentials(value, sensitive)
+    elif sensitive and isinstance(values, str) and values:
+        credentials.add(values.encode())
+
 for private_json in (root / 'secrets').glob('*.json'):
-    values = json.loads(private_json.read_text(encoding='utf-8'))
-    credentials.update(value.encode() for key, value in values.items() if 'PASSWORD' in key and isinstance(value, str) and value)
+    collect_credentials(json.loads(private_json.read_text(encoding='utf-8')))
 candidates = set(subprocess.check_output(['git', 'ls-files', '--cached', '--others', '--exclude-standard', '-z'], cwd=root).decode('utf-8').strip('\0').split('\0'))
 for candidate in candidates:
     if not candidate:

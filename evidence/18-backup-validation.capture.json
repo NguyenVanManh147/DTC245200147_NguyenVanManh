@@ -1,6 +1,6 @@
 {
-  "captured_at": "2026-10-08T15:26:49+07:00",
+  "captured_at": "2026-10-08T16:17:24+07:00",
   "source": "evidence\\18-backup-validation.html",
-  "label": "Sao lưu ứng dụng và bản sao toàn bộ volume đã kiểm tra",
-  "sha256": "89ea77db4635444f7f8bc760096699ef7f297ad57fdd209c9b42324fa73eca91"
+  "label": "Sao lưu ứng dụng và sao lưu đầy đủ đã kiểm tra",
+  "sha256": "2c1ad988e1f106313bfc502e6fa0d6e10e82d8ab3d745ee8eb82a5af2d0a0087"
 }

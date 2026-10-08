@@ -185,7 +185,7 @@ def github(page):
     source_visible = 'README.md' in text and 'compose.yaml' in text
     if not source_visible:
         raise RuntimeError('Published repository source is not visible yet')
-    snap(page,'17b-github-repository.png',repo_url,'Repository GitHub của bài: source và README',full=True)
+    snap(page,'17b-github-repository.png',repo_url,'Repository GitHub của bài: source và README',full=False)
     (EVIDENCE / 'github-observation.json').write_text(json.dumps({'checked_at':timestamp(),'profile_url':url,'username':'NguyenVanManh147','repository_links':links,'local_remotes_configured':bool(remotes.strip()),'repository_url':repo_url,'public_source_visible':source_visible},indent=2),encoding='utf-8')
 
 def report_pdf(page):

@@ -108,16 +108,16 @@
     "sha256": "853ad0b54d72c64047842a1e4f494baf840a8823c4d2bb8fca0ddcad05b24625"
   },
   "16-git-status.png": {
-    "captured_at": "2026-10-08T15:26:48+07:00",
+    "captured_at": "2026-10-08T15:32:17+07:00",
     "source": "evidence\\16-git-status.html",
     "label": "Lịch sử commits và repository GitHub của bài",
-    "sha256": "3bf2bb3d659a13fa4f3fd4462518d32fde7f3474d36f2f4d801e1ad7961667a9"
+    "sha256": "cd74c64e96a3568ce530524a26f45248522843e81fba357b9c92886df83a79c3"
   },
   "17a-github-account.png": {
-    "captured_at": "2026-10-08T10:50:11+07:00",
-    "source": "Trang dịch vụ hoặc trang kết quả lệnh cùng tên; xem scripts/capture-evidence.py",
-    "label": "17a-github-account",
-    "sha256": "e57194fa6d47bf60a9fcc25b21cc21d2ef07e12a8081212d078bbd1efc3d9645"
+    "captured_at": "2026-10-08T15:33:04+07:00",
+    "source": "https://github.com/NguyenVanManh147?tab=repositories",
+    "label": "Tài khoản GitHub do người dùng cung cấp: NguyenVanManh147",
+    "sha256": "91fac1874de1c3ef02557961024e9acf6b4adc67f2fd377e9c7846cc4bcb949e"
   },
   "18-backup-validation.png": {
     "captured_at": "2026-10-08T15:26:49+07:00",
@@ -138,7 +138,7 @@
     "sha256": "711fa8dcbe3e77212ae0a1db763964b340c9c642141c84251d34cd7760418408"
   },
   "21-report-preview.png": {
-    "captured_at": "2026-10-08T15:27:46+07:00",
+    "captured_at": "2026-10-08T15:34:40+07:00",
     "source": "docs/report.html",
     "label": "Báo cáo đã chèn ảnh minh chứng",
     "sha256": "5c862a69f60d15ec222a592362cfd2117eb64ef74f75e23ac65c1c69a47f7dfd"
@@ -154,5 +154,11 @@
     "source": "http://localhost:8080/?page_id=26",
     "label": "Truy cập ẩn danh: nội dung mới hiển thị ngoài website",
     "sha256": "4a721658404be5a2bcda80df2ff54cbfd128d8eda5abfa7ff211e3001da1552a"
+  },
+  "17b-github-repository.png": {
+    "captured_at": "2026-10-08T15:33:08+07:00",
+    "source": "https://github.com/NguyenVanManh147/DTC245200147_NguyenVanManh",
+    "label": "Repository GitHub của bài: source và README",
+    "sha256": "d14abdfc1ea46fbd2f53ee1d5d317e6bcd307a19dc9d69478a5a66882212282b"
   }
 }

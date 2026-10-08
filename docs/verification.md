@@ -68,16 +68,15 @@ Nguồn: [evidence/verification.json](../evidence/verification.json).
 - Các trang portfolio gốc được đối chiếu và giữ nguyên sau kiểm thử nội dung.
 - Nội dung thử đã được dọn sau kiểm thử; việc dọn được xác minh riêng.
 - Kiểm tra Git: 141 files là candidates; không có private files hoặc credential thực bị phát hiện trong candidates.
-- Git được kiểm tra vào 2026-10-08T15:26:40.303380+07:00: nhánh `main`, 3 commits; xem evidence/git-delivery.json.
-- Repository bài: [https://github.com/NguyenVanManh147/DTC245200147_NguyenVanManh](https://github.com/NguyenVanManh147/DTC245200147_NguyenVanManh). Trạng thái push: **chưa xác minh**.
-- Báo cáo HTML đã chèn 25 ảnh minh chứng thật và sơ đồ kiến trúc; ảnh không chứa mật khẩu/cookies/token. Các hình output lệnh là kết quả thật được hiển thị qua HTML để chụp, không phải terminal Windows.
-- Lần xuất PDF được xác minh tại 2026-10-08T15:27:47+07:00: 27 trang A4; 26 ảnh/sơ đồ tải thành công, không thiếu file. Xem docs/BaoCao_DTC245200147_NguyenVanManh.pdf và evidence/report-validation.json.
+- Git được kiểm tra vào 2026-10-08T15:31:27.524165+07:00: nhánh `main`, 4 commits; xem evidence/git-delivery.json.
+- Repository bài: [https://github.com/NguyenVanManh147/DTC245200147_NguyenVanManh](https://github.com/NguyenVanManh147/DTC245200147_NguyenVanManh). Trạng thái push: **đã xác minh**.
+- Báo cáo HTML đã chèn 26 ảnh minh chứng thật và sơ đồ kiến trúc; ảnh không chứa mật khẩu/cookies/token. Các hình output lệnh là kết quả thật được hiển thị qua HTML để chụp, không phải terminal Windows.
+- Lần xuất PDF được xác minh tại 2026-10-08T15:34:40+07:00: 28 trang A4; 27 ảnh/sơ đồ tải thành công, không thiếu file. Xem docs/BaoCao_DTC245200147_NguyenVanManh.pdf và evidence/report-validation.json.
 - Người dùng yêu cầu giữ nguyên mật khẩu hiện tại. Các kiểm tra độ dài chưa đạt được giữ và ghi rõ, không đổi mật khẩu hoặc hạ chính sách kiểm tra.
 
 ## Công việc còn cần bổ sung
 
-1. Push source vào repository thuộc tài khoản NguyenVanManh147 do người dùng xác nhận, sau khi kiểm tra riêng tư; xác minh URL và commit remote.
-2. Đối chiếu lịch nộp và yêu cầu với phiếu đề bài gốc. Khoa Công nghệ Thông tin, lớp CNTTK23B, học phần Triển khai và Quản trị Hệ thống Phần mềm và giảng viên Nguyễn Anh Chuyên đã được sinh viên xác nhận.
+1. Đối chiếu lịch nộp và yêu cầu với phiếu đề bài gốc. Khoa Công nghệ Thông tin, lớp CNTTK23B, học phần Triển khai và Quản trị Hệ thống Phần mềm và giảng viên Nguyễn Anh Chuyên đã được sinh viên xác nhận.
 
 Khởi tạo tự động đã kiểm thử trên volumes Docker mới: nội dung, ảnh, menu, đăng nhập và bảo vệ dữ liệu khi chạy lại; xem evidence/bootstrap-validation.json. Chưa thử trên một máy vật lý khác.
 

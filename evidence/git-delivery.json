@@ -1,8 +1,8 @@
 {
-  "checked_at": "2026-10-08T15:26:40.303380+07:00",
+  "checked_at": "2026-10-08T15:31:27.524165+07:00",
   "username": "NguyenVanManh147",
   "branch": "main",
-  "commit_count": 3,
+  "commit_count": 4,
   "remote_url": "https://github.com/NguyenVanManh147/DTC245200147_NguyenVanManh.git",
   "repository_url": "https://github.com/NguyenVanManh147/DTC245200147_NguyenVanManh",
   "commits": [
@@ -17,12 +17,16 @@
     {
       "hash": "f1619e4ad6fccee73220d5c3813e528965b501ec",
       "subject": "test: add reproducible bootstrap and verified admin edit workflow"
+    },
+    {
+      "hash": "7d27e842a9cb013e583fa8caba3d991151da1dbd",
+      "subject": "docs: complete course report and verified deployment evidence"
     }
   ],
-  "verified_local_commit": "f1619e4ad6fccee73220d5c3813e528965b501ec",
-  "verified_remote_commit": null,
-  "remote_checked": false,
-  "pushed": false,
+  "verified_local_commit": "7d27e842a9cb013e583fa8caba3d991151da1dbd",
+  "verified_remote_commit": "7d27e842a9cb013e583fa8caba3d991151da1dbd",
+  "remote_checked": true,
+  "pushed": true,
   "at_least_three_real_commits": true,
   "scope": "Timestamped snapshot; later report/evidence commits may follow this revision.",
   "credentials_in_evidence": false

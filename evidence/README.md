@@ -26,6 +26,9 @@ Minh chứng được lấy từ hệ thống WordPress/Docker đang chạy và 
 | `13-hardening-networks.png` | Các mạng application/database/monitoring internal | `docker network inspect` |
 | `14-hardening-ports-users.png` | Ports localhost, users, capabilities; ngoại lệ cAdvisor | `docker compose ps` và inspect đã chọn trường |
 | `15-database-grants.png` | User ứng dụng chỉ có quyền trong schema | phpMyAdmin `SHOW GRANTS FOR CURRENT_USER();` |
+| `16-git-status.png` | Snapshot lịch sử bốn commits thực, origin/main và remote của bài | Các lệnh Git lúc 15:32 ngày 08/10/2026 |
+| `17a-github-account.png` | Trang repositories của tài khoản `NguyenVanManh147` | GitHub công khai, cập nhật lúc 15:31 ngày 08/10/2026 |
+| `17b-github-repository.png` | Repository bài chứa source và README sau push | GitHub công khai; thời gian chụp trong file capture tương ứng |
 | `18-backup-validation.png` | Import thử backup vào MySQL cô lập, kiểm tra bảng/chữ ký | `backup-validation.json` |
 | `19-root-authentication.png` | Root xác thực thành công, không lộ credential | `local-root-auth.json` |
 | `20-verification-results.png` | Kết quả kiểm thử hệ thống | `verification.json` |
@@ -33,7 +36,7 @@ Minh chứng được lấy từ hệ thống WordPress/Docker đang chạy và 
 | `24-wordpress-edit-admin.png` | Trang thử đã sửa nội dung và xuất bản trong quản trị | Phiên admin WordPress thật |
 | `25-wordpress-edit-public.png` | Nội dung mới hiển thị HTTP 200 cho khách ẩn danh | Trang công khai trước khi dọn nội dung thử |
 
-Ảnh `16-git-status.png` và `17a-github-account.png` ghi **trạng thái trước khi hoàn thiện GitHub**. Chúng được giữ làm lịch sử, không dùng để chứng minh source bài đã push. Repository sẽ là [NguyenVanManh147/DTC245200147_NguyenVanManh](https://github.com/NguyenVanManh147/DTC245200147_NguyenVanManh); trạng thái push cuối phải căn cứ `git-delivery.json` và minh chứng mới.
+Source và hồ sơ đã được push lên repository công khai [NguyenVanManh147/DTC245200147_NguyenVanManh](https://github.com/NguyenVanManh147/DTC245200147_NguyenVanManh), nhánh **main**. `git-delivery.json` lúc **15:31 ngày 08/10/2026** xác nhận snapshot **4 commits thực**, `pushed=true`, `remote_checked=true`, local và remote cùng revision `7d27e84`. Lịch sử GitHub có thể chứa thêm commits cập nhật hồ sơ sau snapshot này; ảnh `16-git-status.png` thể hiện bốn commits đã push, ảnh `17a/17b` lấy từ trang GitHub sau push.
 
 ## Sửa và lưu nội dung WordPress
 
@@ -62,8 +65,8 @@ Lần kiểm thử lúc **15:21 ngày 08/10/2026 đạt 13/13**, ghi tại `word
 | `root-maintenance.json` | Quá trình bảo trì root sau backup, cold archive, kiểm tra dữ liệu và full SQL dump |
 | `git-privacy.json` | Quét các file dự kiến đưa vào Git; không lưu giá trị credential |
 | `github-access.json` | Xác minh quyền truy cập đúng tài khoản GitHub; không lưu token |
-| `github-observation.json` | Quan sát GitHub ban đầu, cần phân biệt với kết quả bàn giao cuối |
-| `git-delivery.json` | Trạng thái tạo repository/push và đối chiếu remote sau khi hoàn thiện |
+| `github-observation.json` | Quan sát tài khoản và repository công khai sau push, xác minh source hiển thị |
+| `git-delivery.json` | Snapshot đã push, ít nhất ba commits thực và revision local/remote khớp |
 | `report-image-index.json` | Danh sách hình và captions được chèn trong HTML |
 | `report-validation.json` | Số trang/ảnh và kiểm tra bản PDF |
 

@@ -1,0 +1,6 @@
+{
+  "captured_at": "2026-10-08T10:54:07+07:00",
+  "source": "http://localhost:3000/explore (Portfolio Loki)",
+  "label": "Grafana Explore: {project=\"portfolio-manh\",job=\"nginx-access\"} | json",
+  "sha256": "c5d097889f0b5ca81a072875b88986719fba8662004b2477f7888752ece021ea"
+}

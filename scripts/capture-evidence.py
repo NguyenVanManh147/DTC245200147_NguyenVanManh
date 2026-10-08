@@ -50,7 +50,9 @@ def command_view(page, name, title, blocks):
     sections = ''.join('<section><h2>' + html.escape(command) + '</h2><pre>' + html.escape(output) + '</pre></section>' for command, output in blocks)
     content = '<!doctype html><html lang="vi"><meta charset="utf-8"><style>body{margin:0;background:#edf2f7;color:#14243a;font:18px/1.5 Segoe UI,Arial;padding:32px}main{max-width:1420px;margin:auto;background:white;border:1px solid #c8d5e1;border-radius:12px;padding:28px}h1{font-size:27px;color:#164e63;margin:0 0 10px}h2{font:16px Consolas,monospace;background:#e7eef5;padding:10px;margin-top:24px}pre{font:15px/1.65 Consolas,monospace;white-space:pre-wrap;overflow-wrap:anywhere}p{color:#54667c;font-size:15px}</style><main><h1>' + html.escape(title) + '</h1><p>Kết quả lệnh/API thực tế • ' + when + ' • Portfolio Nguyễn Văn Mạnh / DTC245200147</p>' + sections + '</main></html>'
     source = EVIDENCE / (pathlib.Path(name).stem + '.html')
-    source.write_text(content, encoding='utf-8')
+    content = content.replace('\r\n', '\n').replace('\r', '')
+    content = '\n'.join(line.rstrip() for line in content.splitlines()) + '\n'
+    source.write_text(content, encoding='utf-8', newline='\n')
     page.goto(source.as_uri())
     snap(page, name, str(source.relative_to(ROOT)), title, target=page.locator('main'))
 

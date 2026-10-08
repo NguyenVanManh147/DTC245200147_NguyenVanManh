@@ -1,0 +1,241 @@
+{
+  "checked_at": "2026-10-08T15:21:29+07:00",
+  "workflow": "Password login -> draft -> edit/publish -> anonymous GET -> cleanup",
+  "transport": "WordPress HTTP admin login and REST API with session cookie + wp_rest nonce",
+  "checks": [
+    {
+      "name": "Private local administrator credential is available",
+      "passed": true
+    },
+    {
+      "name": "Existing site snapshot was recorded before mutation",
+      "passed": true
+    },
+    {
+      "name": "Password login grants the real WordPress dashboard",
+      "passed": true
+    },
+    {
+      "name": "Logged-in admin supplies a REST nonce without a persisted token",
+      "passed": true
+    },
+    {
+      "name": "HTTP REST creates only the uniquely named test draft",
+      "passed": true
+    },
+    {
+      "name": "New draft content is saved by WordPress",
+      "passed": true
+    },
+    {
+      "name": "HTTP REST edits the same page and publishes the saved update",
+      "passed": true
+    },
+    {
+      "name": "Anonymous public HTTP 200 displays the updated title and content",
+      "passed": true
+    },
+    {
+      "name": "Real admin and anonymous public browser screenshots were captured",
+      "passed": true
+    },
+    {
+      "name": "Only the unique test page and its revisions were removed permanently",
+      "passed": true
+    },
+    {
+      "name": "All original posts and pages remain byte-for-byte unchanged",
+      "passed": true
+    },
+    {
+      "name": "All original post metadata remains unchanged",
+      "passed": true
+    },
+    {
+      "name": "Personal site, theme, navigation and widget options remain unchanged",
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "cookies_saved": false,
+  "credentials_logged": false,
+  "test_content_removed": true,
+  "public_render_verified": true,
+  "cleanup_verified": true,
+  "original_pages_preserved": true,
+  "original_posts_unchanged": true,
+  "original_postmeta_unchanged": true,
+  "personal_options_unchanged": true,
+  "site_url": "http://localhost:8080",
+  "baseline": {
+    "post_count": 21,
+    "postmeta_count": 12,
+    "post_ids": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      11,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23
+    ],
+    "posts_sha256": "8ba3a401fb7ace1c199eabd8134bb974b260c49221800e5e103609322c45471a",
+    "postmeta_sha256": "c509d4ef6011df2cdbd8cfe350cfd3cc6046a81759a1e7c0bd6d2e540c97aae7",
+    "personal_option_names": [
+      "WPLANG",
+      "active_plugins",
+      "blogdescription",
+      "blogname",
+      "home",
+      "nav_menu_options",
+      "page_for_posts",
+      "page_on_front",
+      "permalink_structure",
+      "portfolio_bootstrap_state",
+      "show_on_front",
+      "sidebars_widgets",
+      "siteurl",
+      "stylesheet",
+      "template",
+      "theme_mods_twentytwentyfive",
+      "timezone_string",
+      "widget_archives",
+      "widget_block",
+      "widget_calendar",
+      "widget_categories",
+      "widget_custom_html",
+      "widget_media_audio",
+      "widget_media_gallery",
+      "widget_media_image",
+      "widget_media_video",
+      "widget_meta",
+      "widget_nav_menu",
+      "widget_pages",
+      "widget_recent-comments",
+      "widget_recent-posts",
+      "widget_rss",
+      "widget_search",
+      "widget_tag_cloud",
+      "widget_text",
+      "wp_page_for_privacy_policy"
+    ],
+    "personal_options_sha256": "0d88350d4b882173eb41bab921cfaf5c0e0430c26ceecc04706051676e770c00"
+  },
+  "test_page_id": 26,
+  "test_slug": "portfolio-edit-check-30e31d51385444f2b91902f235411fc9",
+  "draft_response_status": 201,
+  "edit_response_status": 200,
+  "public_response_status": 200,
+  "public_page_sha256": "5d4d32c45dea7656ea2d4fea310dd5e92d1c93c658074cc0b9c64679250fa953",
+  "anonymous_public_view_verified": true,
+  "capture_stage": "completed",
+  "screenshots": [
+    {
+      "file": "evidence/24-wordpress-edit-admin.png",
+      "captured_at": "2026-10-08T15:21:57+07:00",
+      "source": "http://localhost:8080/wp-admin/post.php?post=26&action=edit",
+      "label": "WordPress: trang kiểm thử đã sửa nội dung và xuất bản",
+      "sha256": "8902900b6c6d7ce699dcaa13425319ef08a755a87ec52f69276bc6cf539f23c6"
+    },
+    {
+      "file": "evidence/25-wordpress-edit-public.png",
+      "captured_at": "2026-10-08T15:21:59+07:00",
+      "source": "http://localhost:8080/?page_id=26",
+      "label": "Truy cập ẩn danh: nội dung mới hiển thị ngoài website",
+      "sha256": "4a721658404be5a2bcda80df2ff54cbfd128d8eda5abfa7ff211e3001da1552a"
+    }
+  ],
+  "cleanup": {
+    "verified": true,
+    "deleted_page_ids": [
+      26
+    ],
+    "deleted_revision_ids": [
+      27
+    ],
+    "scope": "Unique test page and its child revisions only"
+  },
+  "after_cleanup": {
+    "post_count": 21,
+    "postmeta_count": 12,
+    "post_ids": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      11,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23
+    ],
+    "posts_sha256": "8ba3a401fb7ace1c199eabd8134bb974b260c49221800e5e103609322c45471a",
+    "postmeta_sha256": "c509d4ef6011df2cdbd8cfe350cfd3cc6046a81759a1e7c0bd6d2e540c97aae7",
+    "personal_option_names": [
+      "WPLANG",
+      "active_plugins",
+      "blogdescription",
+      "blogname",
+      "home",
+      "nav_menu_options",
+      "page_for_posts",
+      "page_on_front",
+      "permalink_structure",
+      "portfolio_bootstrap_state",
+      "show_on_front",
+      "sidebars_widgets",
+      "siteurl",
+      "stylesheet",
+      "template",
+      "theme_mods_twentytwentyfive",
+      "timezone_string",
+      "widget_archives",
+      "widget_block",
+      "widget_calendar",
+      "widget_categories",
+      "widget_custom_html",
+      "widget_media_audio",
+      "widget_media_gallery",
+      "widget_media_image",
+      "widget_media_video",
+      "widget_meta",
+      "widget_nav_menu",
+      "widget_pages",
+      "widget_recent-comments",
+      "widget_recent-posts",
+      "widget_rss",
+      "widget_search",
+      "widget_tag_cloud",
+      "widget_text",
+      "wp_page_for_privacy_policy"
+    ],
+    "personal_options_sha256": "0d88350d4b882173eb41bab921cfaf5c0e0430c26ceecc04706051676e770c00"
+  },
+  "finished_at": "2026-10-08T15:22:01+07:00"
+}

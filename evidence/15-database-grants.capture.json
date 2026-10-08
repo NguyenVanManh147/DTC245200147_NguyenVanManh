@@ -1,0 +1,6 @@
+{
+  "captured_at": "2026-10-08T10:56:14+07:00",
+  "source": "http://localhost:8081/ (SHOW GRANTS FOR CURRENT_USER)",
+  "label": "Quyền của tài khoản ứng dụng trên portfolio_db",
+  "sha256": "9a98cb6fd498ac3f32971ab6a6907879a69f18c66eb667b40794ec643c310d66"
+}

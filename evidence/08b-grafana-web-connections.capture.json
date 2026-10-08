@@ -1,0 +1,6 @@
+{
+  "captured_at": "2026-10-08T10:53:57+07:00",
+  "source": "http://localhost:3000/d-solo/portfolio-infrastructure?orgId=1&from=now-30m&to=now&panelId=4",
+  "label": "Grafana: Nginx kết nối đang mở",
+  "sha256": "d0ae5aaeec12b339c71e1286a2cb015c40d300650074d587b7bc720ddbb2a944"
+}

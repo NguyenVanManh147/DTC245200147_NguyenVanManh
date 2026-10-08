@@ -1,0 +1,166 @@
+{
+  "checked_at": "2026-10-08T04:45:41.986176+00:00",
+  "project": "portfolio-bootstrap-check-a7632ba7d082",
+  "checks": [
+    {
+      "name": "Temporary volumes belong exclusively to test project",
+      "passed": true
+    },
+    {
+      "name": "Nonempty database is refused before installation",
+      "passed": true
+    },
+    {
+      "name": "Refused database keeps original table and data",
+      "passed": true
+    },
+    {
+      "name": "Existing uploads are refused before installation",
+      "passed": true
+    },
+    {
+      "name": "Refused uploads keep file contents and database stays empty",
+      "passed": true
+    },
+    {
+      "name": "Missing admin password is generated privately without replacing chosen username",
+      "passed": true
+    },
+    {
+      "name": "Fresh installation imports every exported post and image",
+      "passed": true
+    },
+    {
+      "name": "Static homepage and theme are set",
+      "passed": true
+    },
+    {
+      "name": "Locale matches installed language pack or explicit offline fallback",
+      "passed": true
+    },
+    {
+      "name": "All six pages and both media attachments exist",
+      "passed": true
+    },
+    {
+      "name": "Header explicitly binds imported navigation",
+      "passed": true
+    },
+    {
+      "name": "Serialized attachment metadata keeps image dimensions and variants",
+      "passed": true
+    },
+    {
+      "name": "Exported block content is preserved with the new site URL",
+      "passed": true
+    },
+    {
+      "name": "Fresh website responds HTTP 200 and displays portfolio",
+      "passed": true
+    },
+    {
+      "name": "Public homepage renders all four navigation labels",
+      "passed": true
+    },
+    {
+      "name": "Navigation page 17 loads",
+      "passed": true
+    },
+    {
+      "name": "Navigation page 19 loads",
+      "passed": true
+    },
+    {
+      "name": "Navigation page 21 loads",
+      "passed": true
+    },
+    {
+      "name": "Image checksum 2026/10/36_DTC245200147_Nguyen-Van-Manh_CNTT-K23B-1-1010x1536.jpg",
+      "passed": true
+    },
+    {
+      "name": "Image checksum 2026/10/36_DTC245200147_Nguyen-Van-Manh_CNTT-K23B-1-1347x2048.jpg",
+      "passed": true
+    },
+    {
+      "name": "Image checksum 2026/10/36_DTC245200147_Nguyen-Van-Manh_CNTT-K23B-1-150x150.jpg",
+      "passed": true
+    },
+    {
+      "name": "Image checksum 2026/10/36_DTC245200147_Nguyen-Van-Manh_CNTT-K23B-1-197x300.jpg",
+      "passed": true
+    },
+    {
+      "name": "Image checksum 2026/10/36_DTC245200147_Nguyen-Van-Manh_CNTT-K23B-1-674x1024.jpg",
+      "passed": true
+    },
+    {
+      "name": "Image checksum 2026/10/36_DTC245200147_Nguyen-Van-Manh_CNTT-K23B-1-768x1167.jpg",
+      "passed": true
+    },
+    {
+      "name": "Image checksum 2026/10/36_DTC245200147_Nguyen-Van-Manh_CNTT-K23B-1.jpg",
+      "passed": true
+    },
+    {
+      "name": "Image checksum 2026/10/36_DTC245200147_Nguyen-Van-Manh_CNTT-K23B-1010x1536.jpg",
+      "passed": true
+    },
+    {
+      "name": "Image checksum 2026/10/36_DTC245200147_Nguyen-Van-Manh_CNTT-K23B-1347x2048.jpg",
+      "passed": true
+    },
+    {
+      "name": "Image checksum 2026/10/36_DTC245200147_Nguyen-Van-Manh_CNTT-K23B-150x150.jpg",
+      "passed": true
+    },
+    {
+      "name": "Image checksum 2026/10/36_DTC245200147_Nguyen-Van-Manh_CNTT-K23B-197x300.jpg",
+      "passed": true
+    },
+    {
+      "name": "Image checksum 2026/10/36_DTC245200147_Nguyen-Van-Manh_CNTT-K23B-674x1024.jpg",
+      "passed": true
+    },
+    {
+      "name": "Image checksum 2026/10/36_DTC245200147_Nguyen-Van-Manh_CNTT-K23B-768x1168.jpg",
+      "passed": true
+    },
+    {
+      "name": "Image checksum 2026/10/36_DTC245200147_Nguyen-Van-Manh_CNTT-K23B.jpg",
+      "passed": true
+    },
+    {
+      "name": "Generated admin credential authenticates through real HTTP login",
+      "passed": true
+    },
+    {
+      "name": "Second bootstrap run skips installed site",
+      "passed": true
+    },
+    {
+      "name": "Second run preserves posts, metadata, accounts, options and images",
+      "passed": true
+    },
+    {
+      "name": "Interrupted installation stops instead of silently importing again",
+      "passed": true
+    },
+    {
+      "name": "Existing live site is skipped",
+      "passed": true
+    },
+    {
+      "name": "Live data and private env stay unchanged",
+      "passed": true
+    }
+  ],
+  "fresh_install_verified": true,
+  "cleanup_verified": true,
+  "fresh_options": {
+    "front": "5",
+    "show": "page",
+    "theme": "twentytwentyfive",
+    "locale": "vi"
+  }
+}

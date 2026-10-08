@@ -1,0 +1,1110 @@
+{
+  "checked_at": "2026-10-08T15:14:19.342627+07:00",
+  "checks": [
+    {
+      "name": "Compose syntax",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Nginx syntax",
+      "passed": true,
+      "detail": "nginx: the configuration file /etc/nginx/nginx.conf syntax is ok\nnginx: configuration file /etc/nginx/nginx.conf test is successful\n"
+    },
+    {
+      "name": "Prometheus syntax",
+      "passed": true,
+      "detail": "Checking /etc/prometheus/prometheus.yml\n SUCCESS: /etc/prometheus/prometheus.yml is valid prometheus config file syntax\n\n"
+    },
+    {
+      "name": "Loki syntax",
+      "passed": true,
+      "detail": "level=info ts=2026-10-08T08:14:20.891743028Z caller=main.go:90 msg=\"config is valid\"\n"
+    },
+    {
+      "name": "Promtail syntax",
+      "passed": true,
+      "detail": "Valid config file! No syntax issues found\n"
+    },
+    {
+      "name": "Website and existing content",
+      "passed": true,
+      "detail": {
+        "status": 200
+      }
+    },
+    {
+      "name": "Nginx security headers",
+      "passed": true,
+      "detail": {
+        "Server": "nginx",
+        "Date": "Thu, 08 Oct 2026 08:14:23 GMT",
+        "Content-Type": "text/html; charset=UTF-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "close",
+        "Link": "<http://localhost:8080/index.php?rest_route=/>; rel=\"https://api.w.org/\"",
+        "Vary": "Accept-Encoding",
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "SAMEORIGIN",
+        "Referrer-Policy": "strict-origin-when-cross-origin",
+        "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+        "Content-Security-Policy": "frame-ancestors 'self'; object-src 'none'; base-uri 'self'"
+      }
+    },
+    {
+      "name": "WordPress login page",
+      "passed": true,
+      "detail": {
+        "status": 200
+      }
+    },
+    {
+      "name": "phpMyAdmin page",
+      "passed": true,
+      "detail": {
+        "status": 200
+      }
+    },
+    {
+      "name": "phpMyAdmin authenticated database access",
+      "passed": true,
+      "detail": {
+        "status": 200,
+        "authenticated": true,
+        "database_visible": true
+      }
+    },
+    {
+      "name": "Existing WordPress pages preserved",
+      "passed": true,
+      "detail": {
+        "page_count": 6,
+        "baseline_count": 6
+      }
+    },
+    {
+      "name": "Application database privileges scoped to schema",
+      "passed": true,
+      "detail": [
+        "GRANT USAGE ON *.* TO `portfolio_user`@`%`",
+        "GRANT ALL PRIVILEGES ON `portfolio\\_db`.* TO `portfolio_user`@`%`"
+      ]
+    },
+    {
+      "name": "WordPress file editor disabled",
+      "passed": true,
+      "detail": {
+        "DISALLOW_FILE_EDIT": true
+      }
+    },
+    {
+      "name": "XML-RPC blocked (real 403 request)",
+      "passed": true,
+      "detail": {
+        "status": 403
+      }
+    },
+    {
+      "name": "Hidden files blocked (real 404 request)",
+      "passed": true,
+      "detail": {
+        "status": 404
+      }
+    },
+    {
+      "name": "Prometheus 8 targets",
+      "passed": true,
+      "detail": [
+        {
+          "job": "blackbox",
+          "health": "up",
+          "error": ""
+        },
+        {
+          "job": "cadvisor",
+          "health": "up",
+          "error": ""
+        },
+        {
+          "job": "loki",
+          "health": "up",
+          "error": ""
+        },
+        {
+          "job": "mysql",
+          "health": "up",
+          "error": ""
+        },
+        {
+          "job": "nginx",
+          "health": "up",
+          "error": ""
+        },
+        {
+          "job": "portfolio_http",
+          "health": "up",
+          "error": ""
+        },
+        {
+          "job": "prometheus",
+          "health": "up",
+          "error": ""
+        },
+        {
+          "job": "promtail",
+          "health": "up",
+          "error": ""
+        }
+      ]
+    },
+    {
+      "name": "PromQL: nginx_up{job=\"nginx\"}",
+      "passed": true,
+      "detail": {
+        "series_count": 1,
+        "samples": [
+          {
+            "metric": {
+              "__name__": "nginx_up",
+              "instance": "nginx-exporter:9113",
+              "job": "nginx"
+            },
+            "value": [
+              1791447282.815,
+              "1"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "PromQL: mysql_up{job=\"mysql\"}",
+      "passed": true,
+      "detail": {
+        "series_count": 1,
+        "samples": [
+          {
+            "metric": {
+              "__name__": "mysql_up",
+              "instance": "mysql-exporter:9104",
+              "job": "mysql"
+            },
+            "value": [
+              1791447284.834,
+              "1"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "PromQL: probe_success{job=\"portfolio_http\"}",
+      "passed": true,
+      "detail": {
+        "series_count": 1,
+        "samples": [
+          {
+            "metric": {
+              "__name__": "probe_success",
+              "instance": "http://nginx:80/",
+              "job": "portfolio_http"
+            },
+            "value": [
+              1791447286.845,
+              "1"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "PromQL: container_memory_working_set_bytes{job=\"cadvisor\",container_label_com_docker_compose_project=\"portfolio-manh\"}",
+      "passed": true,
+      "detail": {
+        "series_count": 12,
+        "samples": [
+          {
+            "metric": {
+              "__name__": "container_memory_working_set_bytes",
+              "container_label_com_docker_compose_config_hash": "5d17f77f3b4339cd26dcd3b0ff356a823393b9500e9e52bbd8917ff6699538c0",
+              "container_label_com_docker_compose_container_number": "1",
+              "container_label_com_docker_compose_depends_on": "loki:service_started:false,loki-init:service_completed_successfully:false",
+              "container_label_com_docker_compose_image": "sha256:450959b22a0eabbf7c364dc3b0c6483573a22012ab853fa5e88025fdd12deda5",
+              "container_label_com_docker_compose_oneoff": "False",
+              "container_label_com_docker_compose_project": "portfolio-manh",
+              "container_label_com_docker_compose_project_config_files": "D:\\5_Thi_TrienKhaiThietKe\\DTC245200147_NguyenVanManh\\compose.yaml",
+              "container_label_com_docker_compose_project_working_dir": "D:\\5_Thi_TrienKhaiThietKe\\DTC245200147_NguyenVanManh",
+              "container_label_com_docker_compose_service": "promtail",
+              "container_label_com_docker_compose_version": "5.5.1",
+              "container_label_desktop_docker_io_binds_0_Source": "D:\\5_Thi_TrienKhaiThietKe\\DTC245200147_NguyenVanManh\\monitoring\\promtail.yml",
+              "container_label_desktop_docker_io_binds_0_SourceKind": "hostFile",
+              "container_label_desktop_docker_io_binds_0_Target": "/etc/promtail/promtail.yml",
+              "container_label_desktop_docker_io_ports_scheme": "v2",
+              "container_label_org_opencontainers_image_ref_name": "ubuntu",
+              "container_label_org_opencontainers_image_version": "24.04",
+              "id": "/docker/00a27f91774e1d2f002dafb04ba813a58b4af485e7e59e7091ac63dfe654169d",
+              "image": "grafana/promtail:3.5.0",
+              "instance": "cadvisor:8080",
+              "job": "cadvisor",
+              "name": "portfolio-manh-promtail-1"
+            },
+            "value": [
+              1791447288.857,
+              "23658496"
+            ]
+          },
+          {
+            "metric": {
+              "__name__": "container_memory_working_set_bytes",
+              "container_label_com_docker_compose_config_hash": "655912aa6428d406ea23bd06f65a611750dc0504cc4ffc2ca37c9e627d215d00",
+              "container_label_com_docker_compose_container_number": "1",
+              "container_label_com_docker_compose_image": "sha256:43027b43fb785b7c5adc53bd3b5dbc1a258270a2e8aff24f477b45c4e38dac68",
+              "container_label_com_docker_compose_oneoff": "False",
+              "container_label_com_docker_compose_project": "portfolio-manh",
+              "container_label_com_docker_compose_project_config_files": "D:\\5_Thi_TrienKhaiThietKe\\DTC245200147_NguyenVanManh\\compose.yaml",
+              "container_label_com_docker_compose_project_working_dir": "D:\\5_Thi_TrienKhaiThietKe\\DTC245200147_NguyenVanManh",
+              "container_label_com_docker_compose_replace": "blackbox-1",
+              "container_label_com_docker_compose_service": "blackbox",
+              "container_label_com_docker_compose_version": "5.5.1",
+              "container_label_desktop_docker_io_binds_0_Source": "D:\\5_Thi_TrienKhaiThietKe\\DTC245200147_NguyenVanManh\\monitoring\\blackbox.yml",
+              "container_label_desktop_docker_io_binds_0_SourceKind": "hostFile",
+              "container_label_desktop_docker_io_binds_0_Target": "/etc/blackbox_exporter/blackbox.yml",
+              "container_label_desktop_docker_io_ports_scheme": "v2",
+              "container_label_maintainer": "The Prometheus Authors <prometheus-developers@googlegroups.com>",
+              "id": "/docker/d25257e57f862abdd14993fc095fb10d89cbca6ea46d8fc17383465d4dfbc297",
+              "image": "prom/blackbox-exporter@sha256:e753ff9f3fc458d02cca5eddab5a77e1c175eee484a8925ac7d524f04366c2fc",
+              "instance": "cadvisor:8080",
+              "job": "cadvisor",
+              "name": "portfolio-manh-blackbox-1"
+            },
+            "value": [
+              1791447288.857,
+              "11288576"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "PromQL: rate(container_cpu_usage_seconds_total{job=\"cadvisor\",container_label_com_docker_compose_project=\"portfolio-manh\"}[2m])",
+      "passed": true,
+      "detail": {
+        "series_count": 12,
+        "samples": [
+          {
+            "metric": {
+              "container_label_com_docker_compose_config_hash": "5d17f77f3b4339cd26dcd3b0ff356a823393b9500e9e52bbd8917ff6699538c0",
+              "container_label_com_docker_compose_container_number": "1",
+              "container_label_com_docker_compose_depends_on": "loki:service_started:false,loki-init:service_completed_successfully:false",
+              "container_label_com_docker_compose_image": "sha256:450959b22a0eabbf7c364dc3b0c6483573a22012ab853fa5e88025fdd12deda5",
+              "container_label_com_docker_compose_oneoff": "False",
+              "container_label_com_docker_compose_project": "portfolio-manh",
+              "container_label_com_docker_compose_project_config_files": "D:\\5_Thi_TrienKhaiThietKe\\DTC245200147_NguyenVanManh\\compose.yaml",
+              "container_label_com_docker_compose_project_working_dir": "D:\\5_Thi_TrienKhaiThietKe\\DTC245200147_NguyenVanManh",
+              "container_label_com_docker_compose_service": "promtail",
+              "container_label_com_docker_compose_version": "5.5.1",
+              "container_label_desktop_docker_io_binds_0_Source": "D:\\5_Thi_TrienKhaiThietKe\\DTC245200147_NguyenVanManh\\monitoring\\promtail.yml",
+              "container_label_desktop_docker_io_binds_0_SourceKind": "hostFile",
+              "container_label_desktop_docker_io_binds_0_Target": "/etc/promtail/promtail.yml",
+              "container_label_desktop_docker_io_ports_scheme": "v2",
+              "container_label_org_opencontainers_image_ref_name": "ubuntu",
+              "container_label_org_opencontainers_image_version": "24.04",
+              "cpu": "total",
+              "id": "/docker/00a27f91774e1d2f002dafb04ba813a58b4af485e7e59e7091ac63dfe654169d",
+              "image": "grafana/promtail:3.5.0",
+              "instance": "cadvisor:8080",
+              "job": "cadvisor",
+              "name": "portfolio-manh-promtail-1"
+            },
+            "value": [
+              1791447290.874,
+              "0.00919045116509668"
+            ]
+          },
+          {
+            "metric": {
+              "container_label_com_docker_compose_config_hash": "655912aa6428d406ea23bd06f65a611750dc0504cc4ffc2ca37c9e627d215d00",
+              "container_label_com_docker_compose_container_number": "1",
+              "container_label_com_docker_compose_image": "sha256:43027b43fb785b7c5adc53bd3b5dbc1a258270a2e8aff24f477b45c4e38dac68",
+              "container_label_com_docker_compose_oneoff": "False",
+              "container_label_com_docker_compose_project": "portfolio-manh",
+              "container_label_com_docker_compose_project_config_files": "D:\\5_Thi_TrienKhaiThietKe\\DTC245200147_NguyenVanManh\\compose.yaml",
+              "container_label_com_docker_compose_project_working_dir": "D:\\5_Thi_TrienKhaiThietKe\\DTC245200147_NguyenVanManh",
+              "container_label_com_docker_compose_replace": "blackbox-1",
+              "container_label_com_docker_compose_service": "blackbox",
+              "container_label_com_docker_compose_version": "5.5.1",
+              "container_label_desktop_docker_io_binds_0_Source": "D:\\5_Thi_TrienKhaiThietKe\\DTC245200147_NguyenVanManh\\monitoring\\blackbox.yml",
+              "container_label_desktop_docker_io_binds_0_SourceKind": "hostFile",
+              "container_label_desktop_docker_io_binds_0_Target": "/etc/blackbox_exporter/blackbox.yml",
+              "container_label_desktop_docker_io_ports_scheme": "v2",
+              "container_label_maintainer": "The Prometheus Authors <prometheus-developers@googlegroups.com>",
+              "cpu": "total",
+              "id": "/docker/d25257e57f862abdd14993fc095fb10d89cbca6ea46d8fc17383465d4dfbc297",
+              "image": "prom/blackbox-exporter@sha256:e753ff9f3fc458d02cca5eddab5a77e1c175eee484a8925ac7d524f04366c2fc",
+              "instance": "cadvisor:8080",
+              "job": "cadvisor",
+              "name": "portfolio-manh-blackbox-1"
+            },
+            "value": [
+              1791447290.874,
+              "0.002249537561907035"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "PromQL: rate(nginx_http_requests_total{job=\"nginx\"}[2m])",
+      "passed": true,
+      "detail": {
+        "series_count": 1,
+        "samples": [
+          {
+            "metric": {
+              "instance": "nginx-exporter:9113",
+              "job": "nginx"
+            },
+            "value": [
+              1791447292.891,
+              "0.23812698836035281"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "PromQL: mysql_global_status_threads_connected{job=\"mysql\"}",
+      "passed": true,
+      "detail": {
+        "series_count": 1,
+        "samples": [
+          {
+            "metric": {
+              "__name__": "mysql_global_status_threads_connected",
+              "instance": "mysql-exporter:9104",
+              "job": "mysql"
+            },
+            "value": [
+              1791447294.902,
+              "1"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "PromQL: rate(mysql_global_status_queries{job=\"mysql\"}[2m])",
+      "passed": true,
+      "detail": {
+        "series_count": 1,
+        "samples": [
+          {
+            "metric": {
+              "instance": "mysql-exporter:9104",
+              "job": "mysql"
+            },
+            "value": [
+              1791447296.922,
+              "4.295810870020765"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "Grafana datasource portfolio-prometheus",
+      "passed": true,
+      "detail": {
+        "uid": "portfolio-prometheus",
+        "url": "http://prometheus:9090"
+      }
+    },
+    {
+      "name": "Grafana datasource health portfolio-prometheus",
+      "passed": true,
+      "detail": {
+        "details": {
+          "application": "Prometheus",
+          "features": {
+            "rulerApiEnabled": false
+          }
+        },
+        "message": "Successfully queried the Prometheus API.",
+        "status": "OK"
+      }
+    },
+    {
+      "name": "Grafana datasource portfolio-loki",
+      "passed": true,
+      "detail": {
+        "uid": "portfolio-loki",
+        "url": "http://loki:3100"
+      }
+    },
+    {
+      "name": "Grafana datasource health portfolio-loki",
+      "passed": true,
+      "detail": {
+        "message": "Data source successfully connected.",
+        "status": "OK"
+      }
+    },
+    {
+      "name": "Grafana provisioned dashboard portfolio-infrastructure",
+      "passed": true,
+      "detail": {
+        "title": "Portfolio • Container / Nginx / MySQL",
+        "provisioned": true
+      }
+    },
+    {
+      "name": "Grafana provisioned dashboard portfolio-logs",
+      "passed": true,
+      "detail": {
+        "title": "Portfolio • Nginx access logs",
+        "provisioned": true
+      }
+    },
+    {
+      "name": "LogQL 1",
+      "passed": true,
+      "detail": {
+        "query": "{project=\"portfolio-manh\",job=\"nginx-access\"} | json",
+        "series_count": 30,
+        "samples": [
+          {
+            "stream": {
+              "bytes_sent": "146",
+              "detected_level": "unknown",
+              "filename": "/var/log/portfolio/access.json",
+              "job": "nginx-access",
+              "method": "GET",
+              "project": "portfolio-manh",
+              "remote_addr": "172.28.0.1",
+              "request_time": "0.000",
+              "service": "nginx",
+              "service_name": "nginx",
+              "status": "403",
+              "time": "2026-10-08T08:14:36+00:00",
+              "upstream_response_time": "",
+              "uri": "/xmlrpc.php"
+            },
+            "values": [
+              [
+                "1791447276000000000",
+                "{\"time\":\"2026-10-08T08:14:36+00:00\",\"remote_addr\":\"172.28.0.1\",\"method\":\"GET\",\"uri\":\"/xmlrpc.php\",\"status\":403,\"bytes_sent\":146,\"request_time\":0.000,\"upstream_response_time\":\"\"}"
+              ]
+            ]
+          },
+          {
+            "stream": {
+              "bytes_sent": "146",
+              "detected_level": "unknown",
+              "filename": "/var/log/portfolio/access.json",
+              "job": "nginx-access",
+              "method": "GET",
+              "project": "portfolio-manh",
+              "remote_addr": "172.28.0.1",
+              "request_time": "0.000",
+              "service": "nginx",
+              "service_name": "nginx",
+              "status": "404",
+              "time": "2026-10-08T08:14:38+00:00",
+              "upstream_response_time": "",
+              "uri": "/.env"
+            },
+            "values": [
+              [
+                "1791447278000000000",
+                "{\"time\":\"2026-10-08T08:14:38+00:00\",\"remote_addr\":\"172.28.0.1\",\"method\":\"GET\",\"uri\":\"/.env\",\"status\":404,\"bytes_sent\":146,\"request_time\":0.000,\"upstream_response_time\":\"\"}"
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "LogQL 2",
+      "passed": true,
+      "detail": {
+        "query": "{project=\"portfolio-manh\",job=\"nginx-access\"} | json | __error__=\"\" | status >= 400 | status < 600",
+        "series_count": 2,
+        "samples": [
+          {
+            "stream": {
+              "bytes_sent": "146",
+              "detected_level": "unknown",
+              "filename": "/var/log/portfolio/access.json",
+              "job": "nginx-access",
+              "method": "GET",
+              "project": "portfolio-manh",
+              "remote_addr": "172.28.0.1",
+              "request_time": "0.000",
+              "service": "nginx",
+              "service_name": "nginx",
+              "status": "403",
+              "time": "2026-10-08T08:14:36+00:00",
+              "upstream_response_time": "",
+              "uri": "/xmlrpc.php"
+            },
+            "values": [
+              [
+                "1791447276000000000",
+                "{\"time\":\"2026-10-08T08:14:36+00:00\",\"remote_addr\":\"172.28.0.1\",\"method\":\"GET\",\"uri\":\"/xmlrpc.php\",\"status\":403,\"bytes_sent\":146,\"request_time\":0.000,\"upstream_response_time\":\"\"}"
+              ]
+            ]
+          },
+          {
+            "stream": {
+              "bytes_sent": "146",
+              "detected_level": "unknown",
+              "filename": "/var/log/portfolio/access.json",
+              "job": "nginx-access",
+              "method": "GET",
+              "project": "portfolio-manh",
+              "remote_addr": "172.28.0.1",
+              "request_time": "0.000",
+              "service": "nginx",
+              "service_name": "nginx",
+              "status": "404",
+              "time": "2026-10-08T08:14:38+00:00",
+              "upstream_response_time": "",
+              "uri": "/.env"
+            },
+            "values": [
+              [
+                "1791447278000000000",
+                "{\"time\":\"2026-10-08T08:14:38+00:00\",\"remote_addr\":\"172.28.0.1\",\"method\":\"GET\",\"uri\":\"/.env\",\"status\":404,\"bytes_sent\":146,\"request_time\":0.000,\"upstream_response_time\":\"\"}"
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "LogQL 3",
+      "passed": true,
+      "detail": {
+        "query": "sum(count_over_time({project=\"portfolio-manh\",job=\"nginx-access\"}[1m]))",
+        "series_count": 1,
+        "samples": [
+          {
+            "metric": {},
+            "values": [
+              [
+                1791446925,
+                "1"
+              ],
+              [
+                1791446940,
+                "2"
+              ],
+              [
+                1791446955,
+                "3"
+              ],
+              [
+                1791446970,
+                "4"
+              ],
+              [
+                1791446985,
+                "4"
+              ],
+              [
+                1791447000,
+                "4"
+              ],
+              [
+                1791447015,
+                "4"
+              ],
+              [
+                1791447030,
+                "4"
+              ],
+              [
+                1791447045,
+                "4"
+              ],
+              [
+                1791447060,
+                "4"
+              ],
+              [
+                1791447075,
+                "4"
+              ],
+              [
+                1791447090,
+                "4"
+              ],
+              [
+                1791447105,
+                "4"
+              ],
+              [
+                1791447120,
+                "4"
+              ],
+              [
+                1791447135,
+                "4"
+              ],
+              [
+                1791447150,
+                "4"
+              ],
+              [
+                1791447165,
+                "4"
+              ],
+              [
+                1791447180,
+                "4"
+              ],
+              [
+                1791447195,
+                "4"
+              ],
+              [
+                1791447210,
+                "4"
+              ],
+              [
+                1791447225,
+                "4"
+              ],
+              [
+                1791447240,
+                "4"
+              ],
+              [
+                1791447255,
+                "4"
+              ],
+              [
+                1791447270,
+                "6"
+              ],
+              [
+                1791447285,
+                "8"
+              ],
+              [
+                1791447300,
+                "8"
+              ],
+              [
+                1791447315,
+                "8"
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "Localhost published ports",
+      "passed": true,
+      "detail": [
+        {
+          "service": "blackbox",
+          "user": "65534:65534",
+          "privileged": false,
+          "security_options": [
+            "no-new-privileges:true"
+          ],
+          "cap_drop": [
+            "ALL"
+          ],
+          "ports": {},
+          "networks": [
+            "portfolio-manh_monitoring"
+          ],
+          "volumes": [
+            {
+              "name": null,
+              "target": "/etc/blackbox_exporter/blackbox.yml",
+              "writable": false
+            }
+          ]
+        },
+        {
+          "service": "cadvisor",
+          "user": "",
+          "privileged": true,
+          "security_options": [
+            "no-new-privileges:true",
+            "label=disable"
+          ],
+          "cap_drop": null,
+          "ports": {},
+          "networks": [
+            "portfolio-manh_monitoring"
+          ],
+          "volumes": [
+            {
+              "name": null,
+              "target": "/rootfs",
+              "writable": false
+            },
+            {
+              "name": null,
+              "target": "/sys",
+              "writable": false
+            },
+            {
+              "name": null,
+              "target": "/dev/disk",
+              "writable": false
+            },
+            {
+              "name": null,
+              "target": "/var/run",
+              "writable": false
+            },
+            {
+              "name": null,
+              "target": "/var/lib/docker",
+              "writable": false
+            }
+          ]
+        },
+        {
+          "service": "db",
+          "user": "",
+          "privileged": false,
+          "security_options": [
+            "no-new-privileges:true"
+          ],
+          "cap_drop": null,
+          "ports": {},
+          "networks": [
+            "portfolio-manh_database"
+          ],
+          "volumes": [
+            {
+              "name": "portfolio-manh_db_data",
+              "target": "/var/lib/mysql",
+              "writable": true
+            }
+          ]
+        },
+        {
+          "service": "grafana",
+          "user": "472:472",
+          "privileged": false,
+          "security_options": [
+            "no-new-privileges:true"
+          ],
+          "cap_drop": [
+            "ALL"
+          ],
+          "ports": {
+            "3000/tcp": [
+              {
+                "HostIp": "127.0.0.1",
+                "HostPort": "3000"
+              }
+            ]
+          },
+          "networks": [
+            "portfolio-manh_administration",
+            "portfolio-manh_monitoring"
+          ],
+          "volumes": [
+            {
+              "name": null,
+              "target": "/etc/grafana/dashboards",
+              "writable": false
+            },
+            {
+              "name": "portfolio-manh_grafana_data",
+              "target": "/var/lib/grafana",
+              "writable": true
+            },
+            {
+              "name": null,
+              "target": "/etc/grafana/provisioning/dashboards/portfolio.yml",
+              "writable": false
+            },
+            {
+              "name": null,
+              "target": "/etc/grafana/provisioning/datasources/portfolio.yml",
+              "writable": false
+            }
+          ]
+        },
+        {
+          "service": "loki",
+          "user": "10001:10001",
+          "privileged": false,
+          "security_options": [
+            "no-new-privileges:true"
+          ],
+          "cap_drop": [
+            "ALL"
+          ],
+          "ports": {},
+          "networks": [
+            "portfolio-manh_monitoring"
+          ],
+          "volumes": [
+            {
+              "name": "portfolio-manh_loki_data",
+              "target": "/loki",
+              "writable": true
+            },
+            {
+              "name": null,
+              "target": "/etc/loki/loki.yml",
+              "writable": false
+            }
+          ]
+        },
+        {
+          "service": "mysql-exporter",
+          "user": "65534:65534",
+          "privileged": false,
+          "security_options": [
+            "no-new-privileges:true"
+          ],
+          "cap_drop": [
+            "ALL"
+          ],
+          "ports": {},
+          "networks": [
+            "portfolio-manh_database",
+            "portfolio-manh_monitoring"
+          ],
+          "volumes": []
+        },
+        {
+          "service": "nginx",
+          "user": "",
+          "privileged": false,
+          "security_options": [
+            "no-new-privileges:true"
+          ],
+          "cap_drop": null,
+          "ports": {
+            "80/tcp": [
+              {
+                "HostIp": "127.0.0.1",
+                "HostPort": "8080"
+              }
+            ]
+          },
+          "networks": [
+            "portfolio-manh_application",
+            "portfolio-manh_edge",
+            "portfolio-manh_monitoring"
+          ],
+          "volumes": [
+            {
+              "name": "portfolio-manh_nginx_logs",
+              "target": "/var/log/portfolio",
+              "writable": true
+            },
+            {
+              "name": null,
+              "target": "/etc/nginx/conf.d/default.conf",
+              "writable": false
+            }
+          ]
+        },
+        {
+          "service": "nginx-exporter",
+          "user": "65534:65534",
+          "privileged": false,
+          "security_options": [
+            "no-new-privileges:true"
+          ],
+          "cap_drop": [
+            "ALL"
+          ],
+          "ports": {},
+          "networks": [
+            "portfolio-manh_monitoring"
+          ],
+          "volumes": []
+        },
+        {
+          "service": "phpmyadmin",
+          "user": "root",
+          "privileged": false,
+          "security_options": [
+            "no-new-privileges:true"
+          ],
+          "cap_drop": null,
+          "ports": {
+            "80/tcp": [
+              {
+                "HostIp": "127.0.0.1",
+                "HostPort": "8081"
+              }
+            ]
+          },
+          "networks": [
+            "portfolio-manh_administration",
+            "portfolio-manh_database"
+          ],
+          "volumes": []
+        },
+        {
+          "service": "prometheus",
+          "user": "65534:65534",
+          "privileged": false,
+          "security_options": [
+            "no-new-privileges:true"
+          ],
+          "cap_drop": [
+            "ALL"
+          ],
+          "ports": {
+            "9090/tcp": [
+              {
+                "HostIp": "127.0.0.1",
+                "HostPort": "9090"
+              }
+            ]
+          },
+          "networks": [
+            "portfolio-manh_administration",
+            "portfolio-manh_monitoring"
+          ],
+          "volumes": [
+            {
+              "name": "portfolio-manh_prometheus_data",
+              "target": "/prometheus",
+              "writable": true
+            },
+            {
+              "name": null,
+              "target": "/etc/prometheus/prometheus.yml",
+              "writable": false
+            }
+          ]
+        },
+        {
+          "service": "promtail",
+          "user": "10001:10001",
+          "privileged": false,
+          "security_options": [
+            "no-new-privileges:true"
+          ],
+          "cap_drop": [
+            "ALL"
+          ],
+          "ports": {},
+          "networks": [
+            "portfolio-manh_monitoring"
+          ],
+          "volumes": [
+            {
+              "name": "portfolio-manh_promtail_positions",
+              "target": "/positions",
+              "writable": true
+            },
+            {
+              "name": null,
+              "target": "/etc/promtail/promtail.yml",
+              "writable": false
+            },
+            {
+              "name": "portfolio-manh_nginx_logs",
+              "target": "/var/log/portfolio",
+              "writable": false
+            }
+          ]
+        },
+        {
+          "service": "wordpress",
+          "user": "",
+          "privileged": false,
+          "security_options": [
+            "no-new-privileges:true"
+          ],
+          "cap_drop": null,
+          "ports": {},
+          "networks": [
+            "portfolio-manh_application",
+            "portfolio-manh_database",
+            "portfolio-manh_outbound"
+          ],
+          "volumes": [
+            {
+              "name": "portfolio-manh_wordpress_data",
+              "target": "/var/www/html",
+              "writable": true
+            },
+            {
+              "name": null,
+              "target": "/var/www/html/wp-content/mu-plugins/portfolio-hardening.php",
+              "writable": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Internal application/database/monitoring networks",
+      "passed": true,
+      "detail": [
+        {
+          "name": "portfolio-manh_application",
+          "internal": true
+        },
+        {
+          "name": "portfolio-manh_database",
+          "internal": true
+        },
+        {
+          "name": "portfolio-manh_monitoring",
+          "internal": true
+        }
+      ]
+    },
+    {
+      "name": "Password length policy: MYSQL_PASSWORD",
+      "passed": false,
+      "detail": {
+        "length": 11,
+        "minimum": 20,
+        "note": "Application/Grafana rotated to random values; root credential preserved. Length alone does not prove entropy."
+      }
+    },
+    {
+      "name": "Password length policy: MYSQL_ROOT_PASSWORD",
+      "passed": false,
+      "detail": {
+        "length": 11,
+        "minimum": 20,
+        "note": "Application/Grafana rotated to random values; root credential preserved. Length alone does not prove entropy."
+      }
+    },
+    {
+      "name": "Password length policy: GRAFANA_ADMIN_PASSWORD",
+      "passed": false,
+      "detail": {
+        "length": 11,
+        "minimum": 20,
+        "note": "Application/Grafana rotated to random values; root credential preserved. Length alone does not prove entropy."
+      }
+    },
+    {
+      "name": "Existing MySQL root credential authentication",
+      "passed": true,
+      "detail": {
+        "authenticated": true,
+        "note": "No root reset or volume deletion attempted."
+      }
+    },
+    {
+      "name": "Secrets and backup ignored by Git",
+      "passed": true,
+      "detail": ".env\nbackups/before-changes.sql\n"
+    }
+  ]
+}

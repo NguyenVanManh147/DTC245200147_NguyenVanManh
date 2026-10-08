@@ -1,0 +1,6 @@
+{
+  "captured_at": "2026-10-08T15:26:46+07:00",
+  "source": "evidence\\05-nginx-headers.html",
+  "label": "Nginx: cấu hình hợp lệ và security headers",
+  "sha256": "f3476168c5036d73f9d43925126027beb2521b97d836c45c383f67072afe4d1b"
+}

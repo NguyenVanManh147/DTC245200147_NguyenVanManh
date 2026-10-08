@@ -1,0 +1,40 @@
+{
+  "checked_at": "2026-10-08T10:26:49.716950+07:00",
+  "database": "portfolio_db",
+  "source_volume": "portfolio-manh_db_data",
+  "schema_scope": "application only; MySQL system accounts are not included",
+  "backup_file": "backups\\verified-20261008T032648Z-6fbb64\\application.sql",
+  "bytes": 1641153,
+  "sha256": "55bccecb6d122093063f4388739cab3c308c2d7f831f6aaa2d864bdbaedff639",
+  "table_count": 12,
+  "tables": [
+    "wp_commentmeta",
+    "wp_comments",
+    "wp_links",
+    "wp_options",
+    "wp_postmeta",
+    "wp_posts",
+    "wp_term_relationships",
+    "wp_term_taxonomy",
+    "wp_termmeta",
+    "wp_terms",
+    "wp_usermeta",
+    "wp_users"
+  ],
+  "dump_exit_code": 0,
+  "dump_complete_marker": true,
+  "source_insert_statement_count": 10,
+  "data_signature_sha256": "e8973064b679aaee6c034a6e270a113e4dfec2f380d507f7d818ddceb91738c5",
+  "restore_verified": true,
+  "original_volume_modified": false,
+  "restore_network": "none",
+  "restore_storage": {
+    "/var/lib/mysql": "rw,size=1073741824"
+  },
+  "restore_published_ports": {},
+  "restored_insert_statement_count": 10,
+  "restored_data_signature_sha256": "e8973064b679aaee6c034a6e270a113e4dfec2f380d507f7d818ddceb91738c5",
+  "restored_tables_match": true,
+  "check_table_all_ok": true,
+  "restore_test_container_removed": true
+}

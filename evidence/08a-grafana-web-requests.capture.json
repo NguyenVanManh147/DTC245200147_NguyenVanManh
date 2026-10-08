@@ -1,0 +1,6 @@
+{
+  "captured_at": "2026-10-08T10:53:55+07:00",
+  "source": "http://localhost:3000/d-solo/portfolio-infrastructure?orgId=1&from=now-30m&to=now&panelId=3",
+  "label": "Grafana: Nginx requests mỗi giây",
+  "sha256": "3a47b95cbdc2e1d420d37c9322994452b531c8b4b8bec4d4e974809458b69b66"
+}

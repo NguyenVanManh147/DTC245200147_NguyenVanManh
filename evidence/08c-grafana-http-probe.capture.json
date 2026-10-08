@@ -1,0 +1,6 @@
+{
+  "captured_at": "2026-10-08T10:53:59+07:00",
+  "source": "http://localhost:3000/d-solo/portfolio-infrastructure?orgId=1&from=now-30m&to=now&panelId=7",
+  "label": "Grafana: HTTP probe khả dụng",
+  "sha256": "22b17f01a698d4d145f246a2f5056c656c12c46e8a5173c61451fea73f07f1b8"
+}

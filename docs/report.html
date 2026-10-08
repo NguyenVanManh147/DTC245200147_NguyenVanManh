@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Báo cáo Portfolio — Nguyễn Văn Mạnh — DTC245200147</title>
+<style>
+@page { size: A4; margin: 14mm; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #e9edf2; color: #182537; font: 11pt/1.6 "Segoe UI", Arial, sans-serif; counter-reset: sheet; }
+.page { width: 210mm; min-height: 297mm; margin: 12mm auto; padding: 20mm; background: white; position: relative; counter-increment: sheet; break-after: page; }
+.page:last-child { break-after: auto; }
+h1 { font-size: 25pt; line-height: 1.25; color: #164e63; }
+h2 { font-size: 19pt; color: #164e63; border-bottom: 1px solid #cbd5e1; padding-bottom: 4mm; }
+h3 { font-size: 12pt; }
+p { margin: 0 0 4mm; }
+.cover { text-align: center; padding-top: 35mm; }
+.cover .institution { font-size: 14pt; text-transform: uppercase; }
+.cover h1 { margin-top: 30mm; }
+.identity { margin-top: 22mm; text-align: left; display: inline-block; }
+.cover-dates { margin-top: 16mm; }
+.placeholder { border: 1px dashed #64748b; background: #f8fafc; padding: 8mm; min-height: 42mm; display: flex; align-items: center; justify-content: center; text-align: center; margin: 5mm 0; color: #475569; }
+.notice { border-left: 3px solid #b45309; padding: 4mm; background: #fffbeb; }
+.footer { position: absolute; bottom: 10mm; left: 20mm; right: 20mm; border-top: 1px solid #cbd5e1; padding-top: 2mm; color: #64748b; font-size: 9pt; }
+.footer::after { content: "Phần " counter(sheet); float: right; }
+table { border-collapse: collapse; width: 100%; margin: 5mm 0; font-size: 10pt; }
+th, td { border: 1px solid #cbd5e1; padding: 2mm; vertical-align: top; }
+th { background: #f1f5f9; text-align: left; }
+code { font: 9pt Consolas, monospace; overflow-wrap: anywhere; }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; background: #f1f5f9; padding: 4mm; font: 9pt/1.5 Consolas, monospace; }
+.screen-note { max-width: 210mm; margin: 10mm auto; padding: 6mm; background: #164e63; color: white; }
+@media print {
+ body { background: white; }
+ .screen-note { display: none; }
+ .page { width: auto; min-height: 260mm; margin: 0; padding: 0 0 16mm; }
+ .cover { padding-top: 20mm; }
+ .footer { left: 0; right: 0; bottom: 2mm; }
+ .placeholder { break-inside: avoid; }
+}
+
+figure.evidence { margin: 5mm 0 7mm; break-inside: avoid; page-break-inside: avoid; }
+figure.evidence img { display: block; width: 100%; height: auto; object-fit: contain; border: 1px solid #cbd5e1; background: #fff; }
+figure.evidence.compact img { max-height: 95mm; }
+figure.evidence.medium img { max-height: 130mm; }
+figure.evidence.tall img { max-height: 190mm; }
+figure.evidence.architecture img { max-height: 120mm; border: 0; }
+figcaption { margin-top: 2mm; font-size: 9pt; line-height: 1.45; color: #334155; }
+.capture-time { display: block; font-size: 8pt; color: #64748b; }
+.footer { position: static; margin-top: 10mm; }
+a { color: #164e63; }
+@media print {
+ .page { min-height: 0; padding: 0; }
+ .cover { min-height: 257mm; padding-top: 15mm; }
+ .cover h1 { margin-top: 18mm; margin-bottom: 10mm; font-size: 23pt; }
+ .cover .identity { margin-top: 8mm; }
+ .cover .identity p { margin-bottom: 2mm; line-height: 1.45; }
+ .cover-dates { margin-top: 12mm; }
+ .footer { display: none; }
+ h2, h3 { break-after: avoid; }
+ figure, table { break-inside: avoid; }
+ figure a { display: block; }
+}
+</style>
+</head>
+<body>
+<div class="screen-note">Báo cáo gồm ảnh giao diện thật, sơ đồ kiến trúc và kết quả kiểm thử có thời gian ghi nhận. Bấm vào từng hình để xem ảnh gốc. Thông tin khoa, lớp, học phần và giảng viên đã được sinh viên xác nhận. Bản PDF được xuất A4 cùng thư mục docs.</div>
+
+<section class="page cover">
+ <p class="institution">Trường Đại học Công nghệ Thông tin và Truyền thông<br>Đại học Thái Nguyên</p>
+ <p>Khoa Công nghệ Thông tin</p>
+ <h1>BÁO CÁO TRIỂN KHAI<br>WEBSITE PORTFOLIO<br>GIỚI THIỆU CÁ NHÂN</h1>
+ <div class="identity">
+  <p><strong>Sinh viên:</strong> Nguyễn Văn Mạnh</p>
+  <p><strong>Mã sinh viên:</strong> DTC245200147</p>
+  <p><strong>Lớp:</strong> CNTTK23B</p>
+  <p><strong>Học phần:</strong> Triển khai và Quản trị Hệ thống Phần mềm</p>
+  <p><strong>Giảng viên:</strong> Nguyễn Anh Chuyên</p>
+  <p><strong>Đề tài:</strong> Website Portfolio / Giới thiệu cá nhân</p>
+  <p><strong>Môi trường:</strong> Windows, PowerShell, VS Code, Docker Desktop</p>
+  <p><strong>Ngày kiểm tra:</strong> 08/10/2026 — Asia/Saigon</p>
+ </div>
+ <p class="cover-dates">Ngày lập báo cáo: 08/10/2026<br>Thời gian nộp: theo lịch học phần (chưa xác nhận)</p>
+ <div class="footer">Nguyễn Văn Mạnh — DTC245200147</div>
+</section>
+
+<section class="page">
+ <h2>1. Mục tiêu và yêu cầu</h2>
+ <p>Xây dựng và triển khai portfolio cá nhân có quản trị nội dung, database MySQL và phpMyAdmin; dùng Docker Compose và Nginx reverse proxy; cung cấp giám sát, log tập trung và hardening có thể kiểm tra lại.</p>
+ <table><tr><th>Nhóm</th><th>Yêu cầu</th></tr>
+ <tr><td>Ứng dụng</td><td>Giới thiệu, kỹ năng, dự án, liên hệ; có trang quản trị.</td></tr>
+ <tr><td>Triển khai</td><td>WordPress, MySQL, phpMyAdmin và Nginx bằng Docker Compose.</td></tr>
+ <tr><td>Monitoring</td><td>Prometheus + Grafana; metrics container, web server và database.</td></tr>
+ <tr><td>Logging</td><td>Loki + Promtail; access log thật, ba LogQL phù hợp dữ liệu.</td></tr>
+ <tr><td>Hardening</td><td>Ít nhất 3–4 biện pháp; bảo vệ credential và giữ dịch vụ chạy.</td></tr>
+ <tr><td>Hồ sơ</td><td>README, GitHub theo mã sinh viên, ít nhất ba commits thực, evidence, báo cáo ≥10 trang.</td></tr></table>
+ <p>Phạm vi công việc dựa trên hệ thống WordPress đã tồn tại. Nội dung portfolio và dữ liệu trong volumes được giữ khi hoàn thiện cấu hình. Triển khai security headers cơ bản; việc đáp ứng lựa chọn này trong đề cần đối chiếu phiếu đề bài gốc.</p>
+ <h3>Trạng thái kiểm chứng</h3>
+ <p>Đã xác thực root, WordPress admin, phpMyAdmin và Grafana; đã chụp ảnh giao diện, dashboard và logs. Lịch sử Git và repository được cập nhật ở phần 10. Ba mật khẩu cấu hình dài 11 ký tự nên chưa đạt chính sách 20 ký tự; giữ nguyên theo yêu cầu sinh viên.</p>
+ <p class="notice">Bảng yêu cầu được đối chiếu theo README và checklist của dự án. Phiếu đề bài gốc chưa được cung cấp trong workspace; cần đối chiếu lại trước khi nộp.</p>
+ <div class="footer">Mục tiêu và phạm vi</div>
+</section>
+
+<section class="page">
+ <h2>2. Khảo sát hiện trạng và kiến trúc</h2>
+ <p>Workspace ban đầu không còn source, README, Compose hoặc Git. Các containers portfolio-manh vẫn chạy, nhãn working directory trỏ đúng workspace; Nginx trả 200 từ cấu hình trong bộ nhớ nhưng nginx -T lỗi do file bind mount bị mất.</p>
+ <p>Các trang Trang chủ, Kỹ năng, Dự án và Liên hệ còn trong WordPress/MySQL. Prometheus cũ có bốn jobs nhưng chưa có metrics container, Nginx stub_status hoặc MySQL. Collector cũ là Alloy, chưa đáp ứng yêu cầu Promtail.</p>
+ <pre>Trình duyệt → Nginx → WordPress/Apache → MySQL
+phpMyAdmin → MySQL
+cAdvisor / nginx-exporter / mysqld-exporter → Prometheus → Grafana
+Blackbox → kiểm tra HTTP website → Prometheus → Grafana
+Nginx access.json → Promtail → Loki → Grafana</pre>
+ <p>Mạng internal application/database/monitoring tách lưu lượng dịch vụ. WordPress có mạng outbound cho cập nhật; các giao diện quản trị bind localhost.</p>
+ <p>Database/WordPress/Grafana/Prometheus/Loki dùng named volumes đã có. Bản sao SQL trước thay đổi lưu riêng tư; WXR và uploads đưa vào source. Không reset dữ liệu để dựng lại cấu hình.</p>
+ <figure class="evidence architecture"><img src="architecture.svg" alt="Sơ đồ Nginx, WordPress, MySQL, Prometheus, Grafana, Loki và Promtail"><figcaption>Sơ đồ thiết kế 1. Kiến trúc được vẽ từ compose.yaml và cấu hình monitoring; không phải ảnh chụp giao diện.</figcaption></figure>
+ <p>Chi tiết từng yêu cầu, hiện trạng, lỗi và xử lý: docs/audit.md.</p>
+ <div class="footer">Kiến trúc và hiện trạng</div>
+</section>
+
+<section class="page">
+ <h2>3. Triển khai ứng dụng WordPress</h2>
+ <p>Tiếp tục WordPress 7.1.2, PHP 8.3.35/Apache và theme Twenty Twenty-Five quan sát từ container. Image WordPress được khóa theo digest hiện có để tránh thay đổi ứng dụng ngoài phạm vi khi recreate.</p>
+ <p>Website cung cấp giới thiệu trên Trang chủ, Kỹ năng, Dự án và Liên hệ. Nội dung tiếp tục quản lý qua Trang trong wp-admin. Giữ theme và nội dung cá nhân; mật khẩu user quản trị đã được đổi theo yêu cầu người dùng.</p>
+ <pre>docker compose config --quiet
+docker compose up -d --wait --wait-timeout 180
+curl.exe --max-time 15 -I http://localhost:8080/
+curl.exe --max-time 15 -I http://localhost:8080/wp-login.php</pre>
+ <p>Website trả HTTP 200. Đã đăng nhập thật bằng vanmanh_admin, truy cập Dashboard và danh sách Trang. Ngày 08/10/2026 lúc 15:21, bộ kiểm thử tạo một trang nháp riêng, sửa nội dung rồi xuất bản qua WordPress REST API trong phiên quản trị đã xác thực. Truy cập HTTP ẩn danh trả 200 và hiển thị đúng tiêu đề, nội dung mới; sau đó trang thử cùng revision được xóa. Đối chiếu trước/sau xác nhận toàn bộ posts/pages gốc, postmeta và cấu hình cá nhân không thay đổi; xem evidence/wordpress-edit.json.</p>
+ <figure class="evidence compact"><a href="../evidence/01-website.png"><img src="../evidence/01-website.png" alt="Trang chủ portfolio Nguyễn Văn Mạnh, ảnh cá nhân và navigation tới Kỹ năng / Dự án / Liên hệ."></a><figcaption>Hình 1. Trang chủ portfolio Nguyễn Văn Mạnh, ảnh cá nhân và navigation tới Kỹ năng / Dự án / Liên hệ. <span class="capture-time">Chụp: 2026-10-08T10:50:13+07:00.</span></figcaption></figure>
+ <figure class="evidence compact"><a href="../evidence/02-wordpress-admin.png"><img src="../evidence/02-wordpress-admin.png" alt="Phiên WordPress đã đăng nhập và danh sách các trang trong hệ thống."></a><figcaption>Hình 2. Phiên WordPress đã đăng nhập và danh sách các trang trong hệ thống. <span class="capture-time">Chụp: 2026-10-08T10:50:16+07:00.</span></figcaption></figure>
+ <figure class="evidence compact"><a href="../evidence/24-wordpress-edit-admin.png"><img src="../evidence/24-wordpress-edit-admin.png" alt="WordPress editor đã đăng nhập: trang kiểm thử có tiêu đề và nội dung cập nhật, trạng thái Đã xuất bản."></a><figcaption>Hình 3. WordPress editor đã đăng nhập: trang kiểm thử có tiêu đề và nội dung cập nhật, trạng thái Đã xuất bản. <span class="capture-time">Chụp: 2026-10-08T15:21:57+07:00.</span></figcaption></figure>
+ <figure class="evidence compact"><a href="../evidence/25-wordpress-edit-public.png"><img src="../evidence/25-wordpress-edit-public.png" alt="Phiên truy cập ẩn danh hiển thị tiêu đề và nội dung sau khi sửa/lưu; ảnh chụp trước khi xóa trang thử."></a><figcaption>Hình 4. Phiên truy cập ẩn danh hiển thị tiêu đề và nội dung sau khi sửa/lưu; ảnh chụp trước khi xóa trang thử. <span class="capture-time">Chụp: 2026-10-08T15:21:59+07:00.</span></figcaption></figure>
+ <p>Source bổ sung: wordpress/portfolio-export.xml, wordpress/uploads và MU plugin portfolio-hardening.php. WXR là bản xuất nội dung, không thay cho backup đầy đủ database.</p>
+ <div class="footer">Ứng dụng và quản trị</div>
+</section>
+
+<section class="page">
+ <h2>4. MySQL và phpMyAdmin</h2>
+ <p>MySQL 8.4 lưu database portfolio_db trong volume portfolio-manh_db_data. Tài khoản ứng dụng portfolio_user có quyền trên schema portfolio_db và không có global privileges ngoài USAGE.</p>
+ <p>phpMyAdmin chỉ truy cập localhost:8081, kết nối server db:3306; PMA_ARBITRARY=0. Đăng nhập bằng MYSQL_USER/MYSQL_PASSWORD trong .env, không đưa password hoặc wp_users hash vào hình báo cáo.</p>
+ <p>Mật khẩu ứng dụng, Grafana, WordPress admin và MySQL root đã được đặt theo yêu cầu người dùng; cấu hình và dịch vụ được đồng bộ. Không đưa giá trị mật khẩu vào báo cáo. Các mật khẩu cấu hình dài 11 ký tự, chưa đạt chính sách tối thiểu 20 ký tự.</p>
+ <pre>-- Trong phpMyAdmin sau đăng nhập:
+SHOW GRANTS FOR CURRENT_USER();
+SHOW TABLES;
+SELECT ID, post_title, post_status
+FROM wp_posts WHERE post_type = 'page';</pre>
+ <figure class="evidence compact"><a href="../evidence/03-phpmyadmin-database.png"><img src="../evidence/03-phpmyadmin-database.png" alt="phpMyAdmin sau đăng nhập: database portfolio_db và danh sách 12 bảng."></a><figcaption>Hình 5. phpMyAdmin sau đăng nhập: database portfolio_db và danh sách 12 bảng. <span class="capture-time">Chụp: 2026-10-08T10:56:11+07:00.</span></figcaption></figure>
+ <figure class="evidence compact"><a href="../evidence/15-database-grants.png"><img src="../evidence/15-database-grants.png" alt="SHOW GRANTS FOR CURRENT_USER(): user portfolio_user có quyền trên schema portfolio_db."></a><figcaption>Hình 6. SHOW GRANTS FOR CURRENT_USER(): user portfolio_user có quyền trên schema portfolio_db. <span class="capture-time">Chụp: 2026-10-08T10:56:14+07:00.</span></figcaption></figure>
+ <p class="notice">Lỗi root 1045 trước đây đã được xử lý. Root đăng nhập thực tế thành công; MySQL đã trở lại xác thực bình thường và giữ volume cũ. Kiểm tra độ dài mật khẩu root vẫn chưa đạt vì mật khẩu người dùng chọn có 11 ký tự. Xem evidence/root-maintenance.json và evidence/local-root-auth.json.</p><figure class="evidence compact"><a href="../evidence/19-root-authentication.png"><img src="../evidence/19-root-authentication.png" alt="Kết quả lệnh thực tế: root@localhost đăng nhập thành công; skip_networking OFF, general_log OFF."></a><figcaption>Hình 7. Kết quả lệnh thực tế: root@localhost đăng nhập thành công; skip_networking OFF, general_log OFF. <span class="capture-time">Chụp: 2026-10-08T15:26:49+07:00.</span></figcaption></figure>
+ <p>Snapshot ứng dụng được tạo bằng portfolio_user đủ quyền trên schema, khôi phục thử trên MySQL cùng image với tmpfs/network none: đủ 12 bảng, chữ ký INSERT khớp và CHECK TABLE OK. Không gắn volume gốc vào container thử. Đây là backup ứng dụng. Trong lần xử lý root, đã lưu thêm archive toàn bộ volume khi database dừng sạch, so sánh với dữ liệu nguồn, kiểm tra checksums và lưu full SQL dump gồm system accounts.</p>
+ <div class="footer">Database và giao diện quản lý</div>
+</section>
+
+<section class="page">
+ <h2>5. Nginx reverse proxy</h2>
+ <p>Nginx nhận HTTP trên localhost:8080, chuyển đến wordpress:80, giữ Host và đặt X-Real-IP/X-Forwarded-For/X-Forwarded-Proto. Các forwarding headers từ client bị thay bằng giá trị proxy đáng tin cậy.</p>
+ <table><tr><th>Header</th><th>Tác dụng</th></tr>
+ <tr><td>X-Content-Type-Options: nosniff</td><td>Hạn chế đoán MIME type.</td></tr>
+ <tr><td>X-Frame-Options: SAMEORIGIN</td><td>Hạn chế nhúng trang vào iframe ngoài origin.</td></tr>
+ <tr><td>Referrer-Policy</td><td>Giảm thông tin URL gửi qua referrer khi khác origin.</td></tr>
+ <tr><td>Permissions-Policy</td><td>Tắt camera, microphone, geolocation không cần cho portfolio.</td></tr>
+ <tr><td>Content-Security-Policy</td><td>Hạn chế frame-ancestors/object/base URI mà vẫn tương thích WordPress hiện có.</td></tr></table>
+ <p>Headers dùng always, áp dụng cả phản hồi lỗi. Server tokens/PHP header bị ẩn. Chặn xmlrpc.php bằng 403, hidden files và wp-config.php bằng 404.</p>
+ <p>Listener stub_status:8088 chỉ có trong Docker network, không publish ra Windows; nginx-exporter đọc requests và connections tại đây. Không gọi probe HTTP là metrics Nginx.</p>
+ <pre>docker compose exec -T nginx nginx -t
+curl.exe --max-time 15 -I http://localhost:8080/</pre>
+ <figure class="evidence medium"><a href="../evidence/05-nginx-headers.png"><img src="../evidence/05-nginx-headers.png" alt="Kết quả lệnh thực tế: nginx -t thành công, HTTP 200 và năm security headers."></a><figcaption>Hình 8. Kết quả lệnh thực tế: nginx -t thành công, HTTP 200 và năm security headers. <span class="capture-time">Chụp: 2026-10-08T15:26:46+07:00.</span></figcaption></figure>
+ <p>Chưa cấu hình HTTPS tự ký. Hệ thống hiện dùng HTTP và security headers cơ bản; cần đối chiếu phiếu đề bài gốc để xác nhận lựa chọn triển khai được chấp nhận.</p>
+ <div class="footer">Reverse proxy và headers</div>
+</section>
+
+<section class="page">
+ <h2>6. Monitoring với Prometheus và Grafana</h2>
+ <p>Prometheus scrape mỗi 15 giây. Tám jobs gồm prometheus, cadvisor, nginx, mysql, portfolio_http, blackbox, loki và promtail. Các targets và các metrics thực đã được kiểm tra bằng API; xem evidence/verification.json.</p>
+ <table><tr><th>Nhóm</th><th>Nguồn</th><th>Metrics/panels</th></tr>
+ <tr><td>Container</td><td>cAdvisor 0.56.2</td><td>CPU usage rate, working set RAM theo Compose service.</td></tr>
+ <tr><td>Web server</td><td>nginx-exporter 1.4.2 + stub_status</td><td>nginx_http_requests_total, connections_active.</td></tr>
+ <tr><td>Database</td><td>mysqld-exporter 0.17.2</td><td>global_status queries, threads_connected; chỉ collectors cơ bản.</td></tr>
+ <tr><td>Website availability</td><td>Blackbox HTTP probe</td><td>probe_success, probe_duration_seconds; không thay cho web server metrics.</td></tr></table>
+ <p>Grafana provision hai datasources và hai dashboards từ repository. Dashboard infrastructure nhóm container/web/database và probe riêng. CPU/RAM lọc đúng project portfolio-manh; không dùng dữ liệu container bài khác làm minh chứng.</p>
+ <figure class="evidence tall"><a href="../evidence/06-prometheus-targets.png"><img src="../evidence/06-prometheus-targets.png" alt="Giao diện Prometheus hiển thị đủ tám jobs với trạng thái UP."></a><figcaption>Hình 9. Giao diện Prometheus hiển thị đủ tám jobs với trạng thái UP. <span class="capture-time">Chụp: 2026-10-08T10:53:38+07:00.</span></figcaption></figure>
+ <figure class="evidence compact"><a href="../evidence/07-grafana-container.png"><img src="../evidence/07-grafana-container.png" alt="Dashboard Grafana: CPU/RAM theo từng dịch vụ của project portfolio-manh."></a><figcaption>Hình 10. Dashboard Grafana: CPU/RAM theo từng dịch vụ của project portfolio-manh. <span class="capture-time">Chụp: 2026-10-08T10:53:47+07:00.</span></figcaption></figure><figure class="evidence compact"><a href="../evidence/08a-grafana-web-requests.png"><img src="../evidence/08a-grafana-web-requests.png" alt="Panel Nginx requests/giây lấy từ nginx_http_requests_total."></a><figcaption>Hình 11. Panel Nginx requests/giây lấy từ nginx_http_requests_total. <span class="capture-time">Chụp: 2026-10-08T10:53:55+07:00.</span></figcaption></figure><figure class="evidence compact"><a href="../evidence/08b-grafana-web-connections.png"><img src="../evidence/08b-grafana-web-connections.png" alt="Panel số kết nối đang mở của Nginx."></a><figcaption>Hình 12. Panel số kết nối đang mở của Nginx. <span class="capture-time">Chụp: 2026-10-08T10:53:57+07:00.</span></figcaption></figure><figure class="evidence compact"><a href="../evidence/08c-grafana-http-probe.png"><img src="../evidence/08c-grafana-http-probe.png" alt="Panel Blackbox probe_success cho khả dụng HTTP của website."></a><figcaption>Hình 13. Panel Blackbox probe_success cho khả dụng HTTP của website. <span class="capture-time">Chụp: 2026-10-08T10:53:59+07:00.</span></figcaption></figure><figure class="evidence compact"><a href="../evidence/09a-grafana-database-queries.png"><img src="../evidence/09a-grafana-database-queries.png" alt="Panel MySQL queries/giây lấy từ exporter."></a><figcaption>Hình 14. Panel MySQL queries/giây lấy từ exporter. <span class="capture-time">Chụp: 2026-10-08T10:54:01+07:00.</span></figcaption></figure><figure class="evidence compact"><a href="../evidence/09b-grafana-database-threads.png"><img src="../evidence/09b-grafana-database-threads.png" alt="Panel MySQL threads đang kết nối."></a><figcaption>Hình 15. Panel MySQL threads đang kết nối. <span class="capture-time">Chụp: 2026-10-08T10:54:04+07:00.</span></figcaption></figure>
+ <p>cAdvisor phiên bản mới đã đăng ký Docker factory thành công với Engine 29.8.1; không lấy “target UP” làm bằng chứng duy nhất cho việc có metrics container.</p>
+ <div class="footer">Metrics và dashboards</div>
+</section>
+
+<section class="page">
+ <h2>7. Logging với Loki và Promtail</h2>
+ <p>Nginx ghi access.json vào shared named volume; Promtail 3.5.0 chạy user 10001, mount logs read-only, lưu positions riêng. Loki 3.6.0 dùng schema TSDB v13 hiện có; không xóa log hoặc thay schema lịch sử.</p>
+ <p>Labels thực: project=portfolio-manh, job=nginx-access, service=nginx. Dòng JSON có timestamp, method, uri, numeric status, bytes và request_time. Query strings, cookies và Authorization không ghi vào access log.</p>
+ <h3>Ba LogQL dùng trong báo cáo</h3>
+ <pre>{project="portfolio-manh",job="nginx-access"} | json
+
+{project="portfolio-manh",job="nginx-access"}
+ | json | __error__="" | status &gt;= 400 | status &lt; 600
+
+sum(count_over_time(
+ {project="portfolio-manh",job="nginx-access"}[1m]
+))</pre>
+ <p>Đã tạo request HTTP thực: /xmlrpc.php trả 403, /.env trả 404, website trả 200. Cả ba truy vấn trả dữ liệu thực. Không cố làm hỏng upstream để tạo 5xx; truy vấn lọc được cả 4xx và 5xx theo numeric status.</p>
+ <figure class="evidence medium"><a href="../evidence/10-logql-access.png"><img src="../evidence/10-logql-access.png" alt="Grafana Explore / Portfolio Loki: truy vấn JSON access logs và dữ liệu thực."></a><figcaption>Hình 16. Grafana Explore / Portfolio Loki: truy vấn JSON access logs và dữ liệu thực. <span class="capture-time">Chụp: 2026-10-08T10:54:07+07:00.</span></figcaption></figure><figure class="evidence medium"><a href="../evidence/11-logql-errors.png"><img src="../evidence/11-logql-errors.png" alt="Grafana Explore: lọc numeric status 400–599, với request /.env trả 404 và /xmlrpc.php trả 403."></a><figcaption>Hình 17. Grafana Explore: lọc numeric status 400–599, với request /.env trả 404 và /xmlrpc.php trả 403. <span class="capture-time">Chụp: 2026-10-08T10:54:11+07:00.</span></figcaption></figure><figure class="evidence medium"><a href="../evidence/12-logql-requests.png"><img src="../evidence/12-logql-requests.png" alt="Grafana Explore: biểu đồ số request trong từng cửa sổ một phút."></a><figcaption>Hình 18. Grafana Explore: biểu đồ số request trong từng cửa sổ một phút. <span class="capture-time">Chụp: 2026-10-08T10:54:15+07:00.</span></figcaption></figure>
+ <p class="notice">Promtail EOL ngày 02/03/2026 theo Grafana. Vẫn giữ đúng công cụ theo đề. Alloy cũ được dừng và giữ volume/profile, không tự thay Promtail bằng Alloy.</p>
+ <div class="footer">Log tập trung và truy vấn</div>
+</section>
+
+<section class="page">
+ <h2>8. Hardening</h2>
+ <table><tr><th>Biện pháp</th><th>Triển khai và cách kiểm tra</th></tr>
+ <tr><td>Tách network</td><td>application/database/monitoring Internal=true; network inspect.</td></tr>
+ <tr><td>Cổng localhost</td><td>8080/8081/3000/9090 bind 127.0.0.1; không publish database/Loki/exporters; Compose ps/inspect.</td></tr>
+ <tr><td>Security headers</td><td>Năm headers Nginx, always; curl -I trên 200 và lỗi HTTP.</td></tr>
+ <tr><td>Quyền DB</td><td>Ứng dụng chỉ trên schema portfolio_db; SHOW GRANTS. Exporter cơ bản không cần root/global grant.</td></tr>
+ <tr><td>Mật khẩu</td><td>Mật khẩu được đặt theo yêu cầu, .env ignore; root đã xác thực. Độ dài 11 ký tự chưa đạt chính sách 20 ký tự.</td></tr>
+ <tr><td>Non-root</td><td>Grafana 472, Loki/Promtail 10001, exporters/Prometheus/Blackbox 65534; inspect Config.User.</td></tr>
+ <tr><td>Container permissions</td><td>no-new-privileges, drop ALL/read-only trên dịch vụ hỗ trợ; config mount ro.</td></tr>
+ <tr><td>WordPress</td><td>Tắt file editor PHP/XML-RPC, chặn hidden files; vẫn cho phép chỉnh nội dung pages.</td></tr></table>
+ <p>Ngoại lệ có chủ đích: MySQL/Apache/Nginx dùng entrypoint mặc định tương thích; không ép read-only/non-root làm dịch vụ lỗi. cAdvisor root+privileged để đọc VM/cgroups, không publish cổng; loki-init root chạy một lần chuẩn bị quyền rồi exit.</p>
+ <figure class="evidence medium"><a href="../evidence/13-hardening-networks.png"><img src="../evidence/13-hardening-networks.png" alt="Kết quả inspect thực tế: application, database, monitoring đều Internal=true."></a><figcaption>Hình 19. Kết quả inspect thực tế: application, database, monitoring đều Internal=true. <span class="capture-time">Chụp: 2026-10-08T15:26:47+07:00.</span></figcaption></figure><figure class="evidence tall"><a href="../evidence/14-hardening-ports-users.png"><img src="../evidence/14-hardening-ports-users.png" alt="Các trường runtime được chọn: user, cổng localhost, cap_drop và no-new-privileges; không hiển thị Config.Env."></a><figcaption>Hình 20. Các trường runtime được chọn: user, cổng localhost, cap_drop và no-new-privileges; không hiển thị Config.Env. <span class="capture-time">Chụp: 2026-10-08T15:26:48+07:00.</span></figcaption></figure>
+ <p>Không gọi mount docker.sock:ro là kiểm soát read-only Docker API. Cần đánh giá bổ sung nếu triển khai production ngoài máy học tập.</p>
+ <div class="footer">Bảo vệ hệ thống và giới hạn</div>
+</section>
+
+<section class="page">
+ <h2>9. Kiểm thử và kết quả</h2>
+ <p>Nguồn kết quả: evidence/verification.json do scripts/verify.py chạy trực tiếp trên stack lúc <strong>2026-10-08T15:14:19.342627+07:00</strong>; đạt <strong>37/40 kiểm tra</strong>. Ba kiểm tra chưa đạt là độ dài MYSQL_PASSWORD, MYSQL_ROOT_PASSWORD và GRAFANA_ADMIN_PASSWORD: 11 ký tự thay vì tối thiểu 20. Các kiểm tra gốc được giữ nguyên; mật khẩu giữ theo yêu cầu sinh viên. Kiểm thử bổ sung sửa/lưu WordPress lúc 15:21 đạt 13/13 kiểm tra, ghi riêng trong evidence/wordpress-edit.json.</p>
+ <table><tr><th>Kiểm thử</th><th>Kết quả đã xác minh / điều kiện</th></tr>
+ <tr><td>Compose/Nginx/Prometheus/Loki/Promtail syntax</td><td>Đã kiểm tra bằng config/check syntax tools.</td></tr>
+ <tr><td>Website và trang đăng nhập</td><td>HTTP 200, giữ tên/nội dung; đã kiểm tra riêng phiên đăng nhập admin thật.</td></tr>
+ <tr><td>Sửa/lưu WordPress</td><td>Tạo draft riêng, sửa và publish qua REST/session; truy cập ẩn danh hiển thị nội dung mới. Đã xóa trang thử và xác minh dữ liệu gốc giữ nguyên.</td></tr>
+ <tr><td>phpMyAdmin/database</td><td>Trang hoạt động; kết quả đăng nhập và database access xem JSON mới nhất.</td></tr>
+ <tr><td>Metrics</td><td>8 targets UP; nginx_up/mysql_up/probe_success=1; CPU/RAM/Nginx/MySQL có series thật.</td></tr>
+ <tr><td>Grafana</td><td>Hai datasource health OK; hai dashboards meta.provisioned=true.</td></tr>
+ <tr><td>LogQL</td><td>Cả ba query trả dữ liệu thực, gồm request 403/404.</td></tr>
+ <tr><td>Network/ports/passwords</td><td>Internal networks và localhost mappings đạt. Ba mật khẩu cấu hình chưa đạt độ dài tối thiểu.</td></tr>
+ <tr><td>Root MySQL</td><td>Root đăng nhập thành công bằng credential cấu hình; giữ nguyên volume dữ liệu.</td></tr></table>
+ <p>Sao lưu ứng dụng đã restore-verify: 12 bảng, dữ liệu khớp, CHECK TABLE OK; evidence/backup-validation.json. Phiên admin xác thực Dashboard/danh sách Trang qua HTTP thật; kiểm thử bổ sung xác nhận chuỗi tạo nháp → sửa/lưu → xuất bản → hiển thị công khai → dọn trang thử.</p>
+ <pre>python -u scripts/verify.py
+python scripts/test-wordpress-edit.py --capture
+docker compose ps -a
+git check-ignore .env backups/before-changes.sql</pre>
+ <figure class="evidence medium"><a href="../evidence/04-compose-status.png"><img src="../evidence/04-compose-status.png" alt="Kết quả Docker Compose thực tế: 12 dịch vụ chạy, các healthchecks đạt; loki-init Exited (0)."></a><figcaption>Hình 21. Kết quả Docker Compose thực tế: 12 dịch vụ chạy, các healthchecks đạt; loki-init Exited (0). <span class="capture-time">Chụp: 2026-10-08T15:26:45+07:00.</span></figcaption></figure><figure class="evidence medium"><a href="../evidence/18-backup-validation.png"><img src="../evidence/18-backup-validation.png" alt="Metadata công khai của restore-test ứng dụng và cold archive toàn bộ volume."></a><figcaption>Hình 22. Metadata công khai của restore-test ứng dụng và cold archive toàn bộ volume. <span class="capture-time">Chụp: 2026-10-08T15:26:49+07:00.</span></figcaption></figure><figure class="evidence tall"><a href="../evidence/20-verification-results.png"><img src="../evidence/20-verification-results.png" alt="Kết quả bộ kiểm tra thực tế: 37/40 PASS, ba FAIL chỉ liên quan độ dài mật khẩu."></a><figcaption>Hình 23. Kết quả bộ kiểm tra thực tế: 37/40 PASS, ba FAIL chỉ liên quan độ dài mật khẩu. <span class="capture-time">Chụp: 2026-10-08T15:26:49+07:00.</span></figcaption></figure>
+ <p>Hai ảnh WordPress ở phần 3 được chụp bằng Edge trong phiên quản trị và phiên ẩn danh riêng. Thao tác ghi nội dung của bộ kiểm thử dùng WordPress REST API với cookie phiên và wp_rest nonce; ảnh editor ghi trạng thái đã lưu/xuất bản. Cookies, nonce và mật khẩu không lưu vào artifacts công khai.</p>
+ <div class="footer">Kiểm thử có thể lặp lại</div>
+</section>
+
+<section class="page">
+ <h2>10. Minh chứng và quản lý GitHub</h2>
+ <p>Nhánh main đã có ít nhất ba commits với nội dung thực, không sửa hoặc giả lập lịch sử. Remote origin trỏ tới repository thuộc tài khoản NguyenVanManh147. Snapshot lúc 15:26 ngày 08/10/2026 ghi nhận ba commits dưới đây trong evidence/git-delivery.json; các commits báo cáo/minh chứng có thể được bổ sung sau snapshot.</p>
+ <table><tr><th>Commit</th><th>Nội dung thay đổi</th></tr>
+ <tr><td><code>e5aea3b</code></td><td>Khôi phục source portfolio WordPress, Compose và triển khai Nginx.</td></tr>
+ <tr><td><code>ce4c524</code></td><td>Provision Prometheus/Grafana, dashboards và Loki/Promtail tập trung logs.</td></tr>
+ <tr><td><code>f1619e4</code></td><td>Thêm khởi tạo có thể lặp lại, sao lưu/kiểm tra và workflow sửa/lưu quản trị đã kiểm chứng.</td></tr></table>
+ <pre>git status --short
+git diff --cached --stat
+git log --oneline --graph --decorate
+git remote -v</pre>
+ <p>Sinh viên xác nhận tài khoản <a href="https://github.com/NguyenVanManh147">NguyenVanManh147</a>. Repository bài là <a href="https://github.com/NguyenVanManh147/DTC245200147_NguyenVanManh">NguyenVanManh147/DTC245200147_NguyenVanManh</a>; tên repository chứa mã sinh viên và họ tên. Việc tạo repository và quyền ghi đã được xác minh lúc 15:17 ngày 08/10/2026 trong evidence/github-access.json. Snapshot 15:26 xác minh commits và remote local; push chưa được xác minh tại thời điểm snapshot này.</p>
+ <figure class="evidence medium"><a href="../evidence/16-git-status.png"><img src="../evidence/16-git-status.png" alt="Kết quả Git thực tế: nhánh main, ba commits có nội dung và remote origin đúng repository."></a><figcaption>Hình 24. Kết quả Git thực tế: nhánh main, ba commits có nội dung và remote origin đúng repository. <span class="capture-time">Chụp: 2026-10-08T15:26:48+07:00.</span></figcaption></figure>
+ <figure class="evidence compact"><a href="../evidence/17a-github-account.png"><img src="../evidence/17a-github-account.png" alt="Trang tài khoản GitHub NguyenVanManh147 trong lần chụp ban đầu."></a><figcaption>Hình 25. Trang tài khoản GitHub NguyenVanManh147 trong lần chụp ban đầu; trạng thái repository cập nhật được đối chiếu riêng với evidence/github-access.json và evidence/git-delivery.json. <span class="capture-time">Chụp: 2026-10-08T10:50:11+07:00.</span></figcaption></figure>
+ <p>Danh sách ảnh đầy đủ nằm ở evidence/README.md. Gắn caption, đánh số hình và ghi thời gian chụp. Không đưa .env, SQL backup, credential cũ, cookies hoặc password hashes vào Git/báo cáo.</p>
+ <p>Ảnh backup đã được chèn ở phần kiểm thử; ảnh root authentication đã được chèn ở phần MySQL. File evidence/screenshots.json lưu nguồn, thời gian và SHA-256 của các ảnh. Các hình kết quả lệnh là trang hiển thị output thực tế, không phải ảnh terminal của Windows.</p>
+ <div class="footer">Git và hồ sơ minh chứng</div>
+</section>
+
+<section class="page">
+ <h2>11. Đánh giá kỹ thuật và kết luận</h2>
+ <p>Cấu hình ứng dụng WordPress hiện có được khôi phục và hệ thống được bổ sung metrics container/web/database, provisioning Grafana, log access Nginx qua Loki/Promtail và các biện pháp hardening tương thích.</p>
+ <p>Các thay đổi được kiểm tra qua cấu hình, HTTP/API, Docker runtime và ảnh giao diện. Bản sao lưu ứng dụng được khôi phục trên MySQL cô lập, đối chiếu 12 bảng và chữ ký dữ liệu; cách này kiểm tra khả năng khôi phục thay vì chỉ xác nhận tồn tại file SQL.</p>
+ <h3>Đánh giá kết quả</h3>
+ <p>Kiến trúc tách ứng dụng, database và monitoring giúp mô tả rõ luồng dữ liệu và phạm vi truy cập. Nginx là điểm vào của website; các giao diện quản trị giới hạn trên localhost. Metrics container, Nginx và MySQL lấy từ exporter thực, trong khi Blackbox kiểm tra khả dụng HTTP riêng. Loki/Promtail đưa access logs vào Grafana với ba truy vấn có kết quả kiểm chứng.</p>
+ <p>Hai điểm vận hành được làm rõ bằng kiểm thử: HTTP 200 ở trang đăng nhập không chứng minh đã xác thực quản trị; biến mật khẩu trong .env không tự đổi tài khoản đã lưu trong volume MySQL hoặc Grafana. Vì vậy phiên đăng nhập, credential dịch vụ và dữ liệu sao lưu được kiểm tra riêng.</p>
+ <h3>Trạng thái hồ sơ và giới hạn còn lại</h3>
+ <ol>
+ <li>Giữ nguyên mật khẩu theo yêu cầu sinh viên; ghi nhận ba kiểm tra độ dài 11 ký tự chưa đạt mức tối thiểu 20. Đây là giới hạn còn lại của bộ kiểm tra.</li>
+ <li>Kiểm thử sửa/lưu đã đạt 13/13: nội dung mới hiển thị ở phiên ẩn danh; trang thử được dọn và dữ liệu portfolio gốc giữ nguyên.</li>
+ <li>Đã chèn ảnh dashboard, targets, LogQL, database và hardening; kiểm tra hình trong PDF cuối.</li>
+ <li>Đối chiếu URL repository, lịch sử Git và ảnh minh chứng ở phần 10 với trạng thái đã push.</li>
+ <li>Đối chiếu ngày nộp và điều kiện tài khoản/repository với phiếu đề bài gốc. Khoa Công nghệ Thông tin, lớp CNTTK23B, học phần Triển khai và Quản trị Hệ thống Phần mềm và giảng viên Nguyễn Anh Chuyên đã được xác nhận.</li>
+ </ol>
+ <h3>Giới hạn triển khai hiện tại</h3>
+ <p>HTTP với security headers, chưa TLS; MySQL exporter chỉ collectors cơ bản; cAdvisor cần đặc quyền; Nginx file logs chưa có rotation tự động. Promtail đã EOL nhưng được giữ theo checklist hiện có. Nếu sử dụng ngoài môi trường học tập, hướng phát triển là HTTPS, quản lý quyền collector, xoay file logs và chuyển sang collector còn được hỗ trợ sau khi thống nhất yêu cầu.</p>
+ <h3>Tài liệu tham khảo</h3>
+ <ol>
+ <li><a href="../README.md">README dự án</a> và <a href="audit.md">bảng khảo sát, xử lý lỗi</a>: cấu hình, hướng dẫn vận hành và đối chiếu yêu cầu.</li>
+ <li><a href="https://grafana.com/docs/loki/latest/send-data/promtail/">Grafana — Promtail</a>: tài liệu collector và thông báo vòng đời hỗ trợ.</li>
+ <li><a href="https://github.com/prometheus/mysqld_exporter">Prometheus — mysqld_exporter</a>: collectors và quyền cần thiết để lấy metrics MySQL.</li>
+ <li><a href="https://github.com/google/cadvisor/releases/tag/v0.56.2">Google cAdvisor — release v0.56.2</a>: phiên bản collector container sử dụng trong dự án.</li>
+ </ol>
+ <p>Phần đánh giá trên phản ánh artifacts kỹ thuật đã kiểm tra. Nhận xét trải nghiệm học tập cá nhân cần do sinh viên bổ sung nếu học phần yêu cầu.</p>
+ <div class="footer">Kết luận và công việc còn lại</div>
+</section>
+</body>
+</html>

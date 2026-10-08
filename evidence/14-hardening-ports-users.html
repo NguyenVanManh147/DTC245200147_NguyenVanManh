@@ -1,0 +1,24 @@
+<!doctype html><html lang="vi"><meta charset="utf-8"><style>body{margin:0;background:#edf2f7;color:#14243a;font:18px/1.5 Segoe UI,Arial;padding:32px}main{max-width:1420px;margin:auto;background:white;border:1px solid #c8d5e1;border-radius:12px;padding:28px}h1{font-size:27px;color:#164e63;margin:0 0 10px}h2{font:16px Consolas,monospace;background:#e7eef5;padding:10px;margin-top:24px}pre{font:15px/1.65 Consolas,monospace;white-space:pre-wrap;overflow-wrap:anywhere}p{color:#54667c;font-size:15px}</style><main><h1>Cổng localhost và quyền container</h1><p>Kết quả lệnh/API thực tế • 2026-10-08T15:26:48+07:00 • Portfolio Nguyễn Văn Mạnh / DTC245200147</p><section><h2>docker inspect (chọn trường user / ports / security_opt / cap_drop; không lấy Config.Env)</h2><pre>blackbox          user=65534:65534  privileged=False  read_only=True
+  ports=không publish; cap_drop=[&#x27;ALL&#x27;]; security_opt=[&#x27;no-new-privileges:true&#x27;]
+cadvisor          user=entrypoint  privileged=True  read_only=False
+  ports=không publish; cap_drop=[]; security_opt=[&#x27;no-new-privileges:true&#x27;, &#x27;label=disable&#x27;]
+db                user=entrypoint  privileged=False  read_only=False
+  ports=không publish; cap_drop=[]; security_opt=[&#x27;no-new-privileges:true&#x27;]
+grafana           user=472:472  privileged=False  read_only=False
+  ports=127.0.0.1:3000 -&gt; 3000/tcp; cap_drop=[&#x27;ALL&#x27;]; security_opt=[&#x27;no-new-privileges:true&#x27;]
+loki              user=10001:10001  privileged=False  read_only=False
+  ports=không publish; cap_drop=[&#x27;ALL&#x27;]; security_opt=[&#x27;no-new-privileges:true&#x27;]
+mysql-exporter    user=65534:65534  privileged=False  read_only=True
+  ports=không publish; cap_drop=[&#x27;ALL&#x27;]; security_opt=[&#x27;no-new-privileges:true&#x27;]
+nginx             user=entrypoint  privileged=False  read_only=False
+  ports=127.0.0.1:8080 -&gt; 80/tcp; cap_drop=[]; security_opt=[&#x27;no-new-privileges:true&#x27;]
+nginx-exporter    user=65534:65534  privileged=False  read_only=True
+  ports=không publish; cap_drop=[&#x27;ALL&#x27;]; security_opt=[&#x27;no-new-privileges:true&#x27;]
+phpmyadmin        user=root  privileged=False  read_only=False
+  ports=127.0.0.1:8081 -&gt; 80/tcp; cap_drop=[]; security_opt=[&#x27;no-new-privileges:true&#x27;]
+prometheus        user=65534:65534  privileged=False  read_only=False
+  ports=127.0.0.1:9090 -&gt; 9090/tcp; cap_drop=[&#x27;ALL&#x27;]; security_opt=[&#x27;no-new-privileges:true&#x27;]
+promtail          user=10001:10001  privileged=False  read_only=True
+  ports=không publish; cap_drop=[&#x27;ALL&#x27;]; security_opt=[&#x27;no-new-privileges:true&#x27;]
+wordpress         user=entrypoint  privileged=False  read_only=False
+  ports=không publish; cap_drop=[]; security_opt=[&#x27;no-new-privileges:true&#x27;]</pre></section></main></html>

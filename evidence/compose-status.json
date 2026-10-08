@@ -1,0 +1,100 @@
+[
+  {
+    "Service": "alloy",
+    "State": "exited",
+    "Health": "",
+    "ExitCode": 0,
+    "Ports": ""
+  },
+  {
+    "Service": "blackbox",
+    "State": "running",
+    "Health": "",
+    "ExitCode": 0,
+    "Ports": "9115/tcp"
+  },
+  {
+    "Service": "cadvisor",
+    "State": "running",
+    "Health": "healthy",
+    "ExitCode": 0,
+    "Ports": "8080/tcp"
+  },
+  {
+    "Service": "db",
+    "State": "running",
+    "Health": "healthy",
+    "ExitCode": 0,
+    "Ports": "3306/tcp, 33060/tcp"
+  },
+  {
+    "Service": "grafana",
+    "State": "running",
+    "Health": "",
+    "ExitCode": 0,
+    "Ports": "127.0.0.1:3000->3000/tcp"
+  },
+  {
+    "Service": "loki",
+    "State": "running",
+    "Health": "",
+    "ExitCode": 0,
+    "Ports": "3100/tcp"
+  },
+  {
+    "Service": "loki-init",
+    "State": "exited",
+    "Health": "",
+    "ExitCode": 0,
+    "Ports": ""
+  },
+  {
+    "Service": "mysql-exporter",
+    "State": "running",
+    "Health": "",
+    "ExitCode": 0,
+    "Ports": "9104/tcp"
+  },
+  {
+    "Service": "nginx",
+    "State": "running",
+    "Health": "healthy",
+    "ExitCode": 0,
+    "Ports": "127.0.0.1:8080->80/tcp"
+  },
+  {
+    "Service": "nginx-exporter",
+    "State": "running",
+    "Health": "",
+    "ExitCode": 0,
+    "Ports": ""
+  },
+  {
+    "Service": "phpmyadmin",
+    "State": "running",
+    "Health": "",
+    "ExitCode": 0,
+    "Ports": "127.0.0.1:8081->80/tcp"
+  },
+  {
+    "Service": "prometheus",
+    "State": "running",
+    "Health": "",
+    "ExitCode": 0,
+    "Ports": "127.0.0.1:9090->9090/tcp"
+  },
+  {
+    "Service": "promtail",
+    "State": "running",
+    "Health": "",
+    "ExitCode": 0,
+    "Ports": ""
+  },
+  {
+    "Service": "wordpress",
+    "State": "running",
+    "Health": "healthy",
+    "ExitCode": 0,
+    "Ports": "80/tcp"
+  }
+]

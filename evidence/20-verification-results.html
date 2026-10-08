@@ -1,0 +1,42 @@
+<!doctype html><html lang="vi"><meta charset="utf-8"><style>body{margin:0;background:#edf2f7;color:#14243a;font:18px/1.5 Segoe UI,Arial;padding:32px}main{max-width:1420px;margin:auto;background:white;border:1px solid #c8d5e1;border-radius:12px;padding:28px}h1{font-size:27px;color:#164e63;margin:0 0 10px}h2{font:16px Consolas,monospace;background:#e7eef5;padding:10px;margin-top:24px}pre{font:15px/1.65 Consolas,monospace;white-space:pre-wrap;overflow-wrap:anywhere}p{color:#54667c;font-size:15px}</style><main><h1>Kết quả kiểm thử tích hợp: 37/40 đạt</h1><p>Kết quả lệnh/API thực tế • 2026-10-08T15:26:49+07:00 • Portfolio Nguyễn Văn Mạnh / DTC245200147</p><section><h2>evidence/verification.json — kết quả bộ kiểm tra thực tế</h2><pre>Thời gian kiểm tra: 2026-10-08T15:14:19.342627+07:00
+
+PASS  Compose syntax
+PASS  Nginx syntax
+PASS  Prometheus syntax
+PASS  Loki syntax
+PASS  Promtail syntax
+PASS  Website and existing content
+PASS  Nginx security headers
+PASS  WordPress login page
+PASS  phpMyAdmin page
+PASS  phpMyAdmin authenticated database access
+PASS  Existing WordPress pages preserved
+PASS  Application database privileges scoped to schema
+PASS  WordPress file editor disabled
+PASS  XML-RPC blocked (real 403 request)
+PASS  Hidden files blocked (real 404 request)
+PASS  Prometheus 8 targets
+PASS  PromQL: nginx_up{job=&quot;nginx&quot;}
+PASS  PromQL: mysql_up{job=&quot;mysql&quot;}
+PASS  PromQL: probe_success{job=&quot;portfolio_http&quot;}
+PASS  PromQL: container_memory_working_set_bytes{job=&quot;cadvisor&quot;,container_label_com_docker_compose_project=&quot;portfolio-manh&quot;}
+PASS  PromQL: rate(container_cpu_usage_seconds_total{job=&quot;cadvisor&quot;,container_label_com_docker_compose_project=&quot;portfolio-manh&quot;}[2m])
+PASS  PromQL: rate(nginx_http_requests_total{job=&quot;nginx&quot;}[2m])
+PASS  PromQL: mysql_global_status_threads_connected{job=&quot;mysql&quot;}
+PASS  PromQL: rate(mysql_global_status_queries{job=&quot;mysql&quot;}[2m])
+PASS  Grafana datasource portfolio-prometheus
+PASS  Grafana datasource health portfolio-prometheus
+PASS  Grafana datasource portfolio-loki
+PASS  Grafana datasource health portfolio-loki
+PASS  Grafana provisioned dashboard portfolio-infrastructure
+PASS  Grafana provisioned dashboard portfolio-logs
+PASS  LogQL 1
+PASS  LogQL 2
+PASS  LogQL 3
+PASS  Localhost published ports
+PASS  Internal application/database/monitoring networks
+FAIL  Password length policy: MYSQL_PASSWORD
+FAIL  Password length policy: MYSQL_ROOT_PASSWORD
+FAIL  Password length policy: GRAFANA_ADMIN_PASSWORD
+PASS  Existing MySQL root credential authentication
+PASS  Secrets and backup ignored by Git</pre></section></main></html>

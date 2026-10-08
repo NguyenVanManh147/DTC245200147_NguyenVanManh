@@ -1,6 +1,7 @@
 """Render actual results; optional root/admin evidence is separate from the 40 checks."""
 import json
 import pathlib
+import re
 
 root = pathlib.Path(__file__).resolve().parents[1]
 data = json.loads((root / 'evidence/verification.json').read_text(encoding='utf-8'))
@@ -103,10 +104,10 @@ if git_delivery:
     if repository_url:
         lines.append(f"- Repository bài: [{repository_url}]({repository_url}). Trạng thái push: **{'đã xác minh' if git_pushed else 'chưa xác minh'}**.")
 if has_captures:
-    image_index = artifact('report-image-index.json')
-    lines.append(f"- Báo cáo HTML đã chèn {image_index.get('screenshot_count', 0)} ảnh minh chứng thật và sơ đồ kiến trúc; ảnh không chứa mật khẩu/cookies/token. Các hình output lệnh là kết quả thật được hiển thị qua HTML để chụp, không phải terminal Windows.")
+    report_images = re.findall(r'<img\s+src="\.\./evidence/([^\"]+)"', (root / 'docs/report.html').read_text(encoding='utf-8'))
+    lines.append(f"- Báo cáo HTML đã chèn {len(report_images)} ảnh minh chứng thật và sơ đồ kiến trúc; ảnh không chứa mật khẩu/cookies/token. Các hình output lệnh là kết quả thật được hiển thị qua HTML để chụp, không phải terminal Windows.")
     if report_validation:
-        lines.append(f"- PDF: {report_validation['pdf_pages']} trang A4; {report_validation['images']} ảnh/sơ đồ tải thành công, không thiếu file. Xem {report_validation['pdf_file']} và evidence/report-validation.json.")
+        lines.append(f"- Lần xuất PDF được xác minh tại {report_validation.get('checked_at', 'thời gian ghi trong artifact')}: {report_validation['pdf_pages']} trang A4; {report_validation['images']} ảnh/sơ đồ tải thành công, không thiếu file. Xem {report_validation['pdf_file']} và evidence/report-validation.json.")
 remaining = []
 if password_failures:
     lines.append('- Người dùng yêu cầu giữ nguyên mật khẩu hiện tại. Các kiểm tra độ dài chưa đạt được giữ và ghi rõ, không đổi mật khẩu hoặc hạ chính sách kiểm tra.')

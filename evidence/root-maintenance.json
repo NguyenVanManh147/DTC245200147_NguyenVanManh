@@ -1,0 +1,13 @@
+{
+  "checked_at": "2026-10-08T10:33:31.498668+07:00",
+  "root_changed": true,
+  "recovery_mode_used": true,
+  "source_volume": "portfolio-manh_db_data",
+  "same_data_volume": true,
+  "new_root_socket_login": true,
+  "container_env_synchronized": true,
+  "new_password_length": 11,
+  "backup_folder": "backups\\requested-password-20261008T032916Z",
+  "cold_archive_verified": true,
+  "normal_authentication_restored": true
+}

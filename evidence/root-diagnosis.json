@@ -1,0 +1,51 @@
+{
+  "checked_at": "2026-10-08T01:03:05.699103+07:00",
+  "configured_root_password_length": 10,
+  "env_matches_compose_root": true,
+  "env_matches_running_container_root": true,
+  "data_mounts": [
+    {
+      "type": "volume",
+      "name": "portfolio-manh_db_data",
+      "destination": "/var/lib/mysql"
+    }
+  ],
+  "database_image_id": "sha256:6ea90827b1100f8f2ae306a539f86d2c264a26ed435a2a9f75551dd5c3aeb242",
+  "attempts": [
+    {
+      "credential_source": ".env",
+      "authenticated": false,
+      "error_code": "1045",
+      "current_user": null
+    }
+  ],
+  "app_account_database_metadata": [
+    "8.4.11\tportfolio_user@%\t/var/lib/mysql/",
+    "GRANT USAGE ON *.* TO `portfolio_user`@`%`",
+    "GRANT ALL PRIVILEGES ON `portfolio\\\\_db`.* TO `portfolio_user`@`%`",
+    "wp_commentmeta\tInnoDB",
+    "wp_comments\tInnoDB",
+    "wp_links\tInnoDB",
+    "wp_options\tInnoDB",
+    "wp_postmeta\tInnoDB",
+    "wp_posts\tInnoDB",
+    "wp_term_relationships\tInnoDB",
+    "wp_term_taxonomy\tInnoDB",
+    "wp_termmeta\tInnoDB",
+    "wp_terms\tInnoDB",
+    "wp_usermeta\tInnoDB",
+    "wp_users\tInnoDB",
+    "general_log\tOFF",
+    "log_bin\tON",
+    "log_raw\tOFF",
+    "read_only\tOFF",
+    "slow_query_log\tOFF"
+  ],
+  "wordpress_administrator_accounts": [
+    {
+      "id": 1,
+      "login": "vanmanh_admin",
+      "role": "administrator"
+    }
+  ]
+}

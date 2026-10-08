@@ -1,0 +1,6 @@
+{
+  "captured_at": "2026-10-08T10:54:04+07:00",
+  "source": "http://localhost:3000/d-solo/portfolio-infrastructure?orgId=1&from=now-30m&to=now&panelId=6",
+  "label": "Grafana: MySQL threads đang kết nối",
+  "sha256": "0395551f2fdc88de69aaaff9706623473ea0c5dc4e9d931e749ff814ba92ed0a"
+}

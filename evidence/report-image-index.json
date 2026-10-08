@@ -1,0 +1,108 @@
+{
+  "checked_at": "2026-10-08T15:27:34.613555+07:00",
+  "screenshot_count": 25,
+  "images": [
+    {
+      "file": "evidence/01-website.png",
+      "caption": "Trang chủ portfolio Nguyễn Văn Mạnh, ảnh cá nhân và navigation tới Kỹ năng / Dự án / Liên hệ."
+    },
+    {
+      "file": "evidence/02-wordpress-admin.png",
+      "caption": "Phiên WordPress đã đăng nhập và danh sách các trang trong hệ thống."
+    },
+    {
+      "file": "evidence/24-wordpress-edit-admin.png",
+      "caption": "WordPress editor đã đăng nhập: trang kiểm thử có tiêu đề và nội dung cập nhật, trạng thái Đã xuất bản."
+    },
+    {
+      "file": "evidence/25-wordpress-edit-public.png",
+      "caption": "Phiên truy cập ẩn danh hiển thị tiêu đề và nội dung sau khi sửa/lưu; ảnh chụp trước khi xóa trang thử."
+    },
+    {
+      "file": "evidence/03-phpmyadmin-database.png",
+      "caption": "phpMyAdmin sau đăng nhập: database portfolio_db và danh sách 12 bảng."
+    },
+    {
+      "file": "evidence/15-database-grants.png",
+      "caption": "SHOW GRANTS FOR CURRENT_USER(): user portfolio_user có quyền trên schema portfolio_db."
+    },
+    {
+      "file": "evidence/19-root-authentication.png",
+      "caption": "Kết quả lệnh thực tế: root@localhost đăng nhập thành công; skip_networking OFF, general_log OFF."
+    },
+    {
+      "file": "evidence/05-nginx-headers.png",
+      "caption": "Kết quả lệnh thực tế: nginx -t thành công, HTTP 200 và năm security headers."
+    },
+    {
+      "file": "evidence/06-prometheus-targets.png",
+      "caption": "Giao diện Prometheus hiển thị đủ tám jobs với trạng thái UP."
+    },
+    {
+      "file": "evidence/07-grafana-container.png",
+      "caption": "Dashboard Grafana: CPU/RAM theo từng dịch vụ của project portfolio-manh."
+    },
+    {
+      "file": "evidence/08a-grafana-web-requests.png",
+      "caption": "Panel Nginx requests/giây lấy từ nginx_http_requests_total."
+    },
+    {
+      "file": "evidence/08b-grafana-web-connections.png",
+      "caption": "Panel số kết nối đang mở của Nginx."
+    },
+    {
+      "file": "evidence/08c-grafana-http-probe.png",
+      "caption": "Panel Blackbox probe_success cho khả dụng HTTP của website."
+    },
+    {
+      "file": "evidence/09a-grafana-database-queries.png",
+      "caption": "Panel MySQL queries/giây lấy từ exporter."
+    },
+    {
+      "file": "evidence/09b-grafana-database-threads.png",
+      "caption": "Panel MySQL threads đang kết nối."
+    },
+    {
+      "file": "evidence/10-logql-access.png",
+      "caption": "Grafana Explore / Portfolio Loki: truy vấn JSON access logs và dữ liệu thực."
+    },
+    {
+      "file": "evidence/11-logql-errors.png",
+      "caption": "Grafana Explore: lọc numeric status 400–599, với request /.env trả 404 và /xmlrpc.php trả 403."
+    },
+    {
+      "file": "evidence/12-logql-requests.png",
+      "caption": "Grafana Explore: biểu đồ số request trong từng cửa sổ một phút."
+    },
+    {
+      "file": "evidence/13-hardening-networks.png",
+      "caption": "Kết quả inspect thực tế: application, database, monitoring đều Internal=true."
+    },
+    {
+      "file": "evidence/14-hardening-ports-users.png",
+      "caption": "Các trường runtime được chọn: user, cổng localhost, cap_drop và no-new-privileges; không hiển thị Config.Env."
+    },
+    {
+      "file": "evidence/04-compose-status.png",
+      "caption": "Kết quả Docker Compose thực tế: 12 dịch vụ chạy, các healthchecks đạt; loki-init Exited (0)."
+    },
+    {
+      "file": "evidence/18-backup-validation.png",
+      "caption": "Metadata công khai của restore-test ứng dụng và cold archive toàn bộ volume."
+    },
+    {
+      "file": "evidence/20-verification-results.png",
+      "caption": "Kết quả bộ kiểm tra thực tế: 37/40 PASS, ba FAIL chỉ liên quan độ dài mật khẩu."
+    },
+    {
+      "file": "evidence/16-git-status.png",
+      "caption": "Kết quả Git thực tế: nhánh main, source untracked, chưa có commit và remote."
+    },
+    {
+      "file": "evidence/17a-github-account.png",
+      "caption": "Trang tài khoản GitHub NguyenVanManh147 trong lần chụp ban đầu."
+    }
+  ],
+  "architecture": "docs/architecture.svg",
+  "result": "37/40"
+}

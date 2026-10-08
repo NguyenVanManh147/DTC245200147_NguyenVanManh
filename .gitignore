@@ -1,0 +1,11 @@
+.env
+.env.*
+!.env.example
+backups/
+secrets/
+*.sql
+*.log
+__pycache__/
+.DS_Store
+Thumbs.db
+evidence/runtime-private/

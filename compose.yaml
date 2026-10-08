@@ -1,0 +1,266 @@
+name: ${COMPOSE_PROJECT_NAME:-portfolio-manh}
+
+x-common: &common
+  restart: unless-stopped
+  security_opt:
+    - no-new-privileges:true
+  logging:
+    driver: json-file
+    options:
+      max-size: "10m"
+      max-file: "3"
+
+services:
+  db:
+    <<: *common
+    image: ${MYSQL_IMAGE:-mysql@sha256:6ea90827b1100f8f2ae306a539f86d2c264a26ed435a2a9f75551dd5c3aeb242}
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE:?Set MYSQL_DATABASE in .env}
+      MYSQL_USER: ${MYSQL_USER:?Set MYSQL_USER in .env}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:?Set MYSQL_PASSWORD in .env}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?Set MYSQL_ROOT_PASSWORD in .env}
+    volumes:
+      - db_data:/var/lib/mysql
+    networks: [database]
+    healthcheck:
+      # Tests the working app account; root environment may differ from an existing volume.
+      test: [CMD-SHELL, 'MYSQL_PWD="$${MYSQL_PASSWORD}" mysql -u"$${MYSQL_USER}" -D"$${MYSQL_DATABASE}" -e "SELECT 1" >/dev/null 2>&1']
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 30s
+
+  wordpress:
+    <<: *common
+    image: ${WORDPRESS_IMAGE:-wordpress@sha256:736761c95c327cb21602ab9175ee4dba6e779b00f3f4895536a3e1af5ac4fe4c}
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_NAME: ${MYSQL_DATABASE}
+      WORDPRESS_DB_USER: ${MYSQL_USER}
+      WORDPRESS_DB_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - wordpress_data:/var/www/html
+      - ./wordpress/mu-plugins/portfolio-hardening.php:/var/www/html/wp-content/mu-plugins/portfolio-hardening.php:ro
+    networks: [application, database, outbound]
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: [CMD-SHELL, 'curl --fail --silent http://localhost/wp-login.php >/dev/null']
+      interval: 15s
+      timeout: 5s
+      retries: 10
+
+  phpmyadmin:
+    <<: *common
+    image: ${PHPMYADMIN_IMAGE:-phpmyadmin@sha256:7ebeef41095cbe071a00e3c85c8b44309f110eee546c7b3a6d1fcfe259d58e59}
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_ARBITRARY: "0"
+      UPLOAD_LIMIT: 32M
+    ports:
+      - "127.0.0.1:${PMA_PORT:-8081}:80"
+    networks: [database, administration]
+    depends_on:
+      db:
+        condition: service_healthy
+
+  nginx:
+    <<: *common
+    image: ${NGINX_IMAGE:-nginx@sha256:0985e772fb9f729e6fa0980da05fca5d9c468e870eed43071545afa9d2e27d94}
+    ports:
+      - "127.0.0.1:${WEB_PORT:-8080}:80"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - nginx_logs:/var/log/portfolio
+    networks: [application, monitoring, edge]
+    depends_on:
+      wordpress:
+        condition: service_healthy
+    healthcheck:
+      test: [CMD-SHELL, 'wget -q -O /dev/null http://127.0.0.1:8088/stub_status']
+      interval: 15s
+      timeout: 5s
+      retries: 5
+
+  nginx-exporter:
+    <<: *common
+    image: nginx/nginx-prometheus-exporter:1.4.2
+    user: "65534:65534"
+    read_only: true
+    cap_drop: [ALL]
+    command: [--nginx.scrape-uri=http://nginx:8088/stub_status]
+    networks: [monitoring]
+    depends_on:
+      nginx:
+        condition: service_healthy
+
+  mysql-exporter:
+    <<: *common
+    image: prom/mysqld-exporter:v0.17.2
+    user: "65534:65534"
+    read_only: true
+    cap_drop: [ALL]
+    environment:
+      MYSQLD_EXPORTER_PASSWORD: ${MYSQL_PASSWORD}
+    command:
+      - --config.my-cnf=
+      - --mysqld.address=db:3306
+      - --mysqld.username=${MYSQL_USER}
+      # SHOW GLOBAL STATUS/VARIABLES need no global SELECT/PROCESS grant.
+      - --no-collect.slave_status
+      - --no-collect.info_schema.innodb_cmp
+      - --no-collect.info_schema.innodb_cmpmem
+      - --no-collect.info_schema.query_response_time
+    networks: [database, monitoring]
+    depends_on:
+      db:
+        condition: service_healthy
+
+  cadvisor:
+    <<: *common
+    # Newer Docker API client than v0.49; supports Docker Desktop Engine 29.
+    image: ghcr.io/google/cadvisor:0.56.2
+    privileged: true
+    command:
+      - --docker_only=true
+      - --housekeeping_interval=15s
+      - --store_container_labels=true
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker:/var/lib/docker:ro
+      - /dev/disk:/dev/disk:ro
+    networks: [monitoring]
+
+  blackbox:
+    <<: *common
+    image: ${BLACKBOX_IMAGE:-prom/blackbox-exporter@sha256:e753ff9f3fc458d02cca5eddab5a77e1c175eee484a8925ac7d524f04366c2fc}
+    user: "65534:65534"
+    read_only: true
+    cap_drop: [ALL]
+    command: [--config.file=/etc/blackbox_exporter/blackbox.yml]
+    volumes:
+      - ./monitoring/blackbox.yml:/etc/blackbox_exporter/blackbox.yml:ro
+    networks: [monitoring]
+
+  prometheus:
+    <<: *common
+    image: ${PROMETHEUS_IMAGE:-prom/prometheus@sha256:efd719c99d83b060d9daefdcf00360461adf279f45ef5391f8d111892118753e}
+    user: "65534:65534"
+    cap_drop: [ALL]
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --storage.tsdb.path=/prometheus
+      - --storage.tsdb.retention.time=7d
+      - --storage.tsdb.retention.size=1GB
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    ports:
+      - "127.0.0.1:${PROMETHEUS_PORT:-9090}:9090"
+    networks: [monitoring, administration]
+
+  grafana:
+    <<: *common
+    image: ${GRAFANA_IMAGE:-grafana/grafana@sha256:efa8e935921096c08e4636c320d2f955cb843fa0889f471022e0d568af780d3f}
+    user: "472:472"
+    cap_drop: [ALL]
+    environment:
+      GF_SECURITY_ADMIN_USER: ${GRAFANA_ADMIN_USER:-admin}
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD:?Set GRAFANA_ADMIN_PASSWORD}
+      GF_USERS_ALLOW_SIGN_UP: "false"
+      GF_AUTH_ANONYMOUS_ENABLED: "false"
+      GF_ANALYTICS_REPORTING_ENABLED: "false"
+      GF_ANALYTICS_CHECK_FOR_UPDATES: "false"
+    ports:
+      - "127.0.0.1:${GRAFANA_PORT:-3000}:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./monitoring/grafana/datasources.yml:/etc/grafana/provisioning/datasources/portfolio.yml:ro
+      - ./monitoring/grafana/dashboards.yml:/etc/grafana/provisioning/dashboards/portfolio.yml:ro
+      - ./monitoring/grafana/dashboards:/etc/grafana/dashboards:ro
+    networks: [monitoring, administration]
+
+  loki-init:
+    image: ${NGINX_IMAGE:-nginx@sha256:0985e772fb9f729e6fa0980da05fca5d9c468e870eed43071545afa9d2e27d94}
+    user: "0:0"
+    restart: "no"
+    entrypoint: [sh, -c]
+    command: ['mkdir -p /loki/chunks /loki/rules /positions; chown 10001:10001 /loki /loki/chunks /loki/rules /positions']
+    cap_drop: [ALL]
+    cap_add: [CHOWN, DAC_OVERRIDE]
+    security_opt: [no-new-privileges:true]
+    network_mode: none
+    volumes:
+      - loki_data:/loki
+      - promtail_positions:/positions
+
+  loki:
+    <<: *common
+    image: ${LOKI_IMAGE:-grafana/loki@sha256:6a705de65df88aa0d90a44779606b0042722c86637335a73858f65f9fe9f9557}
+    user: "10001:10001"
+    cap_drop: [ALL]
+    command: [-config.file=/etc/loki/loki.yml]
+    volumes:
+      - ./monitoring/loki.yml:/etc/loki/loki.yml:ro
+      - loki_data:/loki
+    networks: [monitoring]
+    depends_on:
+      loki-init:
+        condition: service_completed_successfully
+
+  promtail:
+    <<: *common
+    # Kept to meet the assignment; Promtail is EOL. No substitution without approval.
+    image: grafana/promtail:3.5.0
+    user: "10001:10001"
+    read_only: true
+    cap_drop: [ALL]
+    command: [-config.file=/etc/promtail/promtail.yml]
+    volumes:
+      - ./monitoring/promtail.yml:/etc/promtail/promtail.yml:ro
+      - nginx_logs:/var/log/portfolio:ro
+      - promtail_positions:/positions
+    networks: [monitoring]
+    depends_on:
+      loki:
+        condition: service_started
+      loki-init:
+        condition: service_completed_successfully
+
+  # Existing Alloy data is retained. Enable only if the assignment accepts Alloy.
+  alloy:
+    <<: *common
+    profiles: [legacy-alloy]
+    image: grafana/alloy:v1.17.1
+    command: [run, --storage.path=/var/lib/alloy/data, /etc/alloy/config.alloy]
+    volumes:
+      - ./monitoring/config.alloy:/etc/alloy/config.alloy:ro
+      - alloy_data:/var/lib/alloy/data
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks: [monitoring]
+
+networks:
+  edge:
+  outbound:
+  administration:
+  application:
+    internal: true
+  database:
+    internal: true
+  monitoring:
+    internal: true
+
+# Project name and volume keys match the running WordPress deployment.
+volumes:
+  db_data:
+  wordpress_data:
+  prometheus_data:
+  grafana_data:
+  loki_data:
+  alloy_data:
+  nginx_logs:
+  promtail_positions:

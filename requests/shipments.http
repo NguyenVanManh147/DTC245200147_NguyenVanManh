@@ -1,0 +1,31 @@
+@api = http://localhost:5080
+@code = REPLACE_WITH_TRACKING_CODE
+
+### Tạo bưu gửi: HTTP 201 và Location
+POST {{api}}/shipments
+Content-Type: application/json
+Idempotency-Key: sample-create-01
+
+{"sender":"Nguyễn Văn Mạnh","recipient":"Trần An","location":"Thái Nguyên"}
+
+### Đọc trạng thái
+GET {{api}}/shipments/{{code}}
+
+### Ghi nhận điểm xử lý
+POST {{api}}/shipments/{{code}}/events
+Content-Type: application/json
+Idempotency-Key: sample-event-01
+
+{"status":"InTransit","location":"Hà Nội","note":"Đã xuất kho"}
+
+### Toàn bộ lịch sử, theo version tăng dần
+GET {{api}}/shipments/{{code}}/history
+
+### Lỗi dữ liệu: HTTP 400
+POST {{api}}/shipments
+Content-Type: application/json
+
+{"sender":"","recipient":"An","location":""}
+
+### Không tồn tại: HTTP 404
+GET {{api}}/shipments/UNKNOWN

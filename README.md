@@ -127,6 +127,7 @@ Các client kiểm thử dùng kết nối SignalR thật; không cần mở API
 - [Chapter 03: SignalR](docs/chapters/chapter03.md)
 - [Báo cáo tiến độ chương 1–3](docs/bao-cao-chuong01-03.md)
 - [Kết quả kiểm thử: 41/41 đạt](docs/kiem-thu-chuong01-03.md)
+- [Bản yêu cầu hoàn thiện giai đoạn 1 đã rà soát](docs/de-bai-giai-doan1-chapter01-03.md)
 
 Thông báo SignalR không được lưu bền trong kết nối: nếu offline, client đọc lại lịch sử REST. Nếu hết lượt reconnect, client hướng dẫn chạy lại để đồng bộ.
 Nhóm theo mã phục vụ minh họa phạm vi thông báo; phiên bản học tập chưa có xác thực/phân quyền và chỉ chạy một API instance. Không coi nhóm SignalR là cơ chế phân quyền.

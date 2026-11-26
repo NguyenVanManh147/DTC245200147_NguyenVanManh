@@ -30,8 +30,8 @@ Kết quả: **41/41 kiểm tra đạt**. API thật chạy trên một cổng l
 | Khởi động lại | SignalR tự reconnect, đăng ký lại nhóm, đọc lịch sử REST và nhận live push mới |
 | Bền vững | Trạng thái Delivered v6 và đủ lịch sử còn nguyên sau khi dừng/khởi động lại API |
 
-Log lần chạy thành công lưu cục bộ ở `artifacts/checks-4fa4883e376f42ab8a8253c2fe7c1399/api.log`; thư mục artifacts được ignore để không đưa database và log thử nghiệm vào Git.
-Có thể tái lập kết quả bằng lệnh trên; mỗi lần chạy dùng database và cổng riêng.
+Mỗi lần chạy sinh database và log cục bộ trong `artifacts/checks-<mã lần chạy>/`; thư mục artifacts được ignore để không đưa dữ liệu thử nghiệm vào Git và có thể dọn sau khi kiểm tra.
+Có thể tái lập kết quả bằng lệnh trên; mỗi lần chạy dùng database và cổng riêng. Kết quả 41/41 ở đây ghi nhận lần kiểm thử đã thực hiện, không phụ thuộc việc giữ lại thư mục tạm của lần chạy đó.
 
 ## Giới hạn xác nhận
 

@@ -27,7 +27,7 @@ public sealed class ShipmentStore
             PRAGMA journal_mode=WAL;
             CREATE TABLE IF NOT EXISTS shipments (code TEXT PRIMARY KEY, body TEXT NOT NULL);
             CREATE TABLE IF NOT EXISTS events (id TEXT PRIMARY KEY, code TEXT NOT NULL, version INTEGER NOT NULL,
-                body TEXT NOT NULL, published INTEGER NOT NULL DEFAULT 0, UNIQUE(code, version));
+                body TEXT NOT NULL, UNIQUE(code, version));
             CREATE TABLE IF NOT EXISTS requests (key TEXT PRIMARY KEY, hash TEXT NOT NULL, body TEXT NOT NULL);
             """;
         command.ExecuteNonQuery();
@@ -131,21 +131,11 @@ public sealed class ShipmentStore
         }
     }
 
-    public List<ShipmentEvent> Pending()
+    public ShipmentEvent Event(string code, long version)
     {
         using var db = Open();
-        using var cmd = Command(db, "SELECT body FROM events WHERE published=0 ORDER BY rowid LIMIT 50");
-        using var reader = cmd.ExecuteReader();
-        var result = new List<ShipmentEvent>();
-        while (reader.Read()) result.Add(JsonSerializer.Deserialize<ShipmentEvent>(reader.GetString(0), WireJson.Options)!);
-        return result;
-    }
-
-    public void MarkPublished(Guid id)
-    {
-        using var db = Open();
-        using var cmd = Command(db, "UPDATE events SET published=1 WHERE id=$id", ("$id", id.ToString()));
-        cmd.ExecuteNonQuery();
+        using var cmd = Command(db, "SELECT body FROM events WHERE code=$code AND version=$version", ("$code", code), ("$version", version));
+        return JsonSerializer.Deserialize<ShipmentEvent>((string)cmd.ExecuteScalar()!, WireJson.Options)!;
     }
 
     public bool Ready()

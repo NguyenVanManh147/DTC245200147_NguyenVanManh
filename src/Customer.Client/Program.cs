@@ -12,7 +12,6 @@ if (args.Length == 0)
     return;
 }
 var apiUrl = Environment.GetEnvironmentVariable("TRACKING_API_URL") ?? "http://localhost:5080";
-var hubUrl = Environment.GetEnvironmentVariable("NOTIFICATION_URL") ?? "http://localhost:5081";
 using var http = new HttpClient { BaseAddress = new Uri(apiUrl), Timeout = TimeSpan.FromSeconds(10) };
 using var stop = new CancellationTokenSource();
 Console.CancelKeyPress += (_, e) => { e.Cancel = true; stop.Cancel(); };
@@ -21,9 +20,10 @@ void Display(ShipmentEvent evt, string source)
 {
     if (!seen.TryAdd(evt.EventId, 0)) return;
     Console.WriteLine($"[{source}] {evt.TrackingCode} v{evt.Version} {evt.Status} @ {evt.Location} — {evt.OccurredAt.ToLocalTime():HH:mm:ss} {evt.Note}");
+    if (evt.Status == ShipmentStatus.Failed) Console.WriteLine("CẢNH BÁO: Bưu gửi gặp sự cố, cần liên hệ bưu cục.");
 }
 await using var connection = new HubConnectionBuilder()
-    .WithUrl(hubUrl.TrimEnd('/') + "/hubs/tracking")
+    .WithUrl(apiUrl.TrimEnd('/') + "/hubs/tracking")
     .AddJsonProtocol(o => o.PayloadSerializerOptions.Converters.Add(new System.Text.Json.Serialization.JsonStringEnumConverter<ShipmentStatus>(allowIntegerValues: false)))
     .WithAutomaticReconnect(new[] { TimeSpan.Zero, TimeSpan.FromSeconds(2), TimeSpan.FromSeconds(5), TimeSpan.FromSeconds(10) })
     .Build();

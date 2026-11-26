@@ -83,8 +83,11 @@ public sealed class ShipmentStore
             if (request.Note?.Length > 1000) throw new DomainException(400, "Ghi chú tối đa 1000 ký tự.");
             if (!Enum.IsDefined(request.Status)) throw new DomainException(400, "Trạng thái không hợp lệ.");
             var old = Get(code) ?? throw new DomainException(404, "Không tìm thấy bưu gửi.");
-            if (!ShipmentRules.CanTransition(old.Status, request.Status))
+            var sameStatus = old.Status == request.Status;
+            if (old.Status == ShipmentStatus.Delivered || !sameStatus && !ShipmentRules.CanTransition(old.Status, request.Status))
                 throw new DomainException(409, $"Không thể chuyển từ {old.Status} sang {request.Status}.");
+            if (sameStatus && string.Equals(old.Location, request.Location.Trim(), StringComparison.OrdinalIgnoreCase))
+                throw new DomainException(409, "Trạng thái và vị trí chưa thay đổi. Không ghi thêm lịch sử trùng.");
             return old with { Location = request.Location.Trim(), Status = request.Status,
                 UpdatedAt = DateTimeOffset.UtcNow, Version = old.Version + 1 };
         }, request.Note);

@@ -204,6 +204,107 @@ try
     Check(saved?.Status == ShipmentStatus.Delivered && saved.Version == 6, "SQLite giữ dữ liệu sau khi khởi động lại API");
     var restored = await http.GetFromJsonAsync<List<ShipmentEvent>>($"/shipments/{a.TrackingCode}/history", WireJson.Options);
     Check(restored?.Count == 6, "REST khôi phục đầy đủ các cập nhật khi client offline");
+    await reconnecting.StopAsync();
+    using (var terminal = await Post($"/shipments/{a.TrackingCode}/events", new AddShipmentEvent(ShipmentStatus.Delivered, "Vị trí khác")))
+        Check(terminal.StatusCode == HttpStatusCode.Conflict, "Delivered không cho đổi vị trí sau khi kết thúc");
+
+    string menuCode;
+    await using (var staff = new ClientProcess(root, configuration, "Operator.Client", address))
+    {
+        await staff.Input("99", "1", "Người gửi từ menu", "Người nhận từ menu", "Thái Nguyên", "0");
+        Check(await staff.Exit() == 0, "Operator menu tạo bưu gửi và thoát bình thường");
+        Check(staff.Has("Lựa chọn không hợp lệ") && staff.Has("HTTP 201"), "Nhập sai lựa chọn không làm Operator thoát");
+        var match = System.Text.RegularExpressions.Regex.Match(staff.Output, "\"trackingCode\":\\s*\"([^\"]+)\"");
+        Check(match.Success, "Operator hiển thị mã bưu gửi vừa tạo");
+        menuCode = match.Groups[1].Value;
+        var created = await http.GetFromJsonAsync<Shipment>($"/shipments/{menuCode}", WireJson.Options);
+        Check(created?.Sender == "Người gửi từ menu" && created.Location == "Thái Nguyên", "Menu gửi dữ liệu tiếng Việt đúng UTF-8");
+    }
+    await using (var staff = new ClientProcess(root, configuration, "Operator.Client", address))
+    {
+        await staff.Input("2", menuCode, "3", menuCode, "INVALID", "Hà Nội", "", "3", menuCode,
+            "InTransit", "Hà Nội", "Đã xuất kho", "4", menuCode, "0");
+        Check(await staff.Exit() == 0, "Operator menu tra cứu, cập nhật và xem lịch sử");
+        Check(staff.Has("Sai lệnh hoặc trạng thái") && staff.Has("HTTP 201") && staff.Has("HTTP 200"), "Sai trạng thái vẫn có thể cập nhật lại từ menu");
+    }
+
+    await using (var customer = new ClientProcess(root, configuration, "Customer.Client", address))
+    {
+        await customer.Input("99", "1", "UNKNOWN", "1", menuCode, "2", menuCode, "3", menuCode, "5");
+        await customer.WaitFor("Các mã đang theo dõi:");
+        Check(customer.Has("Lựa chọn không hợp lệ") && customer.Has("HTTP 404"), "Customer menu xử lý lựa chọn sai và mã không tồn tại");
+        Check(customer.Has("Người gửi: Người gửi từ menu") && customer.Has("Lịch sử " + menuCode), "Customer chủ động tra cứu và đọc lịch sử bằng REST");
+        Check(customer.Has("Đã đăng ký theo dõi: " + menuCode), "Customer đăng ký theo dõi từ menu");
+        using (var location = await Post($"/shipments/{menuCode}/events", new AddShipmentEvent(ShipmentStatus.InTransit, "Lào Cai", "Qua điểm trung chuyển"), "location-only"))
+            Check(location.StatusCode == HttpStatusCode.Created, "Giữ nguyên trạng thái nhưng đổi vị trí trả 201");
+        await customer.WaitFor("[SignalR] " + menuCode + " v3 InTransit @ Lào Cai");
+        Check(true, "Console Customer nhận live push trong khi đang ở menu");
+        using (var duplicate = await Post($"/shipments/{menuCode}/events", new AddShipmentEvent(ShipmentStatus.InTransit, "Lào Cai", "Ghi chú khác")))
+            Check(duplicate.StatusCode == HttpStatusCode.Conflict, "Cùng trạng thái và vị trí không tạo lịch sử trùng");
+        using (var replay = await Post($"/shipments/{menuCode}/events", new AddShipmentEvent(ShipmentStatus.InTransit, "Lào Cai", "Qua điểm trung chuyển"), "location-only"))
+            Check(replay.IsSuccessStatusCode, "Gửi lại đúng Idempotency-Key nhận lại kết quả");
+        await Task.Delay(250);
+        Check(customer.Count("[SignalR] " + menuCode + " v3 ") == 1, "Console loại thông báo trùng theo EventId");
+        var locationHistory = await http.GetFromJsonAsync<List<ShipmentEvent>>($"/shipments/{menuCode}/history", WireJson.Options);
+        Check(locationHistory?.Count == 3 && locationHistory[^1].Location == "Lào Cai", "Đổi vị trí lưu đúng một sự kiện mới");
+
+        await customer.Input("4", menuCode, "5");
+        await customer.WaitFor("Chưa theo dõi bưu gửi nào.");
+        Check(customer.Has("Đã hủy theo dõi: " + menuCode), "Customer hủy theo dõi và cập nhật danh sách");
+        using (var update = await Post($"/shipments/{menuCode}/events", new AddShipmentEvent(ShipmentStatus.AtHub, "Yên Bái")))
+            Check(update.IsSuccessStatusCode, "Cập nhật sau khi khách hủy theo dõi vẫn thành công");
+        await Task.Delay(350);
+        Check(!customer.Has("[SignalR] " + menuCode + " v4 "), "Console không nhận thông báo của mã đã hủy");
+
+        await customer.Input("3", menuCode);
+        await customer.WaitFor("[REST khôi phục] " + menuCode + " v4 ");
+        Check(true, "Đăng ký lại khôi phục sự kiện đã bỏ lỡ qua REST");
+        using (var update = await Post($"/shipments/{menuCode}/events", new AddShipmentEvent(ShipmentStatus.Failed, "Yên Bái")))
+            Check(update.IsSuccessStatusCode, "Ghi nhận Failed cho khách đang theo dõi");
+        await customer.WaitFor("CẢNH BÁO:");
+        Check(true, "Console hiển thị cảnh báo Failed");
+
+        await StopServer();
+        await customer.WaitFor("Mất kết nối");
+        await StartServer();
+        await customer.WaitFor("Đã kết nối lại và đồng bộ lịch sử.");
+        Check(true, "Console Customer thật reconnect và đăng ký lại nhóm sau restart");
+        using (var update = await Post($"/shipments/{menuCode}/events", new AddShipmentEvent(ShipmentStatus.InTransit, "Nam Định")))
+            Check(update.IsSuccessStatusCode, "Tiếp tục hành trình sau khi Console reconnect");
+        await customer.WaitFor("[SignalR] " + menuCode + " v6 InTransit @ Nam Định");
+        Check(customer.Count("[SignalR] " + menuCode + " v3 ") == 1, "Console nhận push mới và không lặp dữ liệu cũ sau reconnect");
+        await customer.Input("0");
+        Check(await customer.Exit() == 0, "Customer thoát menu và đóng SignalR sạch sẽ");
+    }
+    await using (var customer = new ClientProcess(root, configuration, "Customer.Client", address, menuCode))
+    {
+        await customer.WaitFor("Đang theo dõi; Ctrl+C để thoát.");
+        Check(customer.Has("REST khôi phục"), "Giữ tương thích cách chạy Customer bằng đối số dòng lệnh");
+    }
+    await using (var staff = new ClientProcess(root, configuration, "Operator.Client", address, "get", menuCode))
+    {
+        Check(await staff.Exit() == 0 && staff.Has(menuCode), "Giữ tương thích lệnh tra cứu Operator bằng đối số dòng lệnh");
+    }
+    await StopServer();
+    await using (var customer = new ClientProcess(root, configuration, "Customer.Client", address))
+    {
+        await customer.Input("3", menuCode);
+        await customer.WaitFor("Kết nối lần 1/3 thất bại");
+        await StartServer();
+        await customer.WaitFor("Đã đăng ký theo dõi: " + menuCode);
+        Check(true, "Console chạy trước API tự retry lần kết nối đầu và khôi phục thành công");
+        await customer.Input("0");
+        Check(await customer.Exit() == 0, "Thoát bình thường sau retry kết nối đầu");
+    }
+    await StopServer();
+    await using (var customer = new ClientProcess(root, configuration, "Customer.Client", address))
+    {
+        await customer.Input("3", menuCode);
+        await customer.WaitFor("Không thể kết nối sau 3 lần thử", 25);
+        Check(true, "Retry lần kết nối đầu có giới hạn và thông báo hướng xử lý");
+        await customer.Input("0");
+        Check(await customer.Exit() == 0, "Hết lượt retry vẫn quay lại menu và thoát được");
+    }
     Console.WriteLine($"\nTHÀNH CÔNG: {checks} kiểm tra. Log: {artifacts}");
 }
 catch (Exception ex)

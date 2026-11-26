@@ -28,6 +28,8 @@ Mốc này áp dụng ba chương đầu: kiến trúc client/server, RESTful AP
 - Operator.Client nhận lệnh tạo/đọc/cập nhật/lịch sử, dùng HttpClient có timeout, in status và nội dung lỗi.
 - Customer.Client thiết lập hub connection, theo dõi nhiều mã và khôi phục lịch sử sau reconnect.
 
+Hai Console client cung cấp menu tương tác khi chạy không có đối số, đồng thời giữ cách chạy bằng dòng lệnh. Customer có tra cứu/lịch sử độc lập qua REST, đăng ký/hủy và danh sách mã theo dõi; callback vẫn in thông báo trong khi người dùng ở menu. CustomerSession chịu trách nhiệm kết nối và danh sách đăng ký, ConsoleView đồng bộ xuất console.
+
 Ba tiến trình chạy khi trình diễn gồm API, console nhân viên và console khách hàng. SQLite được nhúng trong tiến trình API. Phần hub đang cùng API là thiết kế phù hợp nội dung chương 3; sẽ tách ranh giới ở chương xử lý bất đồng bộ.
 
 ## 4. Dữ liệu và hợp đồng
@@ -37,6 +39,7 @@ ShipmentEvent gồm EventId, TrackingCode, Status, Location, OccurredAt, Note, V
 
 Database có bảng shipments lưu trạng thái hiện tại, events lưu các sự kiện duy nhất theo (code, version), requests lưu kết quả theo Idempotency-Key.
 Các giá trị SQL được truyền bằng parameter. Mỗi thay đổi ghi shipment và event trong một transaction.
+Với bưu gửi chưa Delivered, cùng trạng thái tại vị trí mới được ghi thành sự kiện mới. Cùng trạng thái và vị trí thì 409, kể cả chỉ thay ghi chú; ghi lại cùng Idempotency-Key trả kết quả cũ. Delivered không cho chỉnh tiếp. Đây là lựa chọn quy tắc của bài, được ghi rõ để trình bày.
 
 201 xác nhận thao tác đã lưu; 400 cho sai dữ liệu, 404 cho mã không tồn tại, 409 cho xung đột nghiệp vụ.
 DTO tách cấu trúc truyền HTTP khỏi lược đồ SQLite. Mã theo dõi do server sinh để không phụ thuộc dữ liệu client nhập.
@@ -61,8 +64,11 @@ REST thể hiện request/response; SignalR thể hiện server push. Dữ liệ
 - Client chạy trước API: retry kết nối đầu; API bị ngắt sau kết nối: reconnect rồi đăng ký lại nhóm.
 
 Lệnh build, chạy ba terminal và kiểm tra tự động được ghi trong README. `tests/Tracking.Checks` mở API thật và dùng SignalR client thật để kiểm tra hành vi, database kiểm thử tách khỏi dữ liệu demo.
+Bộ kiểm thử mở cả hai Console App và điều khiển stdin/stdout: tạo/tra cứu/cập nhật/lịch sử từ menu, nhập sai, tiếng Việt, theo dõi/hủy, live push, khôi phục sau restart và retry trước khi API chạy. Không dùng kết quả kiểm tra hub thay cho bằng chứng chạy menu thực tế.
 
 ## 7. Đánh giá và bước tiếp theo
+
+Phiên bản hoàn thiện giai đoạn 1 đã build với 0 warning/0 error và chạy đạt 73/73 kiểm tra. Những phần từng thiếu — menu hai client, tra cứu/hủy theo dõi phía khách và cập nhật vị trí khi giữ trạng thái — đã được triển khai, kiểm tra bằng API và Console thật. Kết quả chi tiết ở `kiem-thu-chuong01-03.md`.
 
 Mốc chapter 3 đáp ứng chức năng nghiệp vụ và thông báo trực tiếp để thực hành ba chương đầu. Các giới hạn hiện tại: một API instance; chưa xác thực/phân quyền; SignalR không lưu thông báo bền vững; phải đọc REST history khi offline.
 Ở mốc này chưa thể coi toàn bộ kiến trúc cuối kì đã hoàn thành. Tiếp theo sẽ triển khai đúng từng chapter theo yêu cầu người học, giữ nguyên các hợp đồng REST cơ bản.

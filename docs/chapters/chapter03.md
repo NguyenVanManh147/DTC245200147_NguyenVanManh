@@ -6,12 +6,14 @@ Nguồn: chapter03.pdf, mục 3.1–3.3. Hub và nhóm được áp dụng cho t
 
 `Tracking.Api` cung cấp `/hubs/tracking`. `Customer.Client` đăng ký `ShipmentUpdated`, gọi `Watch(code)`, rồi đọc lịch sử qua REST.
 Kết nối lại tự động phải đăng ký lại nhóm; lịch sử REST bù các sự kiện bỏ lỡ. Retry lần kết nối đầu được xử lý riêng.
+`Customer.Client/Program.cs` điều khiển menu; `CustomerSession.cs` giữ kết nối, danh sách mã, REST và đăng ký/hủy nhóm. ConsoleView đồng bộ việc in thông báo và lời nhắc nhập.
 
 1. Chạy Tracking.Api cổng 5080; không cần service hay broker khác ở mốc này.
 2. Tạo hai bưu gửi, chạy Customer.Client với cả hai mã; chạy một client khác chỉ theo dõi mã thứ nhất.
 3. Cập nhật mã thứ nhất bằng Operator.Client: hai client đang theo dõi mã đó cùng nhận thông báo. Cập nhật mã thứ hai: chỉ client đăng ký mã thứ hai nhận.
 4. Tạm dừng API rồi khởi động lại trong khoảng reconnect. Khách hàng đăng ký lại nhóm và đọc lại lịch sử.
 5. Chạy client khi service chưa chạy: thấy retry ban đầu; Ctrl+C dừng nhẹ nhàng.
+6. Chạy client không có đối số: mục 1 tra cứu, 2 lịch sử, 3 đăng ký, 4 hủy, 5 xem các mã, 0 thoát. Trong lúc ở menu, cập nhật từ Operator vẫn được nhận. Sau khi hủy, cập nhật tiếp không hiển thị; đăng ký lại đọc được các mốc bỏ lỡ.
 
 ## Ôn tập và trả lời
 
@@ -33,4 +35,5 @@ Kết nối lại tự động phải đăng ký lại nhóm; lịch sử REST b
 
 Hub từ chối `Watch` với mã sai hoặc không tồn tại. `Unwatch` rời nhóm. Client đăng ký callback trước `StartAsync`, tham gia nhóm trước khi đọc lịch sử để giảm khoảng hở bỏ lỡ cập nhật; EventId giúp loại bỏ bản trùng giữa REST và SignalR.
 
-Các sự kiện từ REST khôi phục và live push có thể xen kẽ; version cho biết thứ tự nghiệp vụ. Đây là thông báo gần thời gian thực, không phải giao thức đảm bảo nhận tuyệt đối. Sau khi hết bốn lượt reconnect, cần chạy lại client.
+Các sự kiện từ REST khôi phục và live push có thể xen kẽ; version cho biết thứ tự nghiệp vụ. Đây là thông báo gần thời gian thực, không phải giao thức đảm bảo nhận tuyệt đối. Sau khi hết bốn lượt reconnect, chế độ dòng lệnh hướng dẫn chạy lại client.
+Trong chế độ menu, sau khi hết lượt có thể chọn đăng ký theo dõi để kết nối lại ngay trong ứng dụng. Kết nối lần đầu tối đa 3 lần, timeout 5 giây mỗi lần, chờ 1/2 giây giữa các lần; hết lượt thì quay về menu. Việc đọc REST không phụ thuộc trạng thái kết nối SignalR.

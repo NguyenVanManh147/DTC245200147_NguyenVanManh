@@ -4,6 +4,7 @@
 
 Phiên bản thực hành đến hết **chapter 3**, học phần Phát triển ứng dụng phân tán.
 C# / .NET 10 / ASP.NET Core Minimal API / SQLite / SignalR; hai client dạng Console.
+Đã hoàn thiện menu của hai client, tra cứu/hủy theo dõi phía khách và cập nhật vị trí khi giữ trạng thái. Build không lỗi/cảnh báo; bộ kiểm thử hiện tại đạt **73/73**.
 
 ## Nội dung đã hoàn thành
 
@@ -48,7 +49,26 @@ dotnet restore ParcelTracking.sln
 dotnet build ParcelTracking.sln --no-restore
 ```
 
-## Chạy và trình bày trong ba terminal
+## Chạy bằng menu
+
+Mở ba terminal tại thư mục dự án. Terminal thứ nhất chạy API; hai terminal còn lại chạy client không có đối số:
+
+```powershell
+# Terminal 1
+dotnet run --project src/Tracking.Api --no-build --urls http://localhost:5080
+# Terminal 2
+dotnet run --project src/Operator.Client --no-build
+# Terminal 3
+dotnet run --project src/Customer.Client --no-build
+```
+
+Operator có menu tạo, tra cứu, cập nhật và xem lịch sử. Customer có menu tra cứu, lịch sử, đăng ký/hủy theo dõi và danh sách mã đang theo dõi. Chọn `0` để thoát. Nhập sai lựa chọn hoặc trạng thái sẽ báo lỗi rồi quay lại menu.
+
+Tạo bưu gửi ở Operator, sao chép mã sang Customer và chọn `3` để theo dõi. Sau đó cập nhật tại Operator; thông báo xuất hiện ngay trong menu Customer. Chọn `4` ở Customer để hủy theo dõi. Tra cứu và xem lịch sử bằng mục `1`/`2` hoạt động qua REST, không cần đăng ký SignalR.
+
+Customer thử kết nối đầu tối đa 3 lần, mỗi lần timeout 5 giây, chờ 1/2 giây giữa các lần. Nếu API chưa chạy, có thể bật API trong lúc thử lại; sau khi hết lượt, menu báo lỗi và cho chọn lại hoặc thoát. Ctrl+C hủy thao tác đang chờ. Sau kết nối thành công, mất mạng tạm thời dùng 4 lượt automatic reconnect (0/2/5/10 giây), đăng ký lại nhóm và đọc lịch sử.
+
+## Chạy bằng dòng lệnh trong ba terminal
 
 **Terminal 1 — API:**
 
@@ -102,6 +122,8 @@ Body cập nhật: `{"status":"InTransit","location":"Hà Nội","note":"Đã xu
 
 Các trạng thái: `Created`, `InTransit`, `AtHub`, `Delivered`, `Failed`.
 Quy tắc: Created → InTransit/AtHub/Failed; InTransit → AtHub/Delivered/Failed; AtHub → InTransit/Delivered/Failed; Failed → InTransit/AtHub; Delivered là kết thúc.
+Các trạng thái chưa kết thúc được giữ nguyên khi chuyển sang vị trí khác; mỗi lần đổi vị trí tạo một sự kiện và gửi SignalR. Ví dụ `update MA_BUU_GUI InTransit "Lào Cai" "Qua điểm trung chuyển"` sau khi đang InTransit tại Hà Nội.
+Nếu trạng thái và vị trí đều không đổi (bỏ khoảng trắng hai đầu và không phân biệt hoa/thường ở vị trí), trả 409; thay ghi chú đơn lẻ không tạo mốc hành trình mới. Delivered không cho cập nhật tiếp kể cả chỉ đổi vị trí.
 Người gửi/nhận/vị trí: 1–200 ký tự; ghi chú tối đa 1000 ký tự.
 400 cho dữ liệu sai, 404 cho mã không tồn tại, 409 cho chuyển trạng thái trái quy tắc.
 
@@ -118,7 +140,7 @@ dotnet run --project tests/Tracking.Checks
 ```
 
 Chương trình tự mở API ở một cổng trống, dùng database kiểm thử riêng trong `artifacts/`, kiểm tra REST, nhóm SignalR, theo dõi nhiều mã, lỗi, cập nhật đồng thời và dữ liệu sau restart, rồi dừng đúng tiến trình do nó tạo.
-Các client kiểm thử dùng kết nối SignalR thật; không cần mở API thủ công trước.
+Các client kiểm thử dùng kết nối SignalR thật; không cần mở API thủ công trước. Bộ kiểm thử còn chạy chính hai Console App bằng stdin/stdout để thử menu, dữ liệu tiếng Việt, đăng ký/hủy, thông báo trong menu, retry ban đầu và reconnect.
 
 ## Tài liệu học và giới hạn của mốc này
 
@@ -126,7 +148,7 @@ Các client kiểm thử dùng kết nối SignalR thật; không cần mở API
 - [Chapter 02: RESTful API](docs/chapters/chapter02.md)
 - [Chapter 03: SignalR](docs/chapters/chapter03.md)
 - [Báo cáo tiến độ chương 1–3](docs/bao-cao-chuong01-03.md)
-- [Kết quả kiểm thử: 41/41 đạt](docs/kiem-thu-chuong01-03.md)
+- [Kết quả kiểm thử: 73/73 đạt](docs/kiem-thu-chuong01-03.md)
 - [Bản yêu cầu hoàn thiện giai đoạn 1 đã rà soát](docs/de-bai-giai-doan1-chapter01-03.md)
 
 Thông báo SignalR không được lưu bền trong kết nối: nếu offline, client đọc lại lịch sử REST. Nếu hết lượt reconnect, client hướng dẫn chạy lại để đồng bộ.

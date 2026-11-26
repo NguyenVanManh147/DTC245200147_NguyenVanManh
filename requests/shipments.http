@@ -21,6 +21,19 @@ Idempotency-Key: sample-event-01
 ### Toàn bộ lịch sử, theo version tăng dần
 GET {{api}}/shipments/{{code}}/history
 
+### Giữ InTransit, đổi vị trí: 201 và thông báo SignalR
+POST {{api}}/shipments/{{code}}/events
+Content-Type: application/json
+Idempotency-Key: sample-location-02
+
+{"status":"InTransit","location":"Lào Cai","note":"Qua điểm trung chuyển"}
+
+### Cùng trạng thái và vị trí: 409 (nếu sự kiện trên đã thành công)
+POST {{api}}/shipments/{{code}}/events
+Content-Type: application/json
+
+{"status":"InTransit","location":"Lào Cai","note":"Không tạo mốc trùng"}
+
 ### Lỗi dữ liệu: HTTP 400
 POST {{api}}/shipments
 Content-Type: application/json

@@ -12,6 +12,9 @@ Mẫu yêu cầu đầy đủ nằm ở `requests/shipments.http`.
 2. Chạy `get <mã>`, `update <mã> InTransit "Hà Nội"`, rồi `history <mã>`.
 3. Gửi người gửi rỗng: nhận 400. Tra mã `UNKNOWN`: nhận 404.
 4. Chuyển trực tiếp `Created` sang `Delivered`: nhận 409. Gửi lại POST cùng `Idempotency-Key`: không tạo sự kiện trùng.
+5. Khi đang InTransit tại Hà Nội, giữ InTransit và đổi vị trí sang Lào Cai: nhận 201 và thêm một mốc lịch sử. Gửi lại cùng trạng thái/vị trí với khóa mới: 409; không ghi thêm chỉ vì đổi ghi chú.
+
+Chạy Operator.Client không có đối số để dùng menu. Có thể tạo, tra cứu, cập nhật và xem lịch sử mà không phải nhớ cú pháp dòng lệnh. Chọn sai hoặc nhập trạng thái sai sẽ báo lỗi và quay lại menu.
 
 ## Giải thích khi trình bày
 

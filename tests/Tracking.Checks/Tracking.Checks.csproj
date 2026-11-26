@@ -3,6 +3,8 @@
   <ItemGroup>
     <ProjectReference Include="../../src/Tracking.Contracts/Tracking.Contracts.csproj" />
     <ProjectReference Include="../../src/Tracking.Api/Tracking.Api.csproj" ReferenceOutputAssembly="false" />
+    <ProjectReference Include="../../src/Operator.Client/Operator.Client.csproj" ReferenceOutputAssembly="false" />
+    <ProjectReference Include="../../src/Customer.Client/Customer.Client.csproj" ReferenceOutputAssembly="false" />
     <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="10.0.15" />
   </ItemGroup>
 </Project>

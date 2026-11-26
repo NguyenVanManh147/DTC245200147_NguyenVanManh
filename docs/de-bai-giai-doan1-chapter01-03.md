@@ -93,7 +93,7 @@ Quy định hành vi:
 - Thời điểm do server tạo, lưu UTC; client có thể hiển thị giờ địa phương.
 - Trạng thái hiện tại và lịch sử phải được ghi nhất quán; thao tác thất bại không được thêm lịch sử một phần.
 - Lịch sử có thứ tự ổn định: ưu tiên Version nếu đã có; thời gian là thông tin hiển thị, không phải khóa duy nhất để sắp thứ tự.
-- Một thay đổi hợp lệ về vị trí vẫn phải được ghi nhận và thông báo dù Status không đổi, ví dụ InTransit ở hai điểm xử lý khác nhau. Đầu vào trùng hoàn toàn không được tạo thêm lịch sử: chọn trả 409 với thông báo rõ ràng; nếu có Idempotency-Key thì giữ cơ chế trả lại kết quả cũ cho yêu cầu gửi lại đúng khóa.
+- Một thay đổi hợp lệ về vị trí vẫn phải được ghi nhận và thông báo dù Status không đổi, ví dụ InTransit ở hai điểm xử lý khác nhau. Nếu cả trạng thái và vị trí không đổi, chọn trả 409; ghi chú đơn lẻ không tạo thêm mốc hành trình. Nếu có Idempotency-Key thì giữ cơ chế trả lại kết quả cũ cho yêu cầu gửi lại đúng khóa. Không cập nhật bưu gửi đã Delivered.
 - Delivered là trạng thái kết thúc trong lựa chọn nghiệp vụ của bài. Failed có thể được xử lý lại theo quy tắc đã ghi trong README.
 
 Giữ bảng chuyển trạng thái đã triển khai nếu hợp lý; bổ sung trường hợp giữ nguyên trạng thái nhưng đổi vị trí. Không áp đặt một sơ đồ chuyển trạng thái mới mà không giải thích vì sao phù hợp bài toán.
